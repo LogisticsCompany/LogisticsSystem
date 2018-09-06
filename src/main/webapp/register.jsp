@@ -4,6 +4,26 @@
     String basePath = request.getScheme() + "://"
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
+    Object notLoggedIn = request.getSession().getAttribute("notLoggedIn");
+    Object noUser = request.getSession().getAttribute("noUser");
+    if (notLoggedIn != null)
+    {
+%>
+<script>
+    alert('请先登录！');
+</script>
+<%
+        request.getSession().removeAttribute("notLoggedIn");
+    }
+    if (noUser != null)
+    {
+%>
+<script>
+    alert('用户' + '<%=request.getSession().getAttribute("user")%>' + '不存在！');
+</script>
+<%
+        request.getSession().removeAttribute("noUser");
+    }
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -22,12 +42,6 @@
             if (document.getElementById("pwds").value.length < 6
                 || document.getElementById("pwds").value.length > 12) {
                 alert("密码必须是6到12位！");
-                return false;
-            }
-            var age = document.all.age.value;
-
-            if (isNaN(age) || age <= 0) {
-                alert("年龄必须是正数！");
                 return false;
             }
 
@@ -72,7 +86,7 @@
                         </div>
                         <div class = "m_content message_con">
                             <form id = "form1" name = "form1" method = "post"
-                                  action = "UserRegAction" onSubmit = "return check()">
+                                  action = "/register" onSubmit = "return check()">
 
                                 <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0">
                                     <tr>
@@ -80,7 +94,7 @@
                                             账号：
                                         </td>
                                         <td>
-                                            <input type = "text" name = "name" id = "name"
+                                            <input type = "text" name = "username" id = "name"
                                                    class = "text_input text150"/>
                                             <span class = "red">*</span>
                                         </td>
@@ -93,7 +107,7 @@
                                             密码：
                                         </td>
                                         <td>
-                                            <input type = "password" name = "pwd" id = "pwds"
+                                            <input type = "password" name = "password" id = "pwds"
                                                    class = "text_input text150"/>
                                             <span class = "red">*</span>
                                         </td>
@@ -107,7 +121,7 @@
                                             姓名：
                                         </td>
                                         <td>
-                                            <input type = "text" name = "rname" id = "rname"
+                                            <input type = "text" name = "name" id = "rname"
                                                    class = "text_input text150"/>
                                             <span class = "red">*</span>
                                         </td>
@@ -119,12 +133,14 @@
                                             性别：
                                         </td>
                                         <td>
-													<span><input type = "radio" checked = "checked" name = "sex"
-                                                                 id = "sex"
-                                                                 value = "男"/>男</span><span><input type = "radio"
-                                                                                                   name = "sex"
-                                                                                                   id = "sex"
-                                                                                                   value = "女"/>女</span>
+                                            <span>
+                                                <input type = "radio" checked = "checked" name = "sex"
+                                                       id = "sex" value = "男"/>男
+                                            </span>
+                                            <span>
+                                                <input type = "radio" name = "sex" id = "sex"
+                                                       value = "女"/>女
+                                            </span>
                                         </td>
                                         <td>
                                             &nbsp;
@@ -133,21 +149,10 @@
 
                                     <tr>
                                         <td class = "left_name">
-                                            年龄：
-                                        </td>
-                                        <td>
-                                            <input type = "text" name = "age" id = "age"
-                                                   class = "text_input text150"/>
-                                            <span class = "red">*</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class = "left_name">
                                             手机：
                                         </td>
                                         <td>
-                                            <input type = "text" name = "tel" id = "tel"
+                                            <input type = "text" name = "phoneNumber" id = "tel"
                                                    class = "text_input text150"/>
                                             <span class = "red">*</span>
                                         </td>

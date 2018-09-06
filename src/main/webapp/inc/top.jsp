@@ -13,6 +13,7 @@
             + path + "/";
     Object user = session.getAttribute("user");
     Object loginError = session.getAttribute("loginError");
+    Object registerError = session.getAttribute("registerError");
     if (loginError != null)
     {
 %>
@@ -20,8 +21,19 @@
     alert('用户名或密码有误！');
 </script>
 <%
+        session.removeAttribute("loginError");
+    }
+    if (registerError != null)
+    {
+%>
+<script>
+    alert('该账号已存在！');
+</script>
+<%
+        session.removeAttribute("registerError");
     }
 %>
+
 <div id = "top">
     <!----------------页面头部开始-------------------->
     <div class = "banner">
@@ -54,10 +66,10 @@
                 {
             %>
             <li role = "presentation">
-                <a href = "newdan.jsp"><span>在线下单</span> </a>
+                <a href = "new_order.jsp"><span>在线下单</span> </a>
             </li>
             <li role = "presentation">
-                <a href = "mydan.jsp"><span>我的订单</span> </a>
+                <a href = "my_order.jsp"><span>我的订单</span> </a>
             </li>
             <%
                 }

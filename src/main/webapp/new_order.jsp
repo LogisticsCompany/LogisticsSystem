@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <%@ page language = "java" import = "java.util.*" pageEncoding = "UTF-8" %>
-<%@page import = "com.biyeseng.util.Danhao" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"

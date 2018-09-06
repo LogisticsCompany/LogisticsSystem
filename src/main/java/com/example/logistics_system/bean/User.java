@@ -9,10 +9,12 @@ public class User
 {
     @Id
     private int id;
+    private String username;
     private String name;
     private String password;
     private String email;
     private String phoneNumber;
+    private String sex;
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "uid")
@@ -26,6 +28,16 @@ public class User
     public void setId(int id)
     {
         this.id = id;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
     }
 
     public String getName()
@@ -76,5 +88,15 @@ public class User
     public void setOrderForms(Set<OrderForm> orderForms)
     {
         this.orderForms = orderForms;
+    }
+
+    public String getSex()
+    {
+        return sex;
+    }
+
+    public void setSex(String sex)
+    {
+        this.sex = sex;
     }
 }
