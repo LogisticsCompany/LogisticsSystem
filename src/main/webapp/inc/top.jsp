@@ -81,7 +81,7 @@
                       value = "登录" class = "btn btn-success" style = "height: auto"/> </span>
         <span>  <input type = "button" name = "button" id = "register_btn"
                        value = "注册" class = "btn btn-primary" style = "height: auto"
-                       onclick = "window.location.href='registered.jsp'"/></span>
+                       onclick = "window.location.href='register.jsp'"/></span>
         <span>  <input type = "button" name = "button" id = "admin_btn"
                        value = "后台" class = "btn btn-danger" style = "height: auto"
                        onclick = "javascript:window.open('login.jsp','_blank')"/></span>
