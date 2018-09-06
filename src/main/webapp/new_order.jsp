@@ -109,11 +109,17 @@
                                             出发地联系方式：
                                         </td>
                                         <td>
-                                            <input type = "text" name = "chufa" id = "chufa" style = "width: 300px"
-                                                   class = "form-control form-control-inline"/>
-                                            <span class = "label label-info">(格式：地址,姓名,电话)</span>
+                                            <input type = "text" name = "address" id = "adr" style = "width: 100px"
+                                                   class ="form-control form-control-inline "placeholder="地址"/>
+                                            <span class = "red">*</span>
+                                            <input type = "text" name = "name" id = "nam" style = "width: 100px"
+                                                   class = "form-control form-control-inline " placeholder="姓名"/>
+                                            <span class = "red">*</span>
+                                            <input type = "text" name = "number" id = "num" style = "width: 100px"
+                                                   class = "form-control form-control-inline " placeholder="电话"/>
                                             <span class = "red">*</span>
                                         </td>
+
                                         <td>
                                             &nbsp;
                                         </td>
@@ -123,9 +129,14 @@
                                             目的地联系方式：
                                         </td>
                                         <td>
-                                            <input type = "text" name = "mudi" id = "mudi" style = "width: 300px"
-                                                   class = "form-control form-control-inline"/>
-                                            <span class = "label label-info">(格式：地址,姓名,电话)</span>
+                                            <input type = "text" name = "address" id = "adr1" style = "width: 100px"
+                                                   class ="form-control form-control-inline "placeholder="地址"/>
+                                            <span class = "red">*</span>
+                                            <input type = "text" name = "name" id = "nam1" style = "width: 100px"
+                                                   class = "form-control form-control-inline " placeholder="姓名"/>
+                                            <span class = "red">*</span>
+                                            <input type = "text" name = "number" id = "num1" style = "width: 100px"
+                                                   class = "form-control form-control-inline " placeholder="电话"/>
                                             <span class = "red">*</span>
                                         </td>
                                         <td>
