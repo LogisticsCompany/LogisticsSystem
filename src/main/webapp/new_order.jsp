@@ -34,8 +34,7 @@
     <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8"/>
     <title>在线下单</title>
     <link href = "css/style.css" rel = "stylesheet" type = "text/css"/>
-    <script type = "text/javascript" src = "js/tab.js">
-    </script>
+    <script type = "text/javascript" src = "js/tab.js"></script>
 
     <script type = "text/javascript">
         function check() {
@@ -55,12 +54,10 @@
                 alert("请输入收货人信息");
                 return false;
             }
-
-
             return true;
-
         }
     </script>
+
 </head>
 
 <body>
@@ -69,10 +66,46 @@
     <div class = "page_con">
         <jsp:include flush = "true" page = "/inc/top.jsp"></jsp:include>
         <!----------------内容区开始-------------------->
+
+        <div>
+            <div class = "panel panel-info" style = "width: 100%">
+                <div class = "panel-heading">选择城市</div>
+                <div class = "panel-body">
+                    您选择的是：
+                    <input readonly = readonly class = "form-control" id = "show">
+                    <br>
+                    <div style="height: auto;">
+                        <form>
+                            <div class = "form-group form-group-extend">
+                                <select class = "selectpicker show-tick" title = "= 请选择省份 ="
+                                        data-live-search = "true" data-size = "5"
+                                        id = "province" onchange = "showCity(this)">
+                                </select>
+                            </div>
+                            <div class = "form-group form-group-extend">
+                                <select class = "selectpicker show-tick" title = "= 请选择城市 ="
+                                        data-live-search = "true" data-size = "5"
+                                        id = "city" onchange = "showCountry(this)">
+                                </select>
+                            </div>
+                            <div class = "form-group form-group-extend">
+                                <select class = "selectpicker show-tick" title = "= 请选择县区 ="
+                                        data-live-search = "true" data-size = "5"
+                                        id = "country" onchange = "selectCountry(this)">
+                                </select>
+                            </div>
+                            <button class = "btn btn-success" style = "width: 70px" id = "btn" onclick = "showAddr()">
+                                确定
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class = "sub_main">
             <div class = "sub_maincon">
                 <div class = "sub_mainbox clearfix">
-
 
                     <div class = "m_border">
                         <div class = "m_title2">
@@ -96,7 +129,8 @@
                                             <input type = "text" name = "danhao" id = "danhao"
                                                    class = "form-control form-control-inline"
                                                    style = "width: auto"
-                                                   value = "<%=Danhao.getHao() %>"
+                                            <%--value = "<%=Danhao.getHao() %>"--%>
+                                                   value = "233"
                                                    readonly = "readonly"/>
                                             <span class = "red">*</span>
                                         </td>
@@ -110,13 +144,13 @@
                                         </td>
                                         <td>
                                             <input type = "text" name = "address" id = "adr" style = "width: 100px"
-                                                   class ="form-control form-control-inline "placeholder="地址"/>
+                                                   class = "form-control form-control-inline " placeholder = "地址"/>
                                             <span class = "red">*</span>
                                             <input type = "text" name = "name" id = "nam" style = "width: 100px"
-                                                   class = "form-control form-control-inline " placeholder="姓名"/>
+                                                   class = "form-control form-control-inline " placeholder = "姓名"/>
                                             <span class = "red">*</span>
                                             <input type = "text" name = "number" id = "num" style = "width: 100px"
-                                                   class = "form-control form-control-inline " placeholder="电话"/>
+                                                   class = "form-control form-control-inline " placeholder = "电话"/>
                                             <span class = "red">*</span>
                                         </td>
 
@@ -130,13 +164,13 @@
                                         </td>
                                         <td>
                                             <input type = "text" name = "address" id = "adr1" style = "width: 100px"
-                                                   class ="form-control form-control-inline "placeholder="地址"/>
+                                                   class = "form-control form-control-inline " placeholder = "地址"/>
                                             <span class = "red">*</span>
                                             <input type = "text" name = "name" id = "nam1" style = "width: 100px"
-                                                   class = "form-control form-control-inline " placeholder="姓名"/>
+                                                   class = "form-control form-control-inline " placeholder = "姓名"/>
                                             <span class = "red">*</span>
                                             <input type = "text" name = "number" id = "num1" style = "width: 100px"
-                                                   class = "form-control form-control-inline " placeholder="电话"/>
+                                                   class = "form-control form-control-inline " placeholder = "电话"/>
                                             <span class = "red">*</span>
                                         </td>
                                         <td>
@@ -186,7 +220,6 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -196,5 +229,7 @@
         <!---------------页脚结束---------------->
     </div>
 </div>
+<script src = "js/city.js"></script>
+<script src = "js/select_city.js"></script>
 </body>
 </html>

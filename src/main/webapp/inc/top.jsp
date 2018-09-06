@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <%@ page language = "java" import = "java.util.*" pageEncoding = "UTF-8" %>
 
-<script src = "bootstrap/js/jquery/2.0.0/jquery.min.js"></script>
-<link href = "bootstrap/css/bootstrap/3.3.6/bootstrap.min.css" rel = "stylesheet">
-<script src = "bootstrap/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+<%--<script src = "bootstrap/js/jquery/2.0.0/jquery.min.js"></script>--%>
+<%--<link href = "bootstrap/css/bootstrap/3.3.6/bootstrap.min.css" rel = "stylesheet">--%>
+<%--<script src = "bootstrap/js/bootstrap/3.3.6/bootstrap.min.js"></script>--%>
 <link href = "css/bootstrap_extend.css" rel = "stylesheet">
+
+<link href = "bootstrap/css/bootstrap/3.3.6/bootstrap.min.css" rel = "stylesheet">
+<link href = "bootstrap-select/dist/css/bootstrap-select.min.css" rel = "stylesheet">
+
+<script src = "bootstrap/js/jquery/2.0.0/jquery.min.js"></script>
+<script src = "bootstrap/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+<script src = "bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src = "bootstrap-select/dist/js/i18n/defaults-zh_CN.min.js"></script>
+
+<style>
+    .form-group-extend {
+        display: inline;
+    }
+</style>
 
 <%
     String path = request.getContextPath();
