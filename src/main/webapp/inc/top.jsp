@@ -99,7 +99,7 @@
         if (username == null)
         {
     %>
-    <form id = "form1" name = "form1" method = "post" action = "/login">
+    <form id = "form1" name = "form1" method = "post" action = "/userLogin">
 		<span>账号： <input type = "text" name = "name" id = "name"
                          class = "form-control form-control-inline" style = "width: 150px"/> </span>
         <span>密码： <input type = "password" name = "pwd"

@@ -16,13 +16,13 @@ public class UserController
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam(value = "name") String name,
+    @RequestMapping(value = "/userLogin", method = RequestMethod.POST)
+    public String login(@RequestParam(value = "name") String username,
                         @RequestParam(value = "pwd") String pwd,
                         HttpServletRequest request)
     {
-        if (userService.loginService(name, pwd))
-            request.getSession().setAttribute("username", name);
+        if (userService.loginService(username, pwd))
+            request.getSession().setAttribute("username", username);
         else
             request.getSession().setAttribute("loginError", 0);
         return "index";

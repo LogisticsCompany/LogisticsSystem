@@ -40,7 +40,7 @@ public class OrderFormService
         return 0;
     }
 
-    public Page<OrderForm> getApplicableOrder(String username, int start, int size)
+    public Page<OrderForm> getApplicableOrders(String username, int start, int size)
     {
         Deliverer deliverer = delivererDAO.findByUsername(username);
         start = start < 0 ? 0 : start;
@@ -52,5 +52,57 @@ public class OrderFormService
     public OrderForm getOrderService(String orderNumber)
     {
         return orderFormDAO.findByOrderNumber(orderNumber);
+    }
+
+    public Page<OrderForm> getUserOrdersService(String username, int start, int size, String state)
+    {
+        start = start < 0 ? 0 : start;
+        Sort sort = new Sort(Sort.Direction.ASC, "id");
+        Pageable pageable = PageRequest.of(start, size, sort);
+        User user = userDAO.findByUsername(username);
+        if (user == null)
+            return null;
+        if (state == null)
+            return orderFormDAO.findAllByUser(user, pageable);
+        return orderFormDAO.findAllByUserAndState(user, state, pageable);
+    }
+
+    public int modifyOrderStateService(int id, String state)
+    {
+        OrderForm orderForm = orderFormDAO.getOne(id);
+        if (orderForm == null)
+            return OrderUtil.ORDER_NOT_EXIST;
+        switch (state)
+        {
+            case OrderUtil.ORDER_ORDER:
+                return OrderUtil.ILLEGAL_OPERATION;
+            case OrderUtil.ORDER_DELIVERY:
+                if (!orderForm.getState().equals(OrderUtil.ORDER_ADMIN_ACCEPT))
+                    return OrderUtil.ILLEGAL_OPERATION;
+                break;
+            case OrderUtil.ORDER_SIGN:
+                if (!orderForm.getState().equals(OrderUtil.ORDER_ARRIVED))
+                    return OrderUtil.ILLEGAL_OPERATION;
+                break;
+            case OrderUtil.ORDER_ARRIVED:
+                if (!orderForm.getState().equals(OrderUtil.ORDER_DELIVERY))
+                    return OrderUtil.ILLEGAL_OPERATION;
+                break;
+            case OrderUtil.ORDER_DELIVERER_REQUEST:
+                if (!orderForm.getState().equals(OrderUtil.ORDER_ORDER))
+                    return OrderUtil.ILLEGAL_OPERATION;
+                break;
+            case OrderUtil.ORDER_ADMIN_ACCEPT:
+            case OrderUtil.ORDER_ADMIN_REFUSE:
+                if (!orderForm.getState().equals(OrderUtil.ORDER_ORDER) || !orderForm.getState().equals(OrderUtil.ORDER_DELIVERER_REQUEST))
+                    return OrderUtil.ILLEGAL_OPERATION;
+                break;
+        }
+        return OrderUtil.NORMAL_STATE;
+    }
+
+    public void deleteOrderService(int id)
+    {
+        orderFormDAO.deleteById(id);
     }
 }
