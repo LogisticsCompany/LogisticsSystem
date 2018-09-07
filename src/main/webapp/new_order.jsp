@@ -20,7 +20,7 @@
     {
 %>
 <script>
-    alert('用户' + '<%=request.getSession().getAttribute("user")%>' + '不存在！');
+    alert('用户' + '<%=request.getSession().getAttribute("username")%>' + '不存在！');
 </script>
 <%
         request.getSession().removeAttribute("noUser");
