@@ -2,6 +2,7 @@ package com.example.logistics_system.controller;
 
 import com.example.logistics_system.bean.OrderForm;
 import com.example.logistics_system.service.OrderFormService;
+import com.example.logistics_system.utils.OrderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -36,13 +37,25 @@ public class OrderFormController
         return "new_order";
     }
 
-    @RequestMapping(value = "/applicableOrders", method = RequestMethod.GET)
-    public String getApplicableOrder(HttpServletRequest request,
-                                     @RequestParam(value = "start", defaultValue = "0") int start,
-                                     @RequestParam(value = "size", defaultValue = "10") int size)
+    @RequestMapping(value = "/delivererOrders", method = RequestMethod.GET)
+    public String getApplicableOrders(HttpServletRequest request,
+                                      @RequestParam(value = "start", defaultValue = "0") int start,
+                                      @RequestParam(value = "size", defaultValue = "10") int size)
     {
         String username = (String) request.getSession().getAttribute("username");
-        Page<OrderForm> orderForms = orderFormService.getApplicableOrder(username, start, size);
+        Page<OrderForm> orderForms = orderFormService.getApplicableOrders(username, start, size);
+        request.getSession().setAttribute("orderForms", orderForms);
+        return "";
+    }
+
+    @RequestMapping(value = "/userOrders", method = RequestMethod.GET)
+    public String getUserOrders(HttpServletRequest request,
+                                @RequestParam(value = "start", defaultValue = "0") int start,
+                                @RequestParam(value = "size", defaultValue = "10") int size,
+                                @RequestParam(value = "state") String state)
+    {
+        String username = (String) request.getSession().getAttribute("username");
+        Page<OrderForm> orderForms = orderFormService.getUserOrdersService(username, start, size, state);
         request.getSession().setAttribute("orderForms", orderForms);
         return "";
     }
@@ -52,6 +65,31 @@ public class OrderFormController
     {
         OrderForm orderForm = orderFormService.getOrderService(orderNumber);
         request.getSession().setAttribute("orderForm", orderForm);
+        return "";
+    }
+
+    @RequestMapping(value = "/order", method = RequestMethod.PUT)
+    public String modifyOrderState(int id, String state, HttpServletRequest request)
+    {
+        switch (orderFormService.modifyOrderStateService(id, state))
+        {
+            case OrderUtil.NORMAL_STATE:
+                request.getSession().setAttribute("result", "操作成功");
+                break;
+            case OrderUtil.ORDER_NOT_EXIST:
+                request.getSession().setAttribute("result", "订单不存在");
+                break;
+            case OrderUtil.ILLEGAL_OPERATION:
+                request.getSession().setAttribute("result", "非法操作");
+                break;
+        }
+        return "";
+    }
+
+    @RequestMapping(value = "/order", method = RequestMethod.DELETE)
+    public String deleteOrder(int id)
+    {
+        orderFormService.deleteOrderService(id);
         return "";
     }
 }
