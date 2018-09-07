@@ -15,11 +15,5 @@ public class AdminController
     @Autowired
     private AdminService adminService;
 
-    @RequestMapping(value = "/deliverer", method = RequestMethod.POST)
-    public String generateDeliverer(HttpServletRequest request)
-    {
-        Deliverer deliverer = adminService.generateDelivererService();
-        request.getSession().setAttribute("deliverer", deliverer);
-        return "";
-    }
+
 }

@@ -1,12 +1,13 @@
 package com.example.logistics_system.service;
 
 import com.example.logistics_system.bean.Deliverer;
-import com.example.logistics_system.bean.OrderForm;
 import com.example.logistics_system.dao.DelivererDAO;
-import com.example.logistics_system.dao.OrderFormDAO;
+import com.example.logistics_system.utils.DelivererUtil;
+import com.example.logistics_system.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+
+import java.util.Random;
 
 @Service
 public class DelivererService
@@ -14,12 +15,15 @@ public class DelivererService
     @Autowired
     private DelivererDAO delivererDAO;
 
-    @Autowired
-    private OrderFormDAO orderFormDAO;
-
-    public Page<OrderForm> getApplicableOrder(String username)
+    public Deliverer generateDelivererService()
     {
-        Deliverer deliverer = delivererDAO.findByUsername(username);
-        return orderFormDAO.findAllBySenderProvinceAndSenderCityAndSenderCountry(deliverer.getProvince(), deliverer.getCity(), deliverer.getCountry(), null);
+        String username;
+        while (delivererDAO.findByUsername((username = DelivererUtil.generateUsername())) != null)
+            Util.sleep(new Random().nextInt(10));
+        Deliverer deliverer = new Deliverer();
+        deliverer.setUsername(username);
+        deliverer.setPassword(DelivererUtil.generatePassword());
+        delivererDAO.save(deliverer);
+        return deliverer;
     }
 }

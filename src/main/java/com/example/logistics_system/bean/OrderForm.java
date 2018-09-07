@@ -8,8 +8,9 @@ import java.util.Set;
 public class OrderForm
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String OrderNumber;
+    private String orderNumber;
 
     private String sender;
     private String senderProvince;
@@ -52,12 +53,12 @@ public class OrderForm
 
     public String getOrderNumber()
     {
-        return OrderNumber;
+        return orderNumber;
     }
 
     public void setOrderNumber(String orderNumber)
     {
-        OrderNumber = orderNumber;
+        this.orderNumber = orderNumber;
     }
 
     public String getSender()

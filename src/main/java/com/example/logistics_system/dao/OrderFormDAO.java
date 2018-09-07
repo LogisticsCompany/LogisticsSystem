@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface OrderFormDAO extends JpaRepository<OrderForm, Integer>
 {
     Page<OrderForm> findAllBySenderProvinceAndSenderCityAndSenderCountry(String province, String city, String country, Pageable pageable);
+    OrderForm findByOrderNumber(String orderNumber);
 }
