@@ -18,7 +18,7 @@ public class OrderFormController
     @RequestMapping(value = "/order", method = RequestMethod.POST)
     public String addOrder(OrderForm orderForm, HttpServletRequest request)
     {
-        String username = (String) request.getSession().getAttribute("user");
+        String username = (String) request.getSession().getAttribute("username");
         switch (orderFormService.addOrderService(username, orderForm))
         {
             case 1:
@@ -27,7 +27,8 @@ public class OrderFormController
             case 2:
                 request.setAttribute("noUser", 0);
                 break;
-            default:
+            case 0:
+                request.setAttribute("orderNumber", orderForm.getOrderNumber());
                 break;
         }
         return "new_order";

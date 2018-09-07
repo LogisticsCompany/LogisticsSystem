@@ -10,7 +10,7 @@ public class Admin
 {
     @Id
     private int id;
-    private String name;
+    private String username;
     private String password;
 
     public int getId()
@@ -23,14 +23,14 @@ public class Admin
         this.id = id;
     }
 
-    public String getName()
+    public String getUsername()
     {
-        return name;
+        return username;
     }
 
-    public void setName(String name)
+    public void setUsername(String username)
     {
-        this.name = name;
+        this.username = username;
     }
 
     public String getPassword()

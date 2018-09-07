@@ -1,8 +1,7 @@
 package com.example.logistics_system.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "deliverer")
@@ -10,11 +9,33 @@ public class Deliverer
 {
     @Id
     private int id;
+    private String username;
     private String name;
     private String password;
     private String email;
     private String phoneNumber;
-    private String address;
+
+    private String province;
+    private String city;
+    private String country;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "deliverer_order",
+            joinColumns = @JoinColumn(name = "did"),
+            inverseJoinColumns = @JoinColumn(name = "oid")
+    )
+    private Set<OrderForm> orderForms;
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
 
     public int getId()
     {
@@ -66,13 +87,43 @@ public class Deliverer
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress()
+    public String getProvince()
     {
-        return address;
+        return province;
     }
 
-    public void setAddress(String address)
+    public void setProvince(String province)
     {
-        this.address = address;
+        this.province = province;
+    }
+
+    public String getCity()
+    {
+        return city;
+    }
+
+    public void setCity(String city)
+    {
+        this.city = city;
+    }
+
+    public String getCountry()
+    {
+        return country;
+    }
+
+    public void setCountry(String country)
+    {
+        this.country = country;
+    }
+
+    public Set<OrderForm> getOrderForms()
+    {
+        return orderForms;
+    }
+
+    public void setOrderForms(Set<OrderForm> orderForms)
+    {
+        this.orderForms = orderForms;
     }
 }

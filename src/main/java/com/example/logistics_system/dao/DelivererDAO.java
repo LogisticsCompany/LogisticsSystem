@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DelivererDAO extends JpaRepository<Deliverer, Integer>
 {
+    Deliverer findByUsername(String username);
 }

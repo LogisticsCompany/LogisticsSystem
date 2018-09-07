@@ -20,6 +20,7 @@ public class OrderFormService
         User user = userDAO.findByUsername(username);
         if (user == null)
             return 2;
+        orderForm.setOrderNumber(OrderUtil.generateOrderNumber());
         orderForm.setState(OrderUtil.ORDER_ORDER);
         user.getOrderForms().add(orderForm);
         userDAO.save(user);

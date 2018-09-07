@@ -1,6 +1,7 @@
 package com.example.logistics_system.bean;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "order_form")
@@ -11,10 +12,16 @@ public class OrderForm
     private String OrderNumber;
 
     private String sender;
+    private String senderProvince;
+    private String senderCity;
+    private String senderCountry;
     private String senderAddress;
     private String senderPhoneNumber;
 
     private String receiver;
+    private String receiverProvince;
+    private String receiverCity;
+    private String receiverCountry;
     private String receiverAddress;
     private String receiverPhoneNumber;
 
@@ -24,6 +31,14 @@ public class OrderForm
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "uid")
     private User user;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "deliverer_order",
+            joinColumns = @JoinColumn(name = "oid"),
+            inverseJoinColumns = @JoinColumn(name = "did")
+    )
+    private Set<Deliverer> deliverers;
 
     public int getId()
     {
@@ -133,5 +148,75 @@ public class OrderForm
     public void setReceiverPhoneNumber(String receiverPhoneNumber)
     {
         this.receiverPhoneNumber = receiverPhoneNumber;
+    }
+
+    public Set<Deliverer> getDeliverers()
+    {
+        return deliverers;
+    }
+
+    public void setDeliverers(Set<Deliverer> deliverers)
+    {
+        this.deliverers = deliverers;
+    }
+
+    public String getSenderProvince()
+    {
+        return senderProvince;
+    }
+
+    public void setSenderProvince(String senderProvince)
+    {
+        this.senderProvince = senderProvince;
+    }
+
+    public String getSenderCity()
+    {
+        return senderCity;
+    }
+
+    public void setSenderCity(String senderCity)
+    {
+        this.senderCity = senderCity;
+    }
+
+    public String getSenderCountry()
+    {
+        return senderCountry;
+    }
+
+    public void setSenderCountry(String senderCountry)
+    {
+        this.senderCountry = senderCountry;
+    }
+
+    public String getReceiverProvince()
+    {
+        return receiverProvince;
+    }
+
+    public void setReceiverProvince(String receiverProvince)
+    {
+        this.receiverProvince = receiverProvince;
+    }
+
+    public String getReceiverCity()
+    {
+        return receiverCity;
+    }
+
+    public void setReceiverCity(String receiverCity)
+    {
+        this.receiverCity = receiverCity;
+    }
+
+    public String getReceiverCountry()
+    {
+        return receiverCountry;
+    }
+
+    public void setReceiverCountry(String receiverCountry)
+    {
+        this.receiverCountry = receiverCountry;
     }
 }

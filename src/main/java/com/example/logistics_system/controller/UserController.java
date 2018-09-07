@@ -22,7 +22,7 @@ public class UserController
                         HttpServletRequest request)
     {
         if (userService.loginService(name, pwd))
-            request.getSession().setAttribute("user", name);
+            request.getSession().setAttribute("username", name);
         else
             request.getSession().setAttribute("loginError", 0);
         return "index";

@@ -25,7 +25,7 @@
     String basePath = request.getScheme() + "://"
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
-    Object user = session.getAttribute("user");
+    Object username = session.getAttribute("username");
     Object loginError = session.getAttribute("loginError");
     Object registerError = session.getAttribute("registerError");
     if (loginError != null)
@@ -76,7 +76,7 @@
                 <a href = "message.jsp"><span>留言板</span> </a>
             </li>
             <%
-                if (user != null)
+                if (username != null)
                 {
             %>
             <li role = "presentation">
@@ -95,7 +95,7 @@
 <!----------------内容区开始-------------------->
 <div align = "right">
     <%
-        if (user == null)
+        if (username == null)
         {
     %>
     <form id = "form1" name = "form1" method = "post" action = "/login">
@@ -116,7 +116,7 @@
     }
     else
     { %>
-    <span>欢迎你：<%=user %></span>
+    <span>欢迎你：<%=username %></span>
 
     <span><a href = "logout.jsp" class = "zc">注销</a> </span>
     <%
