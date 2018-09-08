@@ -99,36 +99,3 @@
     <!----------------主导航菜单结束-------------------->
 </div>
 <!----------------内容区开始-------------------->
-<div align = "right">
-    <%
-        if (user == null)
-        {
-    %>
-    <form id = "form1" name = "form1" method = "post" action = "/userLogin">
-		<span>账号： <input type = "text" name = "username" id = "username"
-                         class = "form-control form-control-inline" style = "width: 150px"/> </span>
-        <span>密码： <input type = "password" name = "password"
-                         id = "pwd" class = "form-control form-control-inline" style = "width: 150px"/> </span>
-        <span> <input type = "submit" name = "button" id = "login_btn"
-                      value = "登录" class = "btn btn-success" style = "height: auto"/> </span>
-        <span>  <input type = "button" name = "button" id = "register_btn"
-                       value = "注册" class = "btn btn-primary" style = "height: auto"
-                       onclick = "window.location.href='register.jsp'"/></span>
-        <span>  <input type = "button" name = "button" id = "admin_btn"
-                       value = "后台" class = "btn btn-danger" style = "height: auto"
-                       onclick = "javascript:window.open('login.jsp','_blank')"/></span>
-        <span>  <input type = "button" name = "button" id = "del_btn"
-                       value = "派送员登录" class = "btn btn-danger" style = "height: auto"
-                       onclick = "javascript:window.open('del_login.jsp','_blank')"/></span>
-    </form>
-    <%
-    }
-    else
-    { %>
-    <span>欢迎你：<%=user.getUsername() %></span>
-
-    <span><a href = "logout.jsp" class = "zc">注销</a> </span>
-    <%
-        }
-    %>
-</div>
