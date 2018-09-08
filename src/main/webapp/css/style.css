@@ -517,8 +517,8 @@ a:hover {
 	padding: 5px 0px;
 }
 
-.message_con .left_name {
-	width: 300px;
+.left_name {
+	width: 600px;
 	text-align: right;
 }
 
@@ -602,4 +602,8 @@ a:hover {
 
 .mes_reply{
 	color:red;
+}
+
+.left_name1{
+	margin-left:200px ;
 }
