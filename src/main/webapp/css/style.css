@@ -68,7 +68,7 @@ a:hover {
 
 /*--------------- 页面头部样式 -------------------------*/
 .page {
-	
+
 }
 
 .page_con {
@@ -378,7 +378,7 @@ a:hover {
 }
 
 .sub_maincon {
-	
+
 }
 
 .sub_mainbox {
@@ -593,7 +593,7 @@ a:hover {
 	background: #ccc;
 	width: 60px;
 	text-align: center;
-	height: 24px;
+	/*height: 24px;*/
 }
 
 .btn_box {
