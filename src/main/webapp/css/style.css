@@ -72,7 +72,7 @@ a:hover {
 }
 
 .page_con {
-	width: 1000px;
+	/*width: 1000px;*/
 	margin: 0 auto;
 	background: #fff;
 }
@@ -83,6 +83,7 @@ a:hover {
 
 .banner {
 	position: relative;
+	padding-bottom:50px;
 }
 
 .banner .flash {
@@ -186,6 +187,26 @@ a:hover {
 
 .main_con .m_content.intro p.more a:hover {
 	color: #F00;
+}
+
+.image{
+	border: 1px solid snow;
+	text-align: left;
+	width: auto;
+	height: auto;
+	float: left;
+	margin-top: 10px;
+	margin-left: 50px;
+	position: relative;
+}
+.font a{
+	font-weight: lighter;
+	color: #373737;
+	font-size: 18px;
+	font-weight: bold;
+	color: #405aa7;
+	position:relative;
+	margin-top:15px;
 }
 
 .joining {
