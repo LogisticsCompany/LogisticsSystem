@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@ page language = "java" import = "java.util.*" pageEncoding = "UTF-8" %>
+<%@ page import = "com.example.logistics_system.bean.User" %>
 
 <%--<script src = "bootstrap/js/jquery/2.0.0/jquery.min.js"></script>--%>
 <%--<link href = "bootstrap/css/bootstrap/3.3.6/bootstrap.min.css" rel = "stylesheet">--%>
@@ -26,7 +27,7 @@
     String basePath = request.getScheme() + "://"
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
-    Object username = session.getAttribute("username");
+    User user = (User) request.getSession().getAttribute("user");
     Object loginError = session.getAttribute("loginError");
     Object registerError = session.getAttribute("registerError");
     if (loginError != null)
@@ -75,7 +76,7 @@
                 <a href = "message.jsp"><span>留言板</span> </a>
             </li>
             <%
-                if (username != null)
+                if (user != null)
                 {
             %>
             <li role = "presentation">
@@ -83,6 +84,9 @@
             </li>
             <li role = "presentation">
                 <a href = "my_order.jsp"><span>我的订单</span> </a>
+            </li>
+            <li role = "presentation">
+                <a href = "reinformation.jsp"><span>我的信息</span> </a>
             </li>
             <%
                 }
@@ -97,13 +101,13 @@
 <!----------------内容区开始-------------------->
 <div align = "right">
     <%
-        if (username == null)
+        if (user == null)
         {
     %>
     <form id = "form1" name = "form1" method = "post" action = "/userLogin">
-		<span>账号： <input type = "text" name = "name" id = "name"
+		<span>账号： <input type = "text" name = "username" id = "username"
                          class = "form-control form-control-inline" style = "width: 150px"/> </span>
-        <span>密码： <input type = "password" name = "pwd"
+        <span>密码： <input type = "password" name = "password"
                          id = "pwd" class = "form-control form-control-inline" style = "width: 150px"/> </span>
         <span> <input type = "submit" name = "button" id = "login_btn"
                       value = "登录" class = "btn btn-success" style = "height: auto"/> </span>
@@ -118,7 +122,7 @@
     }
     else
     { %>
-    <span>欢迎你：<%=username %></span>
+    <span>欢迎你：<%=user.getUsername() %></span>
 
     <span><a href = "logout.jsp" class = "zc">注销</a> </span>
     <%

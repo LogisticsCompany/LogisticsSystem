@@ -1,10 +1,14 @@
 package com.example.logistics_system;
 
+import com.example.logistics_system.bean.OrderForm;
 import com.example.logistics_system.service.AdminService;
+import com.example.logistics_system.service.OrderFormService;
+import com.example.logistics_system.utils.OrderUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -13,14 +17,17 @@ public class LogisticsSystemApplicationTests
 {
 
     @Autowired
-    private AdminService adminService;
+    private OrderFormService orderFormService;
 
     @Test
     public void contextLoads()
     {
-        String username = "admin";
-        String password = "admin";
-        adminService.registerService(username, password);
+        Page<OrderForm> orderForms = orderFormService.getUserOrdersService("fanbotao", 0, 2, OrderUtil.ORDER_ORDER);
+        for (OrderForm orderForm : orderForms)
+        {
+            System.out.println(orderForm.getOrderNumber());
+        }
+        System.out.println("done");
     }
 
 }

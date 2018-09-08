@@ -16,9 +16,9 @@ public class Deliverer
     private String email;
     private String phoneNumber;
 
-    private String province;
-    private String city;
-    private String country;
+    private int province;
+    private int city;
+    private int country;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -88,32 +88,32 @@ public class Deliverer
         this.phoneNumber = phoneNumber;
     }
 
-    public String getProvince()
+    public int getProvince()
     {
         return province;
     }
 
-    public void setProvince(String province)
+    public void setProvince(int province)
     {
         this.province = province;
     }
 
-    public String getCity()
+    public int getCity()
     {
         return city;
     }
 
-    public void setCity(String city)
+    public void setCity(int city)
     {
         this.city = city;
     }
 
-    public String getCountry()
+    public int getCountry()
     {
         return country;
     }
 
-    public void setCountry(String country)
+    public void setCountry(int country)
     {
         this.country = country;
     }

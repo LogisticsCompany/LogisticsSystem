@@ -1,6 +1,7 @@
 package com.example.logistics_system.controller;
 
 import com.example.logistics_system.bean.OrderForm;
+import com.example.logistics_system.bean.User;
 import com.example.logistics_system.service.OrderFormService;
 import com.example.logistics_system.utils.OrderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +22,15 @@ public class OrderFormController
     @RequestMapping(value = "/order", method = RequestMethod.POST)
     public String addOrder(OrderForm orderForm, HttpServletRequest request)
     {
-        String username = (String) request.getSession().getAttribute("username");
-        switch (orderFormService.addOrderService(username, orderForm))
+        User user = (User) request.getSession().getAttribute("user");
+        switch (orderFormService.addOrderService(user, orderForm))
         {
-            case 1:
-                request.setAttribute("notLoggedIn", 0);
-                break;
             case 2:
-                request.setAttribute("noUser", 0);
+                request.getSession().setAttribute("noUser", 0);
                 break;
             case 0:
-                request.setAttribute("orderNumber", orderForm.getOrderNumber());
+                request.getSession().setAttribute("orderNumber", orderForm.getOrderNumber());
+                request.getSession().setAttribute("user", user);
                 break;
         }
         return "new_order";

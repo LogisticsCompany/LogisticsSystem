@@ -12,13 +12,13 @@ public class AdminService
     @Autowired
     private AdminDAO adminDAO;
 
-    public boolean loginService(String username, String password)
+    public Admin loginService(String username, String password)
     {
         Admin admin = adminDAO.findByUsername(username);
         password = MD5Util.encode(password);
-        if (admin == null)
-            return false;
-        return admin.getPassword().equals(password);
+        if (admin == null || !admin.getPassword().equals(password))
+            return null;
+        return admin;
     }
 
     public void registerService(String username, String password)

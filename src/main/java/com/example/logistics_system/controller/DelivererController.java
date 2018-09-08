@@ -28,8 +28,9 @@ public class DelivererController
     @RequestMapping(value = "/delivererLogin", method = RequestMethod.POST)
     public String login(String username, String password, HttpServletRequest request)
     {
-        if (delivererService.loginService(username, password))
-            request.getSession().setAttribute("username", username);
+        Deliverer deliverer;
+        if ((deliverer = delivererService.loginService(username, password)) != null)
+            request.getSession().setAttribute("deliverer", deliverer);
         else
             request.getSession().setAttribute("loginError", 0);
         return "";

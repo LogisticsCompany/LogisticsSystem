@@ -13,16 +13,16 @@ public class OrderForm
     private String orderNumber;
 
     private String sender;
-    private String senderProvince;
-    private String senderCity;
-    private String senderCountry;
+    private int senderProvince;
+    private int senderCity;
+    private int senderCountry;
     private String senderAddress;
     private String senderPhoneNumber;
 
     private String receiver;
-    private String receiverProvince;
-    private String receiverCity;
-    private String receiverCountry;
+    private int receiverProvince;
+    private int receiverCity;
+    private int receiverCountry;
     private String receiverAddress;
     private String receiverPhoneNumber;
 
@@ -161,62 +161,62 @@ public class OrderForm
         this.deliverers = deliverers;
     }
 
-    public String getSenderProvince()
+    public int getSenderProvince()
     {
         return senderProvince;
     }
 
-    public void setSenderProvince(String senderProvince)
+    public void setSenderProvince(int senderProvince)
     {
         this.senderProvince = senderProvince;
     }
 
-    public String getSenderCity()
+    public int getSenderCity()
     {
         return senderCity;
     }
 
-    public void setSenderCity(String senderCity)
+    public void setSenderCity(int senderCity)
     {
         this.senderCity = senderCity;
     }
 
-    public String getSenderCountry()
+    public int getSenderCountry()
     {
         return senderCountry;
     }
 
-    public void setSenderCountry(String senderCountry)
+    public void setSenderCountry(int senderCountry)
     {
         this.senderCountry = senderCountry;
     }
 
-    public String getReceiverProvince()
+    public int getReceiverProvince()
     {
         return receiverProvince;
     }
 
-    public void setReceiverProvince(String receiverProvince)
+    public void setReceiverProvince(int receiverProvince)
     {
         this.receiverProvince = receiverProvince;
     }
 
-    public String getReceiverCity()
+    public int getReceiverCity()
     {
         return receiverCity;
     }
 
-    public void setReceiverCity(String receiverCity)
+    public void setReceiverCity(int receiverCity)
     {
         this.receiverCity = receiverCity;
     }
 
-    public String getReceiverCountry()
+    public int getReceiverCountry()
     {
         return receiverCountry;
     }
 
-    public void setReceiverCountry(String receiverCountry)
+    public void setReceiverCountry(int receiverCountry)
     {
         this.receiverCountry = receiverCountry;
     }
