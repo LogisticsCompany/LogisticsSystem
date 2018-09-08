@@ -32,13 +32,13 @@ public class DelivererService
         return deliverer;
     }
 
-    public boolean loginService(String username, String password)
+    public Deliverer loginService(String username, String password)
     {
         Deliverer deliverer = delivererDAO.findByUsername(username);
         password = MD5Util.encode(password);
-        if (deliverer == null)
-            return false;
-        return deliverer.getPassword().equals(password);
+        if (deliverer == null || !deliverer.getPassword().equals(password))
+            return null;
+        return deliverer;
     }
 
     public Page<Deliverer> getDeliverersService(int start, int size)

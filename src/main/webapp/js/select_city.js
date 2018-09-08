@@ -2,27 +2,34 @@ function $1(str) {
     return document.getElementById(str);
 }
 
-let addrShow = $1('show');
-let btn = $1('btn');
-let prov = $1('province');
-let city = $1('city');
-let country = $1('country');
+let senderProvince = $1('senderProvince');
+let senderCity = $1('senderCity');
+let senderCountry = $1('senderCountry');
+let receiverProvince = $1('receiverProvince');
+let receiverCity = $1('receiverCity');
+let receiverCountry = $1('receiverCountry');
 
-let current = {
+let senderCurrent = {
+    province: '',
+    city: '',
+    country: ''
+};
+
+let receiverCurrent = {
     province: '',
     city: '',
     country: ''
 };
 
 function showProv() {
-    btn.disabled = true;
     let provinces = province;
     let len = provinces.length;
     for (let i = 0; i < len; i++) {
         let provOpt = document.createElement('option');
         provOpt.innerText = provinces[i].name;
         provOpt.value = i;
-        prov.appendChild(provOpt);
+        receiverProvince.appendChild(provOpt);
+        senderProvince.appendChild(provOpt);
     }
 }
 
