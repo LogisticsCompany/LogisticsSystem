@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <%@ page language = "java" import = "java.util.*" pageEncoding = "UTF-8" %>
 <%@ page import = "com.example.logistics_system.bean.User" %>
 <%
