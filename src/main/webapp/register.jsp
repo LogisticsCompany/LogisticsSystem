@@ -115,10 +115,10 @@
                                         <td>
                                             <span>
                                                 <input type = "radio" checked = "checked" name = "sex"
-                                                       id = "sex" value = "男"/>男
+                                                       id = "sex1" value = "男"/>男
                                             </span>
                                             <span>
-                                                <input type = "radio" name = "sex" id = "sex"
+                                                <input type = "radio" name = "sex" id = "sex2"
                                                        value = "女"/>女
                                             </span>
                                         </td>
