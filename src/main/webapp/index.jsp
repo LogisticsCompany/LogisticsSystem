@@ -23,13 +23,47 @@
     <div class = "page_con">
         <jsp:include flush = "true" page = "/inc/top.jsp"></jsp:include>
 
-        <div class = "main">
-            <div class = "main_con">
-                <div class = "main_box clearfix">
-
-                </div>
+        <div class="image" >
+            <a href="http://baidu.com" >
+                <img src="images/2.png">
+            </a>
+            <div class="font">
+                <a href="http://baidu.com" >
+                    系统背景
+                </a>
             </div>
         </div>
+        <div class="image" >
+            <a href="http://baidu.com" >
+                <img src="images/1.png">
+            </a>
+            <div class="font">
+                <a href="http://baidu.com" >
+                    新闻资讯
+                </a>
+            </div>
+        </div>
+        <div class="image" >
+            <a href="http://baidu.com" >
+                <img src="images/3.png">
+            </a>
+            <div class="font">
+                <a href="http://baidu.com" >
+                    网点信息
+                </a>
+            </div>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
         <!----------------内容区结束-------------------->
         <!---------------页脚开始---------------->
         <jsp:include flush = "true" page = "/inc/foot.jsp"></jsp:include>
