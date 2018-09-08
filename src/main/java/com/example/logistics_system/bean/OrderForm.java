@@ -27,7 +27,7 @@ public class OrderForm
     private String receiverPhoneNumber;
 
     private String productInfo;
-    private String state;
+    private int state;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "uid")
@@ -111,12 +111,12 @@ public class OrderForm
         this.productInfo = productInfo;
     }
 
-    public String getState()
+    public int getState()
     {
         return state;
     }
 
-    public void setState(String state)
+    public void setState(int state)
     {
         this.state = state;
     }
