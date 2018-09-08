@@ -33,53 +33,55 @@ function check() {
 			<div class="page_con">
 				<jsp:include flush="true" page="/inc/top.jsp"></jsp:include>
 				<!----------------内容区开始-------------------->
+					<div class = "panel panel-info" style = "width: 100%">
+						<div class = "panel-heading">运单查询</div>
+						<div class = "panel-body">
+							<div class="sub_mainbox clearfix">
+
+
+								<div class="m_border">
+
+									<div class="m_content message_con">
+										<form id="form1" name="form1" method="post"
+											  action="yundanq.jsp" onsubmit="return check()">
+											<p class="tips">
+												<b>注：</b>带
+												<span class="red">*</span>号为必填项
+											</p>
+											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td class="left_name">
+														单号：
+													</td>
+													<td>
+														<input type="text" name="dh" id="dh"
+															   class="text_input text150" />
+														<span class="red">*</span>
+													</td>
+													<td>
+														&nbsp;
+													</td>
+												</tr>
+
+												<tr>
+													<td>
+														&nbsp;
+													</td>
+													<td>
+														<input type="submit" name="button" id="button" value="查询" />
+													</td>
+												</tr>
+											</table>
+										</form>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
 				<div class="sub_main">
 					<div class="sub_maincon">
-						<div class="sub_mainbox clearfix">
 
-
-							<div class="m_border">
-								<div class="m_title2">
-									<h3>
-										<font color="#0a1450">查询</font>
-									</h3>
-								</div>
-								<div class="m_content message_con">
-									<form id="form1" name="form1" method="post"
-										action="yundanq.jsp" onsubmit="return check()">
-										<p class="tips">
-											<b>注：</b>带
-											<span class="red">*</span>号为必填项
-										</p>
-										<table width="100%" border="0" cellspacing="0" cellpadding="0">
-											<tr>
-												<td class="left_name">
-													单号：
-												</td>
-												<td>
-													<input type="text" name="dh" id="dh"
-														class="text_input text150" />
-													<span class="red">*</span>
-												</td>
-												<td>
-													&nbsp;
-												</td>
-											</tr>
-
-											<tr>
-												<td>
-													&nbsp;
-												</td>
-												<td>
-													<input type="submit" name="button" id="button" value="查询" />
-												</td>
-											</tr>
-										</table>
-									</form>
-								</div>
-							</div>
-
-						</div>
 					</div>
 				</div>
 				<!----------------内容区结束-------------------->
