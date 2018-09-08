@@ -17,12 +17,11 @@ public class UserController
     private UserService userService;
 
     @RequestMapping(value = "/userLogin", method = RequestMethod.POST)
-    public String login(@RequestParam(value = "name") String username,
-                        @RequestParam(value = "pwd") String pwd,
-                        HttpServletRequest request)
+    public String login(String username, String password, HttpServletRequest request)
     {
-        if (userService.loginService(username, pwd))
-            request.getSession().setAttribute("username", username);
+        User user;
+        if ((user = userService.loginService(username, password)) != null)
+            request.getSession().setAttribute("user", user);
         else
             request.getSession().setAttribute("loginError", 0);
         return "index";
@@ -34,5 +33,11 @@ public class UserController
         if (!userService.registerService(user))
             request.getSession().setAttribute("registerError", 0);
         return "index";
+    }
+
+    @RequestMapping(value = "/user", method = RequestMethod.PUT)
+    public String modifyPersonalInfo(User user)
+    {
+        return "";
     }
 }

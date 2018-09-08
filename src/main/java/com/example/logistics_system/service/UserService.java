@@ -13,23 +13,20 @@ public class UserService
     @Autowired
     private UserDAO userDAO;
 
-    public boolean loginService(String username, String pwd)
+    public User loginService(String username, String password)
     {
         User user = userDAO.findByUsername(username);
-        pwd = MD5Util.encode(pwd);
-        if (user == null)
-            return false;
-        return user.getPassword().equals(pwd);
+        password = MD5Util.encode(password);
+        if (user == null || !user.getPassword().equals(password))
+            return null;
+        return user;
     }
 
     public boolean registerService(User user)
     {
-        if (user == null)
+        if (user == null || userDAO.findByUsername(user.getUsername()) != null)
             return false;
-        User tmp = userDAO.findByUsername(user.getUsername());
-        if (tmp != null)
-            return false;
-        UserUtil.modifySex(user);
+//        UserUtil.modifySex(user);
         user.setPassword(MD5Util.encode(user.getPassword()));
         userDAO.save(user);
         return true;

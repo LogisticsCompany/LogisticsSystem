@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface UserDAO extends JpaRepository<User, Integer>
 {
     User findByUsername(String username);
-    Page<User> findByProvinceAndCityAndCountry(String province, String city, String country, Pageable pageable);
+    Page<User> findByProvinceAndCityAndCountry(int province, int city, int country, Pageable pageable);
 }

@@ -21,19 +21,20 @@ public class OrderFormController
     @RequestMapping(value = "/order", method = RequestMethod.POST)
     public String addOrder(OrderForm orderForm, HttpServletRequest request)
     {
-        String username = (String) request.getSession().getAttribute("username");
-        switch (orderFormService.addOrderService(username, orderForm))
-        {
-            case 1:
-                request.setAttribute("notLoggedIn", 0);
-                break;
-            case 2:
-                request.setAttribute("noUser", 0);
-                break;
-            case 0:
-                request.setAttribute("orderNumber", orderForm.getOrderNumber());
-                break;
-        }
+        System.out.println(orderForm);
+//        String username = (String) request.getSession().getAttribute("username");
+//        switch (orderFormService.addOrderService(username, orderForm))
+//        {
+//            case 1:
+//                request.setAttribute("notLoggedIn", 0);
+//                break;
+//            case 2:
+//                request.setAttribute("noUser", 0);
+//                break;
+//            case 0:
+//                request.setAttribute("orderNumber", orderForm.getOrderNumber());
+//                break;
+//        }
         return "new_order";
     }
 

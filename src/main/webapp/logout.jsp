@@ -1,4 +1,4 @@
 <%
-   session.removeAttribute("username");
+   session.removeAttribute("user");
    response.sendRedirect("index.jsp");
 %>

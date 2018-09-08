@@ -1,5 +1,6 @@
 package com.example.logistics_system.controller;
 
+import com.example.logistics_system.bean.Admin;
 import com.example.logistics_system.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,9 @@ public class AdminController
     @RequestMapping(value = "/adminLogin", method = RequestMethod.POST)
     public String login(String username, String password, HttpServletRequest request)
     {
-        if (adminService.loginService(username, password))
-            request.getSession().setAttribute("username", username);
+        Admin admin;
+        if ((admin = adminService.loginService(username, password)) != null)
+            request.getSession().setAttribute("admin", admin);
         else
             request.getSession().setAttribute("loginError", 0);
         return "";
