@@ -25,6 +25,17 @@
 <%
         request.getSession().removeAttribute("noUser");
     }
+
+    String orderNumber = (String) request.getSession().getAttribute("orderNumber");
+    if (orderNumber != null)
+    {
+%>
+<script>
+    alert('<%=orderNumber%>');
+</script>
+<%
+        request.getSession().removeAttribute("orderNumber");
+    }
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

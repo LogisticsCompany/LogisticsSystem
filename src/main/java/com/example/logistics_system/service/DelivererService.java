@@ -28,6 +28,9 @@ public class DelivererService
         Deliverer deliverer = new Deliverer();
         deliverer.setUsername(username);
         deliverer.setPassword(DelivererUtil.generatePassword());
+        deliverer.setProvince(-1);
+        deliverer.setCity(-1);
+        deliverer.setCountry(-1);
         delivererDAO.save(deliverer);
         return deliverer;
     }

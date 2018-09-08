@@ -62,6 +62,7 @@
         let sender = '<%=sender%>';
         let phone_number = '<%=phoneNumber%>';
 
+
         $1('senderAddress').value = address;
         $1('sender').value = sender;
         $1('senderPhoneNumber').value = phone_number;

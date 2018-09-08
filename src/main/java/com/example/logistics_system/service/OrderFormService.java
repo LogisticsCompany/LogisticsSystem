@@ -14,6 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 public class OrderFormService
 {
@@ -26,17 +28,16 @@ public class OrderFormService
     @Autowired
     private OrderFormDAO orderFormDAO;
 
-    public int addOrderService(String username, OrderForm orderForm)
+    public int addOrderService(User user, OrderForm orderForm)
     {
-        if (username == null)
-            return 1;
-        User user = userDAO.findByUsername(username);
         if (user == null)
             return 2;
         orderForm.setOrderNumber(OrderUtil.generateOrderNumber());
         orderForm.setState(OrderUtil.ORDER_ORDER);
-        user.getOrderForms().add(orderForm);
-        userDAO.save(user);
+        orderForm.setUser(user);
+        Set<OrderForm> orderForms = user.getOrderForms();
+        orderForms.add(orderForm);
+        orderFormDAO.saveAll(orderForms);
         return 0;
     }
 

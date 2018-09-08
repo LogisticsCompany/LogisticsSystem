@@ -36,8 +36,19 @@ public class UserController
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
-    public String modifyPersonalInfo(User user)
+    public String modifyPersonalInfo(User user, HttpServletRequest request)
     {
+        userService.saveUserService(user);
+        request.getSession().setAttribute("user", user);
+        return "";
+    }
+
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    public String modifyPassword(String password, HttpServletRequest request)
+    {
+        User user = (User) request.getSession().getAttribute("user");
+        userService.modifyPasswordService(user, password);
+        request.getSession().setAttribute("user", user);
         return "";
     }
 }

@@ -220,29 +220,4 @@ public class OrderForm
     {
         this.receiverCountry = receiverCountry;
     }
-
-    @Override
-    public String toString()
-    {
-        return "OrderForm{" +
-                "id=" + id +
-                ", orderNumber='" + orderNumber + '\'' +
-                ", sender='" + sender + '\'' +
-                ", senderProvince='" + senderProvince + '\'' +
-                ", senderCity='" + senderCity + '\'' +
-                ", senderCountry='" + senderCountry + '\'' +
-                ", senderAddress='" + senderAddress + '\'' +
-                ", senderPhoneNumber='" + senderPhoneNumber + '\'' +
-                ", receiver='" + receiver + '\'' +
-                ", receiverProvince='" + receiverProvince + '\'' +
-                ", receiverCity='" + receiverCity + '\'' +
-                ", receiverCountry='" + receiverCountry + '\'' +
-                ", receiverAddress='" + receiverAddress + '\'' +
-                ", receiverPhoneNumber='" + receiverPhoneNumber + '\'' +
-                ", productInfo='" + productInfo + '\'' +
-                ", state='" + state + '\'' +
-                ", user=" + user +
-                ", deliverers=" + deliverers +
-                '}';
-    }
 }

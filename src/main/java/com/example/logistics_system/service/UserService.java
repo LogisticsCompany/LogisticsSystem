@@ -27,8 +27,24 @@ public class UserService
         if (user == null || userDAO.findByUsername(user.getUsername()) != null)
             return false;
 //        UserUtil.modifySex(user);
+        user.setAddress("");
+        user.setProvince(-1);
+        user.setCity(-1);
+        user.setCountry(-1);
         user.setPassword(MD5Util.encode(user.getPassword()));
         userDAO.save(user);
         return true;
+    }
+
+    public void saveUserService(User user)
+    {
+        userDAO.save(user);
+    }
+
+    public void modifyPasswordService(User user, String password)
+    {
+        password = MD5Util.encode(password);
+        user.setPassword(password);
+        userDAO.save(user);
     }
 }
