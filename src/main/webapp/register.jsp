@@ -53,34 +53,27 @@
     <div class = "page_con">
         <jsp:include flush = "true" page = "/inc/top.jsp"></jsp:include>
         <!----------------内容区开始-------------------->
-        <div class = "sub_main">
-            <div class = "sub_maincon">
-                <div class = "sub_mainbox clearfix">
+            <div class = "panel panel-info" style = "width: 100%">
+                <div class = "panel-heading">信息修改</div>
+                <div class = "panel-body">
 
-
-                    <div class = "m_border">
-                        <div class = "m_title2">
-                            <h3>
-                                <font color = "#0a1450">注册</font>
-                            </h3>
-                        </div>
-                        <div class = "m_content message_con">
                             <form id = "form1" name = "form1" method = "post"
                                   action = "/register" onSubmit = "return check()">
 
-                                <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0">
+                                <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
+                                       class = "table table-striped ">
                                     <tr>
                                         <td class = "left_name">
                                             账号：
                                         </td>
                                         <td>
-                                            <input type = "text" name = "username" id = "name"
-                                                   class = "text_input text150"/>
+
+                                            <input type = "text" name = "username" id = "uname"
+                                                   class = "form-control form-control-inline"
+                                                   style = "width: 150px"/>
                                             <span class = "red">*</span>
                                         </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
+
                                     </tr>
                                     <tr>
                                         <td class = "left_name">
@@ -88,12 +81,11 @@
                                         </td>
                                         <td>
                                             <input type = "password" name = "password" id = "pwds"
-                                                   class = "text_input text150"/>
+                                                   class = "form-control form-control-inline"
+                                                   style = "width: 150px"/>
                                             <span class = "red">*</span>
                                         </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
+
                                     </tr>
 
                                     <tr>
@@ -101,8 +93,10 @@
                                             姓名：
                                         </td>
                                         <td>
+
                                             <input type = "text" name = "name" id = "rname"
-                                                   class = "text_input text150"/>
+                                                   class = "form-control form-control-inline"
+                                                   style = "width: 150px"/>
                                             <span class = "red">*</span>
                                         </td>
                                     </tr>
@@ -113,6 +107,7 @@
                                             性别：
                                         </td>
                                         <td>
+
                                             <span>
                                                 <input type = "radio" checked = "checked" name = "sex"
                                                        id = "sex1" value = "男"/>男
@@ -122,9 +117,7 @@
                                                        value = "女"/>女
                                             </span>
                                         </td>
-                                        <td>
-                                            &nbsp;
-                                        </td>
+
                                     </tr>
 
                                     <tr>
@@ -132,9 +125,12 @@
                                             手机：
                                         </td>
                                         <td>
+
                                             <input type = "text" name = "phoneNumber" id = "tel"
-                                                   class = "text_input text150"/>
+                                                   class = "form-control form-control-inline"
+                                                   style = "width: 150px"/>
                                             <span class = "red">*</span>
+
                                         </td>
                                     </tr>
 
@@ -144,8 +140,10 @@
                                             邮箱：
                                         </td>
                                         <td>
+
                                             <input type = "text" name = "email" id = "email"
-                                                   class = "text_input text150"/>
+                                                   class = "form-control form-control-inline"
+                                                   style = "width: 150px"/>
                                             <span class = "red">*</span>
 
                                         </td>
@@ -154,11 +152,14 @@
 
                                     <tr>
                                         <td>
-                                            &nbsp;
+
                                         </td>
+
                                         <td>
-                                            <input type = "image" name = "button" id = "button"
-                                                   src = "images/ok.gif"/>
+
+                                            <input type = "submit" value = "立即注册" name = "button" id = "button"
+                                                   class = "btn btn-success" style = "height: auto;width:auto"
+                                            />
                                         </td>
                                     </tr>
                                 </table>
