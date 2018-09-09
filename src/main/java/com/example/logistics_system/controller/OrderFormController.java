@@ -57,7 +57,8 @@ public class OrderFormController
         User user = (User) request.getSession().getAttribute("user");
         Page<OrderForm> orderForms = orderFormService.getUserOrdersService(user, start, size, state);
         request.getSession().setAttribute("orderForms", orderForms);
-        return "";
+        request.getSession().setAttribute("state", state);
+        return "my_order";
     }
 
     @RequestMapping(value = "/order", method = RequestMethod.GET)
@@ -86,10 +87,10 @@ public class OrderFormController
         return "";
     }
 
-    @RequestMapping(value = "/order", method = RequestMethod.DELETE)
-    public String deleteOrder(int id)
+    @RequestMapping(value = "/deleteOrder", method = RequestMethod.GET)
+    public String deleteOrder(int id, int state)
     {
         orderFormService.deleteOrderService(id);
-        return "";
+        return "redirect:userOrders?state=" + state;
     }
 }

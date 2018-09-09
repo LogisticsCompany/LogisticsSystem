@@ -16,6 +16,14 @@ public class OrderUtil
             ORDER_USER_ORDER = 7,
             ORDER_ALL = 8;
 
+    public final static String[] STATES = new String[]
+            {
+                    "已下单",
+                    "正在派送",
+                    "已签收",
+                    "已到达"
+            };
+
     public final static int
             NORMAL_STATE = 0,
             ORDER_NOT_EXIST = -1,

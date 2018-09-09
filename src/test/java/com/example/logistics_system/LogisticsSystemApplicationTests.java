@@ -1,6 +1,8 @@
 package com.example.logistics_system;
 
 import com.example.logistics_system.bean.OrderForm;
+import com.example.logistics_system.bean.User;
+import com.example.logistics_system.dao.UserDAO;
 import com.example.logistics_system.service.AdminService;
 import com.example.logistics_system.service.OrderFormService;
 import com.example.logistics_system.utils.OrderUtil;
@@ -17,12 +19,16 @@ public class LogisticsSystemApplicationTests
 {
 
     @Autowired
-    private OrderFormService orderFormService;
+    private UserDAO userDAO;
 
     @Test
     public void contextLoads()
     {
-
+        User user = userDAO.getOne(1);
+        User user1 = userDAO.getOne(1);
+        User user2 = userDAO.getOne(2);
+        System.out.println(user == user1);
+        System.out.println(user == user2);
     }
 
 }

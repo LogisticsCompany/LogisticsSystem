@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <%@ page language = "java" import = "java.util.*" pageEncoding = "UTF-8" %>
+<%@ page import = "com.example.logistics_system.utils.OrderUtil" %>
+<%@ page import = "org.springframework.data.domain.Page" %>
+<%@ page import = "com.example.logistics_system.bean.OrderForm" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
+    Page<OrderForm> orderForms = (Page<OrderForm>) request.getSession().getAttribute("orderForms");
+    request.getSession().removeAttribute("orderForms");
+    int state = (int) request.getSession().getAttribute("state");
+    request.getSession().removeAttribute("state");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -14,8 +21,9 @@
     <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8"/>
     <title>我的订单</title>
     <link href = "css/style.css" rel = "stylesheet" type = "text/css"/>
-    <script type = "text/javascript" src = "js/tab.js">
-    </script>
+    <script type = "text/javascript" src = "js/tab.js"></script>
+    <script src = "js/city.js"></script>
+    <script src = "js/get_address.js"></script>
 </head>
 
 <body>
@@ -29,154 +37,109 @@
             <div class = "panel panel-info" style = "width: 100%">
                 <div class = "panel-heading">
                     <div class = "btn-group">
-                        <button type = "button" class = "btn btn-primary dropdown-toggle " data-toggle = "dropdown">
-                            所有订单
+                        <button type = "button" class = "btn btn-primary dropdown-toggle " data-toggle = "dropdown"
+                                style = "width: auto">
+                            <script>
+                                let state = <%=state%>;
+                                switch (state) {
+                                    case <%=OrderUtil.ORDER_ALL%>:
+                                        document.write('所有订单');
+                                        break;
+                                    case <%=OrderUtil.ORDER_ORDER%>:
+                                        document.write('已下单订单');
+                                        break;
+                                    case <%=OrderUtil.ORDER_DELIVERY%>:
+                                        document.write('正在派送订单');
+                                        break;
+                                    case <%=OrderUtil.ORDER_ARRIVED%>:
+                                        document.write('已到达订单');
+                                        break;
+                                    case <%=OrderUtil.ORDER_SIGN%>:
+                                        document.write('已签收订单');
+                                        break;
+                                }
+                            </script>
                             <span class = "caret"></span>
                         </button>
-
                         <ul class = "dropdown-menu" role = "menu">
                             <li>
-                                <a href = "/userOrders">所有订单</a>
+                                <a href = "/userOrders?state=<%=OrderUtil.ORDER_ALL%>">所有订单</a>
                             </li>
                             <li role = "presentation">
-                                <a href = "/userOrders">已下单订单</a>
+                                <a href = "/userOrders?state=<%=OrderUtil.ORDER_ORDER%>">已下单订单</a>
                             </li>
                             <li role = "presentation">
-                                <a href = "/userOrders">正在派送订单</a>
+                                <a href = "/userOrders?state=<%=OrderUtil.ORDER_DELIVERY%>">正在派送订单</a>
                             </li>
                             <li role = "presentation">
-                                <a href = "/userOrders">已到达订单</a>
+                                <a href = "/userOrders?state=<%=OrderUtil.ORDER_ARRIVED%>">已到达订单</a>
                             </li>
                             <li role = "presentation">
-                                <a href = "/userOrders">已签收订单</a>
+                                <a href = "/userOrders?state=<%=OrderUtil.ORDER_SIGN%>">已签收订单</a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class = "panel-body">
-                    <form action = "/order" method = "post" onsubmit = "return check()">
-                        <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
-                               class = "table table-striped">
-                            <tr>
-                                <td class = "left_name">
-                                    出发地地址：
-                                </td>
-                                <td>
-                                    <div class = "form-group form-group-extend">
-                                        <select class = "selectpicker show-tick" title = "= 请选择省份 ="
-                                                data-live-search = "true" data-size = "5" data-height = "50px"
-                                                id = "senderProvince" name = "senderProvince">
-                                        </select>
-                                    </div>
-                                    <div class = "form-group form-group-extend">
-                                        <select class = "selectpicker show-tick" title = "= 请选择城市 ="
-                                                data-live-search = "true" data-size = "5"
-                                                id = "senderCity" name = "senderCity">
-                                        </select>
-                                    </div>
-                                    <div class = "form-group form-group-extend">
-                                        <select class = "selectpicker show-tick" title = "= 请选择县区 ="
-                                                data-live-search = "true" data-size = "5"
-                                                id = "senderCountry" name = "senderCountry">
-                                        </select>
-                                    </div>
-                                    <span class = "red">*</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class = "left_name">
-                                    详细地址：
-                                </td>
-                                <td>
-                                    <input type = "text" name = "senderAddress" id = "senderAddress"
-                                           class = "form-control form-control-inline"
-                                           style = "width: 600px"/>
-                                    <span class = "red">*</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class = "left_name">
-                                    发货人及联系方式：
-                                </td>
-                                <td>
-                                    <input type = "text" name = "sender" id = "sender"
-                                           class = "form-control form-control-inline" placeholder = "发货人姓名"
-                                           style = "width: auto"/>
-                                    <span class = "red">*</span>
-                                    <input type = "text" name = "senderPhoneNumber" id = "senderPhoneNumber"
-                                           class = "form-control form-control-inline" placeholder = "发货人电话"
-                                           style = "width: auto"/>
-                                    <span class = "red">*</span>
-                                </td>
-                            </tr>
-                        </table>
-                        <br><br>
-                        <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
-                               class = "table table-striped">
-                            <tr>
-                                <td class = "left_name">
-                                    目的地地址：
-                                </td>
-                                <td>
-                                    <div class = "form-group form-group-extend">
-                                        <select class = "selectpicker show-tick" title = "= 请选择省份 ="
-                                                data-live-search = "true" data-size = "5"
-                                                id = "receiverProvince" name = "receiverProvince">
-                                        </select>
-                                    </div>
-                                    <div class = "form-group form-group-extend">
-                                        <select class = "selectpicker show-tick" title = "= 请选择城市 ="
-                                                data-live-search = "true" data-size = "5"
-                                                id = "receiverCity" name = "receiverCity">
-                                        </select>
-                                    </div>
-                                    <div class = "form-group form-group-extend">
-                                        <select class = "selectpicker show-tick" title = "= 请选择县区 ="
-                                                data-live-search = "true" data-size = "5"
-                                                id = "receiverCountry" name = "receiverCountry">
-                                        </select>
-                                    </div>
-                                    <span class = "red">*</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class = "left_name">
-                                    详细地址：
-                                </td>
-                                <td>
-                                    <input type = "text" name = "receiverAddress" id = "receiverAddress"
-                                           class = "form-control form-control-inline"
-                                           style = "width: 600px"/>
-                                    <span class = "red">*</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class = "left_name">
-                                    收货人及联系方式：
-                                </td>
-                                <td>
-                                    <input type = "text" name = "receiver" id = "receiver"
-                                           class = "form-control form-control-inline" placeholder = "收货人姓名"
-                                           style = "width: auto"/>
-                                    <span class = "red">*</span>
-                                    <input type = "text" name = "receiverPhoneNumber" id = "receiverPhoneNumber"
-                                           class = "form-control form-control-inline" placeholder = "收货人电话"
-                                           style = "width: auto"/>
-                                    <span class = "red">*</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    &nbsp;
-                                </td>
-                                <td>
-                                    <input type = "submit" value = "下单" name = "button" id = "button"
-                                           class = "btn btn-success" style = "height: auto; width: 100px"
-                                    />
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
+                    <table class = "table table-striped">
+                        <thead>
+                        <th>单号</th>
+                        <th>状态</th>
+                        <th>发送方信息</th>
+                        <th>接收方信息</th>
+                        <th>操作</th>
+                        </thead>
+                        <tbody>
+                        <%
+                            for (OrderForm orderForm : orderForms)
+                            {
+                        %>
+                        <tr>
+                            <td><%=orderForm.getOrderNumber()%>
+                            </td>
+                            <td><%=OrderUtil.STATES[orderForm.getState()]%>
+                            </td>
+                            <td>
+                                <script>
+                                    document.write(get_address(<%=orderForm.getSenderProvince()%>, <%=orderForm.getSenderCity()%>, <%=orderForm.getSenderCountry()%>) + '\n' +
+                                        '<%=orderForm.getSenderAddress()%>' + ' ' + '<%=orderForm.getSender()%>' + ' ' + '<%=orderForm.getSenderPhoneNumber()%>')
+                                </script>
+                            </td>
+                            <td>
+                                <script>
+                                    document.write(get_address(<%=orderForm.getReceiverProvince()%>, <%=orderForm.getReceiverCity()%>, <%=orderForm.getReceiverCountry()%>) + '\n' +
+                                        '<%=orderForm.getReceiverAddress()%>' + ' ' + '<%=orderForm.getReceiver()%>' + ' ' + '<%=orderForm.getReceiverPhoneNumber()%>')
+                                </script>
+                            </td>
+                            <td>
+                                <%
+                                    if (orderForm.getState() == OrderUtil.ORDER_ORDER)
+                                    {
+                                %>
+                                <a href="/deleteOrder?id=<%=orderForm.getId()%>&state=<%=state%>">取消订单</a>
+                                <%
+                                    }
+                                    else
+                                    {
+                                %>
+                                取消订单
+                                <%
+                                    }
+                                %>
+                            </td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                        </tbody>
+                    </table>
+                    <br>
+                    <div align = "center">
+                        <a href = "/userOrders?start=0&state=<%=state%>">[首页]</a>
+                        <a href = "/userOrders?start=<%=orderForms.getNumber()-1%>&state=<%=state%>">[上一页]</a>
+                        <a href = "/userOrders?start=<%=orderForms.getNumber()+1%>&state=<%=state%>">[下一页]</a>
+                        <a href = "/userOrders?start=<%=orderForms.getTotalPages()-1%>&state=<%=state%>">[末页]</a>
+                    </div>
                 </div>
             </div>
         </div>

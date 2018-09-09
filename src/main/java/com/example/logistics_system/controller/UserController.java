@@ -35,12 +35,12 @@ public class UserController
         return "index";
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.PUT)
+    @RequestMapping(value = "/userInformation", method = RequestMethod.POST)
     public String modifyPersonalInfo(User user, HttpServletRequest request)
     {
         userService.saveUserService(user);
         request.getSession().setAttribute("user", user);
-        return "";
+        return "reinformation";
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)

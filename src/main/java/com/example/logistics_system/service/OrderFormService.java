@@ -79,9 +79,8 @@ public class OrderFormService
                 if (orderForm.getState() != OrderUtil.ORDER_DELIVERY)
                     return OrderUtil.ILLEGAL_OPERATION;
                 break;
-            // TODO: 2018/9/8
             case OrderUtil.ORDER_DELIVERER_REQUEST:
-                if (orderForm.getState() != OrderUtil.ORDER_ORDER)
+                if (orderForm.getState() != OrderUtil.ORDER_ORDER && orderForm.getState() != OrderUtil.ORDER_DELIVERER_REQUEST)
                     return OrderUtil.ILLEGAL_OPERATION;
                 break;
             case OrderUtil.ORDER_ADMIN_ACCEPT:
@@ -96,10 +95,5 @@ public class OrderFormService
     public void deleteOrderService(int id)
     {
         orderFormDAO.deleteById(id);
-    }
-
-    public void applyOrderService(Deliverer deliverer, int id)
-    {
-
     }
 }

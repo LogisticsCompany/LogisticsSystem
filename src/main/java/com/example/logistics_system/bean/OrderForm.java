@@ -33,14 +33,6 @@ public class OrderForm
     @JoinColumn(name = "uid")
     private User user;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "deliverer_order",
-            joinColumns = @JoinColumn(name = "oid"),
-            inverseJoinColumns = @JoinColumn(name = "did")
-    )
-    private Set<Deliverer> deliverers;
-
     public int getId()
     {
         return id;
@@ -149,16 +141,6 @@ public class OrderForm
     public void setReceiverPhoneNumber(String receiverPhoneNumber)
     {
         this.receiverPhoneNumber = receiverPhoneNumber;
-    }
-
-    public Set<Deliverer> getDeliverers()
-    {
-        return deliverers;
-    }
-
-    public void setDeliverers(Set<Deliverer> deliverers)
-    {
-        this.deliverers = deliverers;
     }
 
     public int getSenderProvince()
