@@ -86,6 +86,9 @@
                 <a href = "my_order.jsp"><span>我的订单</span> </a>
             </li>
             <li role = "presentation">
+                <a href = "order.jsp"><span>订单申请</span> </a>
+            </li>
+            <li role = "presentation">
                 <a href = "reinformation.jsp"><span>我的信息</span> </a>
             </li>
             <%
