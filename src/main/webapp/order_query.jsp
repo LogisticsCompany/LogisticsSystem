@@ -48,19 +48,22 @@ function check() {
 												<b>注：</b>带
 												<span class="red">*</span>号为必填项
 											</p>
-											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
+                                                   class = "table table-striped ">
+
 												<tr>
-													<td class="left_name">
+													<td class="left_name1">
 														单号：
 													</td>
-													<td>
-														<input type="text" name="dh" id="dh"
-															   class="text_input text150" />
-														<span class="red">*</span>
-													</td>
-													<td>
-														&nbsp;
-													</td>
+                                                    <td>
+
+                                                        <input type = "text" name = "dh" id = "dh"
+                                                               class = "form-control form-control-inline"
+                                                               style = "width: 200px"/>
+                                                        <span class = "red">*</span>
+                                                    </td>
+
+
 												</tr>
 
 												<tr>
@@ -68,7 +71,9 @@ function check() {
 														&nbsp;
 													</td>
 													<td>
-														<input type="submit" name="button" id="button" value="查询" />
+                                                        <input type = "submit" value = "查询" name = "button" id = "button"
+                                                               class = "btn btn-success" style = "height: auto;width:auto"
+                                                        />
 													</td>
 												</tr>
 											</table>

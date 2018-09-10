@@ -11,5 +11,5 @@ public interface OrderFormDAO extends JpaRepository<OrderForm, Integer>
     Page<OrderForm> findAllBySenderProvinceAndSenderCityAndSenderCountry(int province, int city, int country, Pageable pageable);
     OrderForm findByOrderNumber(String orderNumber);
     Page<OrderForm> findAllByUser(User user, Pageable pageable);
-    Page<OrderForm> findAllByUserAndState(User user, int state, Pageable pageable);
+    Page<OrderForm> findAllByUserAndState(User user, String state, Pageable pageable);
 }

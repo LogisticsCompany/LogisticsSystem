@@ -29,7 +29,10 @@
             <div class = "panel panel-info" style = "width: 100%">
                 <div class = "panel-heading">信息修改</div>
                 <div class = "panel-body">
-                    <form action = "/userInformation" method = "post">
+                    <form action = "/user" method = "post">
+                        <input type = "hidden" name = "_method" value = "PUT"/>
+                        <input type = "hidden" name = "_token" value = "{{ csrf_token() }}"/>
+
                         <input type = "hidden" name = "id" value = "<%=user.getId()%>"/>
                         <input type = "hidden" name = "username" value = "<%=user.getUsername()%>"/>
                         <input type = "hidden" name = "password" value = "<%=user.getPassword()%>"/>
@@ -37,8 +40,8 @@
                         <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
                                class = "table table-striped">
                             <tr>
-                                <td class = "left_name_reinformation">
-                                    我的姓名：
+                                <td class = "left_name">
+                                    姓名：
                                 </td>
                                 <td>
                                     <input type = "text" name = "name" id = "name"
@@ -48,29 +51,24 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class = "left_name_reinformation">
-                                    我的性别：
+                                <td class = "left_name">
+                                    性别：
                                 </td>
                                 <td>
-                                    <div class = "radio">
-                                        <label>
-                                            <input type = "radio" name = "sex" id = "sex1"
-                                                   value = "男">
-                                            男
-                                        </label>
-                                    </div>
-                                    <div class = "radio">
-                                        <label>
-                                            <input type = "radio" name = "sex" id = "sex2"
-                                                   value = "女">
-                                            女
-                                        </label>
-                                    </div>
+
+                                            <span>
+                                                <input type = "radio" checked = "checked" name = "sex"
+                                                       id = "sex1" value = "男"/>男
+                                            </span>
+                                    <span>
+                                                <input type = "radio" name = "sex" id = "sex2"
+                                                       value = "女"/>女
+                                            </span>
                                 </td>
                             </tr>
                             <tr>
-                                <td class = "left_name_reinformation">
-                                    我的电话：
+                                <td class = "left_name">
+                                    电话：
                                 </td>
                                 <td>
                                     <input type = "text" name = "phoneNumber" id = "phoneNumber"
@@ -80,8 +78,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class = "left_name_reinformation">
-                                    我的邮箱：
+                                <td class = "left_name">
+                                    邮箱：
                                 </td>
                                 <td>
                                     <input type = "text" name = "email" id = "email"
@@ -91,33 +89,33 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class = "left_name_reinformation">
-                                    收货地址：
+                                <td class = "left_name">
+                                    地址：
                                 </td>
                                 <td>
                                     <div class = "form-group form-group-extend">
                                         <select class = "selectpicker show-tick" title = "= 请选择省份 ="
                                                 data-live-search = "true" data-size = "5" data-height = "50px"
-                                                id = "province" name = "province">
+                                                id = "province">
                                         </select>
                                     </div>
                                     <div class = "form-group form-group-extend">
-                                        <select class = "selectpicker show-tick" title = "= 请选择城市 ="
+                              。。          <select class = "selectpicker show-tick" title = "= 请选择城市 ="
                                                 data-live-search = "true" data-size = "5"
-                                                id = "city" name = "city">
+                                                id = "city">
                                         </select>
                                     </div>
                                     <div class = "form-group form-group-extend">
                                         <select class = "selectpicker show-tick" title = "= 请选择县区 ="
                                                 data-live-search = "true" data-size = "5"
-                                                id = "country" name = "country">
+                                                id = "country">
                                         </select>
                                     </div>
                                     <span class = "red">*</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td class = "left_name_reinformation">
+                                <td class = "left_name">
                                     详细地址：
                                 </td>
                                 <td>
@@ -158,7 +156,7 @@
     let country_id = <%=user.getCountry()%>;
     init_address('province', 'city', 'country', province_id, city_id, country_id);
 
-    $("input[name='sex'][value='" + '<%=user.getSex()%>' + "']").attr("checked", true);
+    $("input[name='sex'][value='" + '<%=user.getSex()%>' +"']").attr("checked", true);
 </script>
 </body>
 </html>
