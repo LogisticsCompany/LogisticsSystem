@@ -68,7 +68,7 @@
                 <a href = "wd.jsp"><span>网点信息</span> </a>
             </li>
             <li role = "presentation">
-                <a href = "yundan.jsp"><span>运单查询</span> </a>
+                <a href = "order_query.jsp"><span>运单查询</span> </a>
             </li>
             <li role = "presentation">
                 <a href = "yunfei.jsp"><span>运费查询</span> </a>
