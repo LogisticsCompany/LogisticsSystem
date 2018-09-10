@@ -63,7 +63,7 @@
                                 <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
                                        class = "table table-striped ">
                                     <tr>
-                                        <td class = "left_name1">
+                                        <td class = "left_name">
                                             账号：
                                         </td>
                                         <td>
@@ -76,7 +76,7 @@
 
                                     </tr>
                                     <tr>
-                                        <td class = "left_name1">
+                                        <td class = "left_name">
                                             密码：
                                         </td>
                                         <td>
@@ -89,7 +89,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td class = "left_name1">
+                                        <td class = "left_name">
                                             姓名：
                                         </td>
                                         <td>
@@ -103,7 +103,7 @@
 
 
                                     <tr>
-                                        <td class = "left_name1">
+                                        <td class = "left_name">
                                             性别：
                                         </td>
                                         <td>
@@ -121,7 +121,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td class = "left_name1">
+                                        <td class = "left_name">
                                             手机：
                                         </td>
                                         <td>
@@ -136,7 +136,7 @@
 
 
                                     <tr>
-                                        <td class = "left_name1">
+                                        <td class = "left_name">
                                             邮箱：
                                         </td>
                                         <td>
