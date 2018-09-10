@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import = "com.example.logistics_system.utils.OrderUtil" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -33,7 +34,7 @@ function check() {
 			<div class="page_con">
 				<jsp:include flush="true" page="/inc/top.jsp"></jsp:include>
 				<!----------------内容区开始-------------------->
-					<div class = "panel panel-info" style = "width: 100%">
+					<div class = "panel panel-info" style = "width: 100%;height:600px">
 						<div class = "panel-heading">运单查询</div>
 						<div class = "panel-body">
 							<div class="sub_mainbox clearfix">
@@ -44,10 +45,6 @@ function check() {
 									<div class="m_content message_con">
 										<form id="form1" name="form1" method="post"
 											  action="yundanq.jsp" onsubmit="return check()">
-											<p class="tips">
-												<b>注：</b>带
-												<span class="red">*</span>号为必填项
-											</p>
                                             <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
                                                    class = "table table-striped ">
 
@@ -80,15 +77,81 @@ function check() {
 										</form>
 									</div>
 								</div>
+								<div class = "panel panel-info" style = "width: 100%">
+									<div class = "panel-heading">
+										<div class = "btn-group">
+							<span>  <input type = "button" name = "button" id = "register_btn"
+										   value = "订单信息" class = "btn btn-primary" style = "height: auto;width: auto"/></span>
+
+										</div>
+									</div>
+									<div class = "panel-body">
+										<table class = "table table-striped">
+											<thead>
+											<th>单号</th>
+											<th>状态</th>
+											<th>发送方信息</th>
+											<th>接收方信息</th>
+											<th>操作</th>
+											</thead>
+											<tbody>
+											<%--<%--%>
+											<%--for (OrderForm orderForm : orderForms)--%>
+											<%--{--%>
+											<%--%>--%>
+											<%--<tr>--%>
+											<%--<td><%=orderForm.getOrderNumber()%>--%>
+											<%--</td>--%>
+											<%--<td><%=OrderUtil.STATES[orderForm.getState()]%>--%>
+											<%--</td>--%>
+											<%--<td>--%>
+											<%--<script>--%>
+											<%--document.write(get_address(<%=orderForm.getSenderProvince()%>, <%=orderForm.getSenderCity()%>, <%=orderForm.getSenderCountry()%>) + '\n' +--%>
+											<%--'<%=orderForm.getSenderAddress()%>' + ' ' + '<%=orderForm.getSender()%>' + ' ' + '<%=orderForm.getSenderPhoneNumber()%>')--%>
+											<%--</script>--%>
+											<%--</td>--%>
+											<%--<td>--%>
+											<%--<script>--%>
+											<%--document.write(get_address(<%=orderForm.getReceiverProvince()%>, <%=orderForm.getReceiverCity()%>, <%=orderForm.getReceiverCountry()%>) + '\n' +--%>
+											<%--'<%=orderForm.getReceiverAddress()%>' + ' ' + '<%=orderForm.getReceiver()%>' + ' ' + '<%=orderForm.getReceiverPhoneNumber()%>')--%>
+											<%--</script>--%>
+											<%--</td>--%>
+											<%--<td>--%>
+											<%--<%--%>
+											<%--if (orderForm.getState() == OrderUtil.ORDER_ORDER)--%>
+											<%--{--%>
+											<%--%>--%>
+											<%--<a href="/deleteOrder?id=<%=orderForm.getId()%>&state=<%=state%>">申请派送</a>--%>
+											<%--<%--%>
+											<%--}--%>
+											<%--else--%>
+											<%--{--%>
+											<%--%>--%>
+											<%--申请派送--%>
+											<%--<%--%>
+											<%--}--%>
+											<%--%>--%>
+											<%--</td>--%>
+											<%--</tr>--%>
+											<%--<%--%>
+											<%--}--%>
+											<%--%>--%>
+											</tbody>
+										</table>
+										<br>
+										<%--<div align = "center">--%>
+										<%--<a href = "/userOrders?start=0&state=<%=state%>">[首页]</a>--%>
+										<%--<a href = "/userOrders?start=<%=orderForms.getNumber()-1%>&state=<%=state%>">[上一页]</a>--%>
+										<%--<a href = "/userOrders?start=<%=orderForms.getNumber()+1%>&state=<%=state%>">[下一页]</a>--%>
+										<%--<a href = "/userOrders?start=<%=orderForms.getTotalPages()-1%>&state=<%=state%>">[末页]</a>--%>
+										<%--</div>--%>
+									</div>
+								</div>
 
 							</div>
 						</div>
 					</div>
-				<div class="sub_main">
-					<div class="sub_maincon">
 
-					</div>
-				</div>
 				<!----------------内容区结束-------------------->
 				<!---------------页脚开始---------------->
 				<jsp:include flush="true" page="/inc/foot.jsp"></jsp:include>
