@@ -65,14 +65,10 @@
 <div id="loginDiv">
     <form class="loginRegisterform" method="post" action="frontlogin">
         <br>
-        <span class="text-muted">请输入</span>
-
-        <span class="text-success" style="font-weight:bold">账号和密码</span>
 
 
-        <br/>
-        <br/>
-        <input  name="user.email" class="form-control" placeholder="请输入登录账号" required
+
+        <input  name="user.email" class="form-control" placeholder="请输入账号" required
 
         >
         <br/>
