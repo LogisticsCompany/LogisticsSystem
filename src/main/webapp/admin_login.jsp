@@ -12,7 +12,7 @@
     <base href = "<%=basePath%>"/>
     <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8"/>
     <meta charset = "utf-8">
-    <title>物流信息管理系统</title>
+    <title>管理员登录</title>
     <meta name = "description" content = "">
     <meta name = "viewport" content = "width=device-width">
     <link rel = "stylesheet" href = "css/color.min.css">
@@ -89,7 +89,7 @@
             </div>
         </div>
         <br><br><br><br><br><br><br>
-        <form>
+        <form action = "/adminLogin" method = "post">
             <div id = "focuses" class = "focuses app-container">
                 <div class = "prompt" style = "display: block;">
                     <div class = "app-container quote">

@@ -17,11 +17,12 @@ public class LogisticsSystemApplicationTests
 {
 
     @Autowired
-    private OrderFormService orderFormService;
+    private AdminService adminService;
 
     @Test
     public void contextLoads()
     {
+        adminService.registerService("admin", "admin");
     }
 
 }

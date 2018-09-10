@@ -46,30 +46,6 @@
     <title>在线下单</title>
     <link href = "css/style.css" rel = "stylesheet" type = "text/css"/>
     <script type = "text/javascript" src = "js/tab.js"></script>
-
-    <script type = "text/javascript">
-        function check() {
-            // if (document.getElementById("chufa").value == "") {
-            //     alert("请输入出发地联系方式");
-            //     return false;
-            // }
-            // if (document.getElementById("mudi").value == "") {
-            //     alert("请输入目的地联系方式");
-            //     return false;
-            // }
-            // if (document.getElementById("fahuoren").value == "") {
-            //     alert("请输入发货人信息");
-            //     return false;
-            // }
-            // if (document.getElementById("shouhuoren").value == "") {
-            //     alert("请输入收货人信息");
-            //     return false;
-            // }
-
-            // alert($1('senderProvince').value);
-            return true;
-        }
-    </script>
 </head>
 
 <body>
@@ -83,7 +59,7 @@
             <div class = "panel panel-info" style = "width: 100%">
                 <div class = "panel-heading">在线下单</div>
                 <div class = "panel-body">
-                    <form action = "/order" method = "post" onsubmit = "return check()">
+                    <form action = "/order" method = "post">
                         <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
                                class = "table table-striped">
                             <tr>
@@ -94,19 +70,22 @@
                                     <div class = "form-group form-group-extend">
                                         <select class = "selectpicker show-tick" title = "= 请选择省份 ="
                                                 data-live-search = "true" data-size = "5" data-height = "50px"
-                                                id = "senderProvince" name = "senderProvince">
+                                                id = "senderProvince" name = "senderProvince"
+                                                onchange = "changeButtonState(false)">
                                         </select>
                                     </div>
                                     <div class = "form-group form-group-extend">
                                         <select class = "selectpicker show-tick" title = "= 请选择城市 ="
                                                 data-live-search = "true" data-size = "5"
-                                                id = "senderCity" name = "senderCity">
+                                                id = "senderCity" name = "senderCity"
+                                                onchange = "changeButtonState(false)">
                                         </select>
                                     </div>
                                     <div class = "form-group form-group-extend">
                                         <select class = "selectpicker show-tick" title = "= 请选择县区 ="
                                                 data-live-search = "true" data-size = "5"
-                                                id = "senderCountry" name = "senderCountry">
+                                                id = "senderCountry" name = "senderCountry"
+                                                onchange = "changeButtonState()">
                                         </select>
                                     </div>
                                     <span class = "red">*</span>
@@ -119,7 +98,7 @@
                                 <td>
                                     <input type = "text" name = "senderAddress" id = "senderAddress"
                                            class = "form-control form-control-inline"
-                                           style = "width: 600px"/>
+                                           style = "width: 600px" onchange = "changeButtonState()"/>
                                     <span class = "red">*</span>
                                 </td>
                             </tr>
@@ -130,11 +109,11 @@
                                 <td>
                                     <input type = "text" name = "sender" id = "sender"
                                            class = "form-control form-control-inline" placeholder = "发货人姓名"
-                                           style = "width: auto"/>
+                                           style = "width: auto" onchange = "changeButtonState()"/>
                                     <span class = "red">*</span>
                                     <input type = "text" name = "senderPhoneNumber" id = "senderPhoneNumber"
                                            class = "form-control form-control-inline" placeholder = "发货人电话"
-                                           style = "width: auto"/>
+                                           style = "width: auto" onchange = "changeButtonState()"/>
                                     <span class = "red">*</span>
                                 </td>
                             </tr>
@@ -150,19 +129,22 @@
                                     <div class = "form-group form-group-extend">
                                         <select class = "selectpicker show-tick" title = "= 请选择省份 ="
                                                 data-live-search = "true" data-size = "5"
-                                                id = "receiverProvince" name = "receiverProvince">
+                                                id = "receiverProvince" name = "receiverProvince"
+                                                onchange = "changeButtonState(false)">
                                         </select>
                                     </div>
                                     <div class = "form-group form-group-extend">
                                         <select class = "selectpicker show-tick" title = "= 请选择城市 ="
                                                 data-live-search = "true" data-size = "5"
-                                                id = "receiverCity" name = "receiverCity">
+                                                id = "receiverCity" name = "receiverCity"
+                                                onchange = "changeButtonState(false)">
                                         </select>
                                     </div>
                                     <div class = "form-group form-group-extend">
                                         <select class = "selectpicker show-tick" title = "= 请选择县区 ="
                                                 data-live-search = "true" data-size = "5"
-                                                id = "receiverCountry" name = "receiverCountry">
+                                                id = "receiverCountry" name = "receiverCountry"
+                                                onchange = "changeButtonState()">
                                         </select>
                                     </div>
                                     <span class = "red">*</span>
@@ -175,7 +157,7 @@
                                 <td>
                                     <input type = "text" name = "receiverAddress" id = "receiverAddress"
                                            class = "form-control form-control-inline"
-                                           style = "width: 600px"/>
+                                           style = "width: 600px" onchange = "changeButtonState()"/>
                                     <span class = "red">*</span>
                                 </td>
                             </tr>
@@ -186,11 +168,11 @@
                                 <td>
                                     <input type = "text" name = "receiver" id = "receiver"
                                            class = "form-control form-control-inline" placeholder = "收货人姓名"
-                                           style = "width: auto"/>
+                                           style = "width: auto" onchange = "changeButtonState()"/>
                                     <span class = "red">*</span>
                                     <input type = "text" name = "receiverPhoneNumber" id = "receiverPhoneNumber"
                                            class = "form-control form-control-inline" placeholder = "收货人电话"
-                                           style = "width: auto"/>
+                                           style = "width: auto" onchange = "changeButtonState()"/>
                                     <span class = "red">*</span>
                                 </td>
                             </tr>
@@ -200,7 +182,7 @@
                                 </td>
                                 <td>
                                     <input type = "submit" value = "下单" name = "button" id = "button"
-                                           class = "btn btn-success" style = "height: auto; width: 100px"
+                                           style = "height: auto; width: 100px"
                                     />
                                 </td>
                             </tr>
@@ -217,6 +199,56 @@
         <!---------------页脚结束---------------->
     </div>
 </div>
+
+<script type = "text/javascript">
+    function $1(val) {
+        return document.getElementById(val);
+    }
+
+    function check(arg = true) {
+        if (!arg)
+            return false;
+        if ($1('receiverProvince').value == '')
+            return false;
+        if ($1('receiverCity').value == '')
+            return false;
+        if ($1('receiverCountry').value == '')
+            return false;
+        if ($1('receiverAddress').value == '')
+            return false;
+        if ($1('receiver').value == '')
+            return false;
+        if ($1('receiverPhoneNumber').value == '')
+            return false;
+        if ($1('senderProvince').value == '')
+            return false;
+        if ($1('senderCity').value == '')
+            return false;
+        if ($1('senderCountry').value == '')
+            return false;
+        if ($1('senderAddress').value == '')
+            return false;
+        if ($1('sender').value == '')
+            return false;
+        if ($1('senderPhoneNumber').value == '')
+            return false;
+        return true;
+    }
+
+    function changeButtonState(arg = true) {
+        if (check(arg)) {
+            $('#button').attr('class', 'btn btn-success');
+            $1('button').disabled = false;
+        }
+        else {
+            $('#button').attr('class', 'btn btn-success disabled');
+            $1('button').disabled = true;
+        }
+    }
+
+    changeButtonState()
+</script>
+
 <script src = "js/city.js"></script>
 <%--<script src = "js/select_city.js"></script>--%>
 <%@ include file = "jsp/get_sender_info.jsp" %>

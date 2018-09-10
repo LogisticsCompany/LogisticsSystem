@@ -23,6 +23,6 @@ public class AdminController
             request.getSession().setAttribute("admin", admin);
         else
             request.getSession().setAttribute("loginError", 0);
-        return "";
+        return "admin/index1";
     }
 }
