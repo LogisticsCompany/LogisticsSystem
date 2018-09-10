@@ -66,7 +66,7 @@ public class OrderFormController
     {
         OrderForm orderForm = orderFormService.getOrderService(orderNumber);
         request.getSession().setAttribute("orderForm", orderForm);
-        return "";
+        return "order_query";
     }
 
     @RequestMapping(value = "/order", method = RequestMethod.PUT)

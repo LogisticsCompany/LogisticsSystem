@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page language = "java" import = "java.util.*" pageEncoding = "UTF-8" %>
 <%@ page import = "com.example.logistics_system.bean.OrderForm" %>
+<%@ page import = "com.example.logistics_system.utils.OrderUtil" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
@@ -28,6 +29,7 @@
     }
 
     OrderForm orderForm = (OrderForm) request.getSession().getAttribute("orderForm");
+    request.getSession().removeAttribute("orderForm");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -46,7 +48,7 @@
 
 <div class = "page">
     <div class = "page_con">
-        <jsp:include flush = "true" page = "/inc/top1.jsp"></jsp:include>
+        <jsp:include flush = "true" page = "/inc/top.jsp"></jsp:include>
         <!----------------内容区开始-------------------->
 
 
@@ -61,27 +63,41 @@
                             <td class = "left_name1">
                                 单号：
                             </td>
-
+                            <td>
+                                <%=orderForm.getOrderNumber()%>
+                            </td>
                         </tr>
                         <tr>
                             <td class = "left_name1">
                                 状态：
                             </td>
-
+                            <td>
+                                <%=OrderUtil.STATES[orderForm.getState()]%>
+                            </td>
                         </tr>
-
                         <tr>
                             <td class = "left_name1">
                                 发送方信息：
+                            </td>
+                            <td>
+                                <script>
+                                    document.write(get_address(<%=orderForm.getSenderProvince()%>, <%=orderForm.getSenderCity()%>, <%=orderForm.getSenderCountry()%>) + '\n' +
+                                        '<%=orderForm.getSenderAddress()%>' + ' ' + '<%=orderForm.getSender()%>' + ' ' + '<%=orderForm.getSenderPhoneNumber()%>')
+                                </script>
                             </td>
                         </tr>
                         <tr>
                             <td class = "left_name1">
                                 接收方信息：
                             </td>
+                            <td>
+                                <script>
+                                    document.write(get_address(<%=orderForm.getReceiverProvince()%>, <%=orderForm.getReceiverCity()%>, <%=orderForm.getReceiverCountry()%>) + '\n' +
+                                        '<%=orderForm.getReceiverAddress()%>' + ' ' + '<%=orderForm.getReceiver()%>' + ' ' + '<%=orderForm.getReceiverPhoneNumber()%>')
+                                </script>
+                            </td>
                         </tr>
                     </table>
-                    </form>
                 </div>
 
             </div>
