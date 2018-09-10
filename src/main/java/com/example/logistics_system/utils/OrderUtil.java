@@ -5,24 +5,14 @@ import java.util.Date;
 
 public class OrderUtil
 {
-    public final static int
-            ORDER_ORDER = 0,
-            ORDER_DELIVERY = 1,
-            ORDER_SIGN = 2,
-            ORDER_ARRIVED = 3,
-            ORDER_DELIVERER_REQUEST = 4,
-            ORDER_ADMIN_REFUSE = 5,
-            ORDER_ADMIN_ACCEPT = 6,
-            ORDER_USER_ORDER = 7,
-            ORDER_ALL = 8;
-
-    public final static String[] STATES = new String[]
-            {
-                    "已下单",
-                    "正在派送",
-                    "已签收",
-                    "已到达"
-            };
+    public final static String
+            ORDER_ORDER = "ORDER_ORDER",
+            ORDER_DELIVERY = "ORDER_DELIVERY",
+            ORDER_SIGN = "ORDER_SIGN",
+            ORDER_ARRIVED = "ORDER_ARRIVED",
+            ORDER_DELIVERER_REQUEST = "ORDER_DELIVERER_REQUEST",
+            ORDER_ADMIN_REFUSE = "ORDER_ADMIN_REFUSE",
+            ORDER_ADMIN_ACCEPT = "ORDER_ADMIN_ACCEPT";
 
     public final static int
             NORMAL_STATE = 0,

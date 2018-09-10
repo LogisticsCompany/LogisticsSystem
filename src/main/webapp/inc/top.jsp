@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <%@ page language = "java" import = "java.util.*" pageEncoding = "UTF-8" %>
 <%@ page import = "com.example.logistics_system.bean.User" %>
-<%@ page import = "com.example.logistics_system.utils.OrderUtil" %>
 
 <%--<script src = "bootstrap/js/jquery/2.0.0/jquery.min.js"></script>--%>
 <%--<link href = "bootstrap/css/bootstrap/3.3.6/bootstrap.min.css" rel = "stylesheet">--%>
@@ -84,7 +83,7 @@
                 <a href = "new_order.jsp"><span>在线下单</span> </a>
             </li>
             <li role = "presentation">
-                <a href = "/userOrders?state=<%=OrderUtil.ORDER_ALL%>"><span>我的订单</span> </a>
+                <a href = "my_order.jsp"><span>我的订单</span> </a>
             </li>
             <li role = "presentation">
                 <a href = "reinformation.jsp"><span>我的信息</span> </a>

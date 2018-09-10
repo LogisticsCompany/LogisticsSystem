@@ -1,6 +1,5 @@
 package com.example.logistics_system.controller;
 
-import com.example.logistics_system.bean.Deliverer;
 import com.example.logistics_system.bean.OrderForm;
 import com.example.logistics_system.bean.User;
 import com.example.logistics_system.service.OrderFormService;
@@ -42,8 +41,8 @@ public class OrderFormController
                                       @RequestParam(value = "start", defaultValue = "0") int start,
                                       @RequestParam(value = "size", defaultValue = "10") int size)
     {
-        Deliverer deliverer = (Deliverer) request.getSession().getAttribute("deliverer");
-        Page<OrderForm> orderForms = orderFormService.getApplicableOrders(deliverer, start, size);
+        String username = (String) request.getSession().getAttribute("username");
+        Page<OrderForm> orderForms = orderFormService.getApplicableOrders(username, start, size);
         request.getSession().setAttribute("orderForms", orderForms);
         return "";
     }
@@ -52,13 +51,12 @@ public class OrderFormController
     public String getUserOrders(HttpServletRequest request,
                                 @RequestParam(value = "start", defaultValue = "0") int start,
                                 @RequestParam(value = "size", defaultValue = "10") int size,
-                                @RequestParam(value = "state") int state)
+                                @RequestParam(value = "state") String state)
     {
-        User user = (User) request.getSession().getAttribute("user");
-        Page<OrderForm> orderForms = orderFormService.getUserOrdersService(user, start, size, state);
+        String username = (String) request.getSession().getAttribute("username");
+        Page<OrderForm> orderForms = orderFormService.getUserOrdersService(username, start, size, state);
         request.getSession().setAttribute("orderForms", orderForms);
-        request.getSession().setAttribute("state", state);
-        return "my_order";
+        return "";
     }
 
     @RequestMapping(value = "/order", method = RequestMethod.GET)
@@ -70,7 +68,7 @@ public class OrderFormController
     }
 
     @RequestMapping(value = "/order", method = RequestMethod.PUT)
-    public String modifyOrderState(int id, int state, HttpServletRequest request)
+    public String modifyOrderState(int id, String state, HttpServletRequest request)
     {
         switch (orderFormService.modifyOrderStateService(id, state))
         {
@@ -87,10 +85,10 @@ public class OrderFormController
         return "";
     }
 
-    @RequestMapping(value = "/deleteOrder", method = RequestMethod.GET)
-    public String deleteOrder(int id, int state)
+    @RequestMapping(value = "/order", method = RequestMethod.DELETE)
+    public String deleteOrder(int id)
     {
         orderFormService.deleteOrderService(id);
-        return "redirect:userOrders?state=" + state;
+        return "";
     }
 }

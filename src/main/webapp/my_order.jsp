@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <%@ page language = "java" import = "java.util.*" pageEncoding = "UTF-8" %>
-<%@ page import = "com.example.logistics_system.utils.OrderUtil" %>
-<%@ page import = "org.springframework.data.domain.Page" %>
-<%@ page import = "com.example.logistics_system.bean.OrderForm" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
-    Page<OrderForm> orderForms = (Page<OrderForm>) request.getSession().getAttribute("orderForms");
-    request.getSession().removeAttribute("orderForms");
-    int state = (int) request.getSession().getAttribute("state");
-    request.getSession().removeAttribute("state");
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -19,11 +12,10 @@
 <head>
     <base href = "<%=basePath%>"/>
     <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8"/>
-    <title>我的订单</title>
+    <title>新闻资讯</title>
     <link href = "css/style.css" rel = "stylesheet" type = "text/css"/>
-    <script type = "text/javascript" src = "js/tab.js"></script>
-    <script src = "js/city.js"></script>
-    <script src = "js/get_address.js"></script>
+    <script type = "text/javascript" src = "js/tab.js">
+    </script>
 </head>
 
 <body>
@@ -32,118 +24,49 @@
     <div class = "page_con">
         <jsp:include flush = "true" page = "/inc/top.jsp"></jsp:include>
         <!----------------内容区开始-------------------->
+        <div class = "sub_main">
+            <div class = "sub_maincon">
+                <div class = "sub_mainbox clearfix">
+                    <div class = "m_title2">
+                        <h3>
+                            <font color = "#0a1450">我的订单</font>
+                        </h3>
+                    </div>
+                    <div class = "article_listbox">
+                        <ul>
+                            <%
+                                DBManager dbm = new DBManager();
+                                Connection conn = dbm.getConnection();
+                                String queryName = request.getParameter("queryName");
+                                String sql = "select * from yundan";
 
-        <div>
-            <div class = "panel panel-info" style = "width: 100%">
-                <div class = "panel-heading">
-                    <div class = "btn-group">
-                        <button type = "button" class = "btn btn-primary dropdown-toggle " data-toggle = "dropdown"
-                                style = "width: auto">
-                            <script>
-                                let state = <%=state%>;
-                                switch (state) {
-                                    case <%=OrderUtil.ORDER_ALL%>:
-                                        document.write('所有订单');
-                                        break;
-                                    case <%=OrderUtil.ORDER_ORDER%>:
-                                        document.write('已下单订单');
-                                        break;
-                                    case <%=OrderUtil.ORDER_DELIVERY%>:
-                                        document.write('正在派送订单');
-                                        break;
-                                    case <%=OrderUtil.ORDER_ARRIVED%>:
-                                        document.write('已到达订单');
-                                        break;
-                                    case <%=OrderUtil.ORDER_SIGN%>:
-                                        document.write('已签收订单');
-                                        break;
-                                }
-                            </script>
-                            <span class = "caret"></span>
-                        </button>
-                        <ul class = "dropdown-menu" role = "menu">
+                                PreparedStatement pstmt = conn.prepareStatement(sql);
+                                ResultSet rs = pstmt.executeQuery();
+
+                                while (rs.next())
+                                {
+                                    String id = rs.getString("id");
+                            %>
                             <li>
-                                <a href = "/userOrders?state=<%=OrderUtil.ORDER_ALL%>">所有订单</a>
+                                <span class = "time"><font color = "red"><%=rs.getString("state")%></font>&nbsp;&nbsp;&nbsp;&nbsp;<%=rs.getString("date")%></span><a
+                                    href = "yundanq.jsp?dh=<%=rs.getString("danhao")%>"><%=rs.getString("danhao")%>
+                            </a>
                             </li>
-                            <li role = "presentation">
-                                <a href = "/userOrders?state=<%=OrderUtil.ORDER_ORDER%>">已下单订单</a>
-                            </li>
-                            <li role = "presentation">
-                                <a href = "/userOrders?state=<%=OrderUtil.ORDER_DELIVERY%>">正在派送订单</a>
-                            </li>
-                            <li role = "presentation">
-                                <a href = "/userOrders?state=<%=OrderUtil.ORDER_ARRIVED%>">已到达订单</a>
-                            </li>
-                            <li role = "presentation">
-                                <a href = "/userOrders?state=<%=OrderUtil.ORDER_SIGN%>">已签收订单</a>
-                            </li>
+                            <%
+                                }
+                                if (rs != null)
+                                    rs.close();
+                                if (pstmt != null)
+                                    pstmt.close();
+                                if (conn != null)
+                                    conn.close();
+                            %>
                         </ul>
                     </div>
-                </div>
-                <div class = "panel-body">
-                    <table class = "table table-striped">
-                        <thead>
-                        <th>单号</th>
-                        <th>状态</th>
-                        <th>发送方信息</th>
-                        <th>接收方信息</th>
-                        <th>操作</th>
-                        </thead>
-                        <tbody>
-                        <%
-                            for (OrderForm orderForm : orderForms)
-                            {
-                        %>
-                        <tr>
-                            <td><%=orderForm.getOrderNumber()%>
-                            </td>
-                            <td><%=OrderUtil.STATES[orderForm.getState()]%>
-                            </td>
-                            <td>
-                                <script>
-                                    document.write(get_address(<%=orderForm.getSenderProvince()%>, <%=orderForm.getSenderCity()%>, <%=orderForm.getSenderCountry()%>) + '\n' +
-                                        '<%=orderForm.getSenderAddress()%>' + ' ' + '<%=orderForm.getSender()%>' + ' ' + '<%=orderForm.getSenderPhoneNumber()%>')
-                                </script>
-                            </td>
-                            <td>
-                                <script>
-                                    document.write(get_address(<%=orderForm.getReceiverProvince()%>, <%=orderForm.getReceiverCity()%>, <%=orderForm.getReceiverCountry()%>) + '\n' +
-                                        '<%=orderForm.getReceiverAddress()%>' + ' ' + '<%=orderForm.getReceiver()%>' + ' ' + '<%=orderForm.getReceiverPhoneNumber()%>')
-                                </script>
-                            </td>
-                            <td>
-                                <%
-                                    if (orderForm.getState() == OrderUtil.ORDER_ORDER)
-                                    {
-                                %>
-                                <a href="/deleteOrder?id=<%=orderForm.getId()%>&state=<%=state%>">取消订单</a>
-                                <%
-                                    }
-                                    else
-                                    {
-                                %>
-                                取消订单
-                                <%
-                                    }
-                                %>
-                            </td>
-                        </tr>
-                        <%
-                            }
-                        %>
-                        </tbody>
-                    </table>
-                    <br>
-                    <div align = "center">
-                        <a href = "/userOrders?start=0&state=<%=state%>">[首页]</a>
-                        <a href = "/userOrders?start=<%=orderForms.getNumber()-1%>&state=<%=state%>">[上一页]</a>
-                        <a href = "/userOrders?start=<%=orderForms.getNumber()+1%>&state=<%=state%>">[下一页]</a>
-                        <a href = "/userOrders?start=<%=orderForms.getTotalPages()-1%>&state=<%=state%>">[末页]</a>
-                    </div>
+
                 </div>
             </div>
         </div>
-
         <!----------------内容区结束-------------------->
         <!---------------页脚开始---------------->
         <jsp:include flush = "true" page = "/inc/foot.jsp"></jsp:include>
