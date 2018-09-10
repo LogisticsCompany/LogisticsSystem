@@ -121,11 +121,8 @@
                        value = "后台" class = "btn btn-danger" style = "height: auto"
                        onclick = "javascript:window.open('admin_login.jsp','_blank')"/></span>
         <span>  <input type = "button" name = "button" id = "del_btn"
-<<<<<<< HEAD
-                       value = "派送员" class = "btn btn-danger" style = "height: auto; width: auto"
-=======
+
                        value = "派送员登录" class = "btn btn-danger" style = "height: auto; width:auto"
->>>>>>> fd7ebf6b9a683d6bceb1e3ab2e89cce7850cb80a
                        onclick = "javascript:window.open('del_login.jsp','_blank')"/></span>
 
     </form>
