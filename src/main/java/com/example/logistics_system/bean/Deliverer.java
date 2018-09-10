@@ -20,14 +20,6 @@ public class Deliverer
     private int city;
     private int country;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "deliverer_order",
-            joinColumns = @JoinColumn(name = "did"),
-            inverseJoinColumns = @JoinColumn(name = "oid")
-    )
-    private Set<OrderForm> orderForms;
-
     public String getUsername()
     {
         return username;
@@ -116,15 +108,5 @@ public class Deliverer
     public void setCountry(int country)
     {
         this.country = country;
-    }
-
-    public Set<OrderForm> getOrderForms()
-    {
-        return orderForms;
-    }
-
-    public void setOrderForms(Set<OrderForm> orderForms)
-    {
-        this.orderForms = orderForms;
     }
 }

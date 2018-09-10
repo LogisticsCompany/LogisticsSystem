@@ -22,12 +22,6 @@ public class LogisticsSystemApplicationTests
     @Test
     public void contextLoads()
     {
-        Page<OrderForm> orderForms = orderFormService.getUserOrdersService("fanbotao", 0, 2, OrderUtil.ORDER_ORDER);
-        for (OrderForm orderForm : orderForms)
-        {
-            System.out.println(orderForm.getOrderNumber());
-        }
-        System.out.println("done");
     }
 
 }

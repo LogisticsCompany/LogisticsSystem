@@ -518,7 +518,7 @@ a:hover {
 	text-align:right;
 }
 
-.left_name1 {
+.left_name {
 	width: 600px;
 	text-align: right;
 }
@@ -605,12 +605,16 @@ a:hover {
 	color:red;
 }
 
-.left_name {
-	text-align: right;
-	width:400px;
+.left_name1 {
+	margin-left: 200px;
 }
 
 .panel-heading {
 	font-weight: bold;
 
+}
+
+.left_name_reinformation {
+	width: 400px;
+	text-align: right;
 }

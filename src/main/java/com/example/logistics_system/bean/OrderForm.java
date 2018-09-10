@@ -27,19 +27,11 @@ public class OrderForm
     private String receiverPhoneNumber;
 
     private String productInfo;
-    private String state;
+    private int state;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "uid")
     private User user;
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "deliverer_order",
-            joinColumns = @JoinColumn(name = "oid"),
-            inverseJoinColumns = @JoinColumn(name = "did")
-    )
-    private Set<Deliverer> deliverers;
 
     public int getId()
     {
@@ -111,12 +103,12 @@ public class OrderForm
         this.productInfo = productInfo;
     }
 
-    public String getState()
+    public int getState()
     {
         return state;
     }
 
-    public void setState(String state)
+    public void setState(int state)
     {
         this.state = state;
     }
@@ -149,16 +141,6 @@ public class OrderForm
     public void setReceiverPhoneNumber(String receiverPhoneNumber)
     {
         this.receiverPhoneNumber = receiverPhoneNumber;
-    }
-
-    public Set<Deliverer> getDeliverers()
-    {
-        return deliverers;
-    }
-
-    public void setDeliverers(Set<Deliverer> deliverers)
-    {
-        this.deliverers = deliverers;
     }
 
     public int getSenderProvince()
