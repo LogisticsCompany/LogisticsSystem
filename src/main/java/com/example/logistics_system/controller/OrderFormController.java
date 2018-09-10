@@ -30,11 +30,11 @@ public class OrderFormController
                 request.getSession().setAttribute("noUser", 0);
                 break;
             case 0:
-                request.getSession().setAttribute("orderNumber", orderForm.getOrderNumber());
+                request.getSession().setAttribute("orderForm", orderForm);
                 request.getSession().setAttribute("user", user);
                 break;
         }
-        return "new_order";
+        return "order_finish";
     }
 
     @RequestMapping(value = "/delivererOrders", method = RequestMethod.GET)
