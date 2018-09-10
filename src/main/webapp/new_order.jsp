@@ -87,7 +87,7 @@
                         <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
                                class = "table table-striped">
                             <tr>
-                                <td class = "left_name">
+                                <td class = "left_name_reinformation">
                                     出发地地址：
                                 </td>
                                 <td>
@@ -113,7 +113,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class = "left_name">
+                                <td class = "left_name_reinformation">
                                     详细地址：
                                 </td>
                                 <td>
@@ -124,7 +124,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class = "left_name">
+                                <td class = "left_name_reinformation">
                                     发货人及联系方式：
                                 </td>
                                 <td>
@@ -143,7 +143,7 @@
                         <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
                                class = "table table-striped">
                             <tr>
-                                <td class = "left_name">
+                                <td class = "left_name_reinformation">
                                     目的地地址：
                                 </td>
                                 <td>
@@ -169,7 +169,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class = "left_name">
+                                <td class = "left_name_reinformation">
                                     详细地址：
                                 </td>
                                 <td>
@@ -180,7 +180,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class = "left_name">
+                                <td class = "left_name_reinformation">
                                     收货人及联系方式：
                                 </td>
                                 <td>

@@ -1,7 +1,18 @@
-<html>
+<!DOCTYPE html>
+<%@ page language = "java" import = "java.util.*" pageEncoding = "UTF-8" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">s
+<html xmlns = "http://www.w3.org/1999/xhtml">
 <head>
+    <base href = "<%=basePath%>"/>
+    <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8"/>
     <meta charset = "utf-8">
-    <title>New Tab</title>
+    <title>物流信息管理系统</title>
     <meta name = "description" content = "">
     <meta name = "viewport" content = "width=device-width">
     <link rel = "stylesheet" href = "css/color.min.css">
@@ -11,32 +22,6 @@
         width: 100%;
         font-size: 187.5%;
         line-height: 150%
-    }
-
-    #focuses::before {
-        height: 335px;
-        width: 100%;
-        position: absolute;
-        top: -92px;
-        left: 0;
-        z-index: -1;
-        background: url(../img/overlay-focus.png) 50% 0 no-repeat;
-        background-size: contain;
-        content: " "
-    }
-
-    #focuses ol {
-        margin: 0;
-        padding: 0
-    }
-
-    #focuses .focus p, #focuses h3 {
-        padding: 0;
-        margin: 0
-    }
-
-    #focuses .prompt h3 {
-        font-weight: 300
     }
 
     #focuses .prompt input {
@@ -51,42 +36,8 @@
         font-weight: 500;
         outline: 0;
         text-align: center;
-        transition: border-color .2s ease
-    }
-
-    #focuses .focus h3 {
-        margin: 17px 0 3px;
-        font-size: 70%;
-        line-height: 120%;
-        text-transform: uppercase
-    }
-
-    #focuses .delete i, #focusses .team-focus-dropdown-icon i {
-        height: 28px;
-        width: 28px;
-        display: inline-block;
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 28px;
-        transform-origin: 50% 50%;
-        transition: all .1s ease-in-out;
-        vertical-align: top
-    }
-
-    #focuses .complete .delete i {
-        transform: rotate(45deg)
-    }
-
-    .focus-message {
-        margin-top: 19px;
-        display: none;
-        font-size: 50%;
-        line-height: 100%;
-    }
-
-    #focuses .loading input {
-        border-color: rgba(255, 255, 255, .5);
-        color: transparent
+        transition: border-color .2s ease;
+        background: transparent;
     }</style>
 
     <style>
@@ -138,40 +89,37 @@
             </div>
         </div>
         <br><br><br><br><br><br><br>
-        <div id = "focuses" class = "focuses app-container">
-            <div class = "prompt" style = "display: block;">
-                <!--<input type = "text" placeholder = "账号">-->
-                <!--<input type = "password" placeholder = "密码">-->
-                <!--<br>-->
-                <!--<button class = "login_button">登录</button>-->
-
-                <div class = "app-container quote">
-                    <p class = "quote-body">
-                        <span class = "quote-body-text">账号</span>
-                        <!--<i class = "icon-angle-right"></i>-->
-                    <div class = "prompt" style = "display: block;">
-                            <span class = "quote-source">
-                                <input type = "text">
-                            </span>
-                    </div>
-                    </p>
-                </div>
-                <br>
-                <div class = "app-container quote">
-                    <p class = "quote-body">
-                        <span class = "quote-body-text">密码</span>
-                        <!--<i class = "icon-angle-right"></i>-->
+        <form>
+            <div id = "focuses" class = "focuses app-container">
+                <div class = "prompt" style = "display: block;">
+                    <div class = "app-container quote">
+                        <p class = "quote-body">
+                            <span class = "quote-body-text">账号</span>
                         <div class = "prompt" style = "display: block;">
-                                    <span class = "quote-source">
-                                        <input type = "password">
-                                    </span>
+                            <span class = "quote-source">
+                                <input type = "text" name = "username">
+                            </span>
                         </div>
-                    </p>
+                        </p>
+                    </div>
+                    <br>
+                    <div class = "app-container quote">
+                        <p class = "quote-body">
+                            <span class = "quote-body-text">密码</span>
+                        <div class = "prompt" style = "display: block;">
+                                        <span class = "quote-source">
+                                            <input type = "password" name = "password">
+                                        </span>
+                        </div>
+                        </p>
+                    </div>
+                    <br>
+                    <button class = "login_button">
+                        <span class = "quote-body-text">登录</span>
+                    </button>
                 </div>
-                <br>
-                <button class = "login_button">登录</button>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 <div class = "overlay drop-overlay">

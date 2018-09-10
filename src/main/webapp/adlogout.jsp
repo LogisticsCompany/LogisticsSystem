@@ -9,5 +9,5 @@ session.removeAttribute("user1");
             {
             	win=win.parent;
             }
-            win.parent.location.replace("admin/login.jsp");  
+            win.parent.location.replace("admin/admin_login.jsp");
 </script>

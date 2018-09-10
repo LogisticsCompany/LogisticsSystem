@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page language = "java" import = "java.util.*" pageEncoding = "UTF-8" %>
 <%@ page import = "com.example.logistics_system.bean.User" %>
+<%@ page import = "com.example.logistics_system.utils.OrderUtil" %>
 
 <%--<script src = "bootstrap/js/jquery/2.0.0/jquery.min.js"></script>--%>
 <%--<link href = "bootstrap/css/bootstrap/3.3.6/bootstrap.min.css" rel = "stylesheet">--%>
@@ -67,7 +68,7 @@
                 <a href = "wd.jsp"><span>网点信息</span> </a>
             </li>
             <li role = "presentation">
-                <a href = "order_query.jsp"><span>运单查询</span> </a>
+                <a href = "yundan.jsp"><span>运单查询</span> </a>
             </li>
             <li role = "presentation">
                 <a href = "yunfei.jsp"><span>运费查询</span> </a>
@@ -83,7 +84,7 @@
                 <a href = "new_order.jsp"><span>在线下单</span> </a>
             </li>
             <li role = "presentation">
-                <a href = "my_order.jsp"><span>我的订单</span> </a>
+                <a href = "/userOrders?state=<%=OrderUtil.ORDER_ALL%>"><span>我的订单</span> </a>
             </li>
             <li role = "presentation">
                 <a href = "reinformation.jsp"><span>我的信息</span> </a>
@@ -116,7 +117,7 @@
                        onclick = "window.location.href='register.jsp'"/></span>
         <span>  <input type = "button" name = "button" id = "admin_btn"
                        value = "后台" class = "btn btn-danger" style = "height: auto"
-                       onclick = "javascript:window.open('login.jsp','_blank')"/></span>
+                       onclick = "javascript:window.open('admin_login.jsp','_blank')"/></span>
         <span>  <input type = "button" name = "button" id = "del_btn"
                        value = "派送员登录" class = "btn btn-danger" style = "height: auto"
                        onclick = "javascript:window.open('del_login.jsp','_blank')"/></span>
