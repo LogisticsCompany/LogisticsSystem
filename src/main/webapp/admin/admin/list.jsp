@@ -1,5 +1,4 @@
-<%@ page language="java" import="java.util.*,java.sql.*,com.biyeseng.db.*"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -10,164 +9,62 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
+		<script type = "text/javascript" src = "<%=path %>/Scripts/jquery-1.7.2.js"></script>
+		<script type = "text/javascript" src = "<%=path %>/Scripts/jquery-ui-1.8.22.custom.min.js"></script>
+		<script type = "text/javascript" src = "<%=path %>/Scripts/index.js"></script>
+
+		<script src = "<%=path %>/bootstrap/js/jquery/2.0.0/jquery.min.js"></script>
+		<link href = "<%=path %>/bootstrap/css/bootstrap/3.3.6/bootstrap.min.css" rel = "stylesheet">
+		<script src = "<%=path %>/bootstrap/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+		<link href = "<%=path %>/css/admin.css" rel = "stylesheet">
 		<base href="<%=basePath%>">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>员工管理</title>
-		<LINK href="css/admin.css" type="text/css" rel="stylesheet">
+		<title>管理员信息列表</title>
+
 
 
 	</head>
-	<body leftmargin="8" topmargin="8"'>
-		<!--  搜索表单  -->
-		<form action="admin/admin/list.jsp" method="post">
+	<body>
 
-			<table width='98%' border='0' cellpadding='1' cellspacing='1'
-				bgcolor='#CBD8AC' align="center" style="margin-top: 8px">
-				<tr bgcolor='#EEF4EA'>
-					<td align='center'>
+	<div class = "panel panel-info" style = "width: 100%;">
+		<div class = "panel-heading">
+			<div class = "btn-group">
+				<table>
 
-						<table width="469" border='0' cellpadding='0' cellspacing='0'>
-							<tr>
-								<td width='129'>
-									请输入账号：
-								</td>
-								<td width='170'>
-									<input type='text' name='queryName' value=''
-										style='width: 150px' />
-								</td>
-								<td width='86'>
-									<input name="imageField" type="submit" border="0" class="np"
-										value='查询' />
-								</td>
-								<td width="84">
-									&nbsp;
-
-								</td>
-							</tr>
-						</table>
-
-					</td>
-				</tr>
-			</table>
-		</form>
-		<!--  快速转换位置按钮  -->
-		<!--  内容列表   -->
-		<form name="form2">
-			<div id="printTable">
-				<table width="98%" border="0" cellpadding="2" cellspacing="1"
-					bgcolor="#3333FF" align="center" style="margin-top: 8px">
-					<tr bgcolor="#E7E7E7">
-						<td class="theader" colspan="10">
-							员工信息列表
+					<tr>
+						<td width="200">
+							请输入账号：
 						</td>
-					</tr>
-					<tr align="center" bgcolor="#FAFAF1" height="22">
-
-						<td width="14%">
-							账号
+						<td width="250">
+							<input type = "text" name = "dh" id = "dh"
+								   class = "form-control form-control-inline"
+								   style = "width:auto;height:auto"/>
 						</td>
-						<td width="20%">
-							密码
-						</td>
-						<td width="20%">
-							姓名
-						</td>
-						<td width="10%">
-							职务
-						</td>
-						<td width="10%">
-							电话
-						</td>
-						<td width="10%">
-							年龄
-						</td>
-
-
-						<td width="10%">
-							操作
-						</td>
-					</tr>
-
-
-					<%
-						DBManager dbm = new DBManager();
-						Connection conn = dbm.getConnection();
-						String queryName = request.getParameter("queryName");
-						String sql = "select * from admin";
-						if (queryName != null) {
-							sql = "select * from admin where userName like '%" + queryName
-									+ "%'";
-						}
-						PreparedStatement pstmt = conn.prepareStatement(sql);
-						ResultSet rs = pstmt.executeQuery();
-
-						while (rs.next()) {
-							String id = rs.getString("id");
-					%>
-
-					<tr align='center' bgcolor="#FFFFFF">
-
-						<td><%=rs.getString("userName")%>
-
-						</td>
-						<td align="left">
-							<div align="center">
-								<%=rs.getString("userPw")%>
-
-							</div>
-						</td>
-						<td align="left">
-							<div align="center">
-								<%=rs.getString("rname")%>
-
-							</div>
-						</td>
-						<td align="left">
-							<div align="center">
-								<%=rs.getString("zhi")%>
-
-							</div>
-						</td>
-						<td align="left">
-							<div align="center">
-								<%=rs.getString("tel")%>
-
-							</div>
-						</td>
-						<td align="left">
-							<div align="center">
-								<%=rs.getString("age")%>
-
-							</div>
-						</td>
-
 						<td>
-							<a href="admin/admin/modAdmin.jsp?id=<%=id%>">编辑</a> |
-							<a href="DelAdminAction?id=<%=id%>">删除</a>
+							<input type = "submit" value = "查询" name = "button" id = "button"
+								   class = "btn btn-success" style = "height: auto;width:auto"
+							/>
 						</td>
 					</tr>
-
-					<%
-						}
-						if (rs != null)
-							rs.close();
-						if (pstmt != null)
-							pstmt.close();
-						if (conn != null)
-							conn.close();
-					%>
-
-					<tr bgcolor="#FAFAF1">
-						<td class="theader" colspan="10">
-							<a href="admin/admin/addAdmin.jsp"><strong>添加员工</strong>
-							</a>
-						</td>
-					</tr>
-
 				</table>
 			</div>
-		</form>
+		</div>
+		<div class = "panel-body">
+			<table class = "table table-striped">
+				<thead>
+				<th>账号</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>电话</th>
+				<th>邮箱</th>
+				</thead>
+				<tbody>
 
+				</tbody>
+			</table>
+
+		</div>
+	</div>
 
 	</body>
 </html>

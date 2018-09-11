@@ -29,8 +29,8 @@
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
     User user = (User) request.getSession().getAttribute("user");
-    Object loginError = session.getAttribute("loginError");
-    Object registerError = session.getAttribute("registerError");
+    Object loginError = request.getSession().getAttribute("loginError");
+    Object registerError = request.getSession().getAttribute("registerError");
     if (loginError != null)
     {
 %>
@@ -38,7 +38,7 @@
     alert('用户名或密码有误！');
 </script>
 <%
-        session.removeAttribute("loginError");
+        request.getSession().removeAttribute("loginError");
     }
     if (registerError != null)
     {
@@ -47,7 +47,7 @@
     alert('该账号已存在！');
 </script>
 <%
-        session.removeAttribute("registerError");
+        request.getSession().removeAttribute("registerError");
     }
 %>
 

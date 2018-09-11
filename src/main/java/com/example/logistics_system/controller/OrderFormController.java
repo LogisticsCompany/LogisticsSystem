@@ -1,8 +1,10 @@
 package com.example.logistics_system.controller;
 
 import com.example.logistics_system.bean.Deliverer;
+import com.example.logistics_system.bean.DelivererOrder;
 import com.example.logistics_system.bean.OrderForm;
 import com.example.logistics_system.bean.User;
+import com.example.logistics_system.service.DelivererOrderService;
 import com.example.logistics_system.service.OrderFormService;
 import com.example.logistics_system.utils.OrderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class OrderFormController
 {
     @Autowired
     private OrderFormService orderFormService;
+
+    @Autowired
+    private DelivererOrderService delivererOrderService;
 
     @RequestMapping(value = "/order", method = RequestMethod.POST)
     public String addOrder(OrderForm orderForm, HttpServletRequest request)
@@ -40,12 +45,14 @@ public class OrderFormController
     @RequestMapping(value = "/delivererOrders", method = RequestMethod.GET)
     public String getApplicableOrders(HttpServletRequest request,
                                       @RequestParam(value = "start", defaultValue = "0") int start,
-                                      @RequestParam(value = "size", defaultValue = "10") int size)
+                                      @RequestParam(value = "size", defaultValue = "10") int size,
+                                      @RequestParam(value = "state", defaultValue = "4") int state)
     {
         Deliverer deliverer = (Deliverer) request.getSession().getAttribute("deliverer");
         Page<OrderForm> orderForms = orderFormService.getApplicableOrders(deliverer, start, size);
         request.getSession().setAttribute("orderForms", orderForms);
-        return "";
+        request.getSession().setAttribute("state", state);
+        return "order";
     }
 
     @RequestMapping(value = "/userOrders", method = RequestMethod.GET)
@@ -67,24 +74,6 @@ public class OrderFormController
         OrderForm orderForm = orderFormService.getOrderService(orderNumber);
         request.getSession().setAttribute("orderForm", orderForm);
         return "order_query";
-    }
-
-    @RequestMapping(value = "/order", method = RequestMethod.PUT)
-    public String modifyOrderState(int id, int state, HttpServletRequest request)
-    {
-        switch (orderFormService.modifyOrderStateService(id, state))
-        {
-            case OrderUtil.NORMAL_STATE:
-                request.getSession().setAttribute("result", "操作成功");
-                break;
-            case OrderUtil.ORDER_NOT_EXIST:
-                request.getSession().setAttribute("result", "订单不存在");
-                break;
-            case OrderUtil.ILLEGAL_OPERATION:
-                request.getSession().setAttribute("result", "非法操作");
-                break;
-        }
-        return "";
     }
 
     @RequestMapping(value = "/deleteOrder", method = RequestMethod.GET)

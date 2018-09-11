@@ -52,6 +52,7 @@
         <!----------------内容区开始-------------------->
 
 
+
         <div style = "width:50%;margin: auto;border-left:0;border-right:0">
 
             <div class = "panel panel-info" style = "width: 100%">

@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <%@ page language = "java" import = "java.util.*" pageEncoding = "UTF-8" %>
-<%@ page import = "com.example.logistics_system.bean.User" %>
-
-<%--<script src = "bootstrap/js/jquery/2.0.0/jquery.min.js"></script>--%>
-<%--<link href = "bootstrap/css/bootstrap/3.3.6/bootstrap.min.css" rel = "stylesheet">--%>
-<%--<script src = "bootstrap/js/bootstrap/3.3.6/bootstrap.min.js"></script>--%>
 
 <link href = "bootstrap/css/bootstrap/3.3.6/bootstrap.min.css" rel = "stylesheet">
 <link href = "bootstrap-select/dist/css/bootstrap-select.min.css" rel = "stylesheet">
@@ -27,27 +22,6 @@
     String basePath = request.getScheme() + "://"
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
-    User user = (User) request.getSession().getAttribute("user");
-    Object loginError = session.getAttribute("loginError");
-    Object registerError = session.getAttribute("registerError");
-    if (loginError != null)
-    {
-%>
-<script>
-    alert('用户名或密码有误！');
-</script>
-<%
-        session.removeAttribute("loginError");
-    }
-    if (registerError != null)
-    {
-%>
-<script>
-    alert('该账号已存在！');
-</script>
-<%
-        session.removeAttribute("registerError");
-    }
 %>
 
 <div id = "top">
@@ -75,10 +49,6 @@
             <li role = "presentation">
                 <a href = "message.jsp"><span>留言板</span> </a>
             </li>
-            <%
-                if (user != null)
-                {
-            %>
             <li role = "presentation">
                 <a href = "new_order.jsp"><span>在线下单</span> </a>
             </li>
@@ -91,9 +61,6 @@
             <li role = "presentation">
                 <a href = "reinformation.jsp"><span>我的信息</span> </a>
             </li>
-            <%
-                }
-            %>
         </ul>
         <div class = "banner">
             <img src = "images/top.jpg"/>

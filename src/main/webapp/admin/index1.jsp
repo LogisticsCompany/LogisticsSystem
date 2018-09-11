@@ -45,26 +45,7 @@
     <!--头部结束-->
 
     <div>
-        <div class = "btn-group">
-            <button type = "button" class = "btn btn-primary dropdown-toggle " data-toggle = "dropdown">
-                仓库管理
-                <span class = "caret"></span>
-            </button>
 
-            <ul class = "dropdown-menu" role = "menu">
-                <li>
-                    <a href = "<%=path %>/admin/ku/list.jsp" target = "Conframe" onclick = "changeTitle(this)">网点管理</a>
-                </li>
-                <li role = "presentation">
-                    <a href = "<%=path %>/admin/ruku/list.jsp" target = "Conframe"
-                       onclick = "changeTitle(this)">货物入库</a>
-                </li>
-                <li role = "presentation">
-                    <a href = "<%=path %>/admin/chuku/list.jsp" target = "Conframe"
-                       onclick = "changeTitle(this)">货物出库</a>
-                </li>
-            </ul>
-        </div>
         <div class = "btn-group">
             <button type = "button" class = "btn btn-success dropdown-toggle " data-toggle = "dropdown">
                 员工维护
@@ -73,87 +54,79 @@
 
             <ul class = "dropdown-menu" role = "menu">
                 <li>
-                    <a href = "<%=path %>/admin/admin/list.jsp" target = "Conframe"
-                       onclick = "changeTitle(this)">员工维护</a>
-                </li>
-            </ul>
-        </div>
-        <div class = "btn-group">
-            <button type = "button" class = "btn btn-info dropdown-toggle " data-toggle = "dropdown">
-                会员管理
-                <span class = "caret"></span>
-            </button>
-
-            <ul class = "dropdown-menu" role = "menu">
-                <li>
                     <a href = "<%=path %>/admin/user/list.jsp" target = "Conframe"
-                       onclick = "changeTitle(this)">会员信息维护</a>
+                       onclick = "changeTitle(this)">用户</a>
                 </li>
-            </ul>
-        </div>
-        <div class = "btn-group">
-            <button type = "button" class = "btn btn-warning dropdown-toggle " data-toggle = "dropdown">
-                车辆管理
-                <span class = "caret"></span>
-            </button>
-
-            <ul class = "dropdown-menu" role = "menu">
                 <li>
-                    <a href = "<%=path %>/admin/car/list.jsp" target = "Conframe" onclick = "changeTitle(this)">车辆管理</a>
+                    <a href = "<%=path %>/admin/admin/list.jsp" target = "Conframe"
+                       onclick = "changeTitle(this)">管理员</a>
                 </li>
-            </ul>
-        </div>
-        <div class = "btn-group">
-            <button type = "button" class = "btn btn-warning dropdown-toggle " data-toggle = "dropdown">
-                运单管理
-                <span class = "caret"></span>
-            </button>
-
-            <ul class = "dropdown-menu" role = "menu">
                 <li>
-                    <a href = "<%=path %>/admin/yundan/list.jsp" target = "Conframe"
-                       onclick = "changeTitle(this)">运单管理</a>
+                    <a href = "<%=path %>/admin/courier/list.jsp" target = "Conframe"
+                       onclick = "changeTitle(this)">派送员</a>
+                </li>
+                <li>
+                    <a href = "<%=path %>/admin/courier/list1.jsp" target = "Conframe"
+                       onclick = "changeTitle(this)">添加派送员</a>
                 </li>
             </ul>
         </div>
+
         <div class = "btn-group">
             <button type = "button" class = "btn btn-info dropdown-toggle " data-toggle = "dropdown">
-                用户签收
+                管理申请
                 <span class = "caret"></span>
             </button>
 
             <ul class = "dropdown-menu" role = "menu">
                 <li>
-                    <a href = "<%=path %>/admin/qian/list.jsp" target = "Conframe"
-                       onclick = "changeTitle(this)">用户签收</a>
+                    <a href = "<%=path %>/admin/apply/list2.jsp" target = "Conframe"
+                       onclick = "changeTitle(this)">所有申请</a>
                 </li>
+                <li>
+                    <a href = "<%=path %>/admin/apply/list.jsp" target = "Conframe"
+                       onclick = "changeTitle(this)">通过订单</a>
+                </li>
+                <li>
+                    <a href = "<%=path %>/admin/apply/list1.jsp" target = "Conframe"
+                       onclick = "changeTitle(this)">拒绝订单</a>
+                </li>
+
             </ul>
         </div>
+
+
         <div class = "btn-group">
-            <button type = "button" class = "btn btn-success dropdown-toggle " data-toggle = "dropdown">
-                新闻资讯管理
+            <button type = "button" class = "btn btn-warning dropdown-toggle " data-toggle = "dropdown">
+                订单管理
                 <span class = "caret"></span>
             </button>
 
             <ul class = "dropdown-menu" role = "menu">
                 <li>
-                    <a href = "<%=path %>/admin/news/list.jsp" target = "Conframe"
-                       onclick = "changeTitle(this)">新闻资讯管理</a>
+                    <a href = "<%=path %>/admin/yundan/list1.jsp" target = "Conframe"
+                       onclick = "changeTitle(this)">已下单</a>
                 </li>
-            </ul>
-        </div>
-        <div class = "btn-group">
-            <button type = "button" class = "btn btn-primary dropdown-toggle " data-toggle = "dropdown">
-                留言管理
-                <span class = "caret"></span>
-            </button>
-
-            <ul class = "dropdown-menu" role = "menu">
                 <li>
-                    <a href = "<%=path %>/admin/msg/list.jsp" target = "Conframe" onclick = "changeTitle(this)">留言管理</a>
+                    <a href = "<%=path %>/admin/yundan/list2.jsp" target = "Conframe"
+                       onclick = "changeTitle(this)">拒收</a>
+                </li>
+                <li>
+                    <a href = "<%=path %>/admin/yundan/list3.jsp" target = "Conframe"
+                       onclick = "changeTitle(this)">未派送</a>
+                </li>
+                <li>
+                    <a href = "<%=path %>/admin/yundan/list4.jsp" target = "Conframe"
+                       onclick = "changeTitle(this)">已派送</a>
+                </li>
+                <li>
+                    <a href = "<%=path %>/admin/yundan/list5.jsp" target = "Conframe"
+                       onclick = "changeTitle(this)">已确认收货</a>
                 </li>
             </ul>
         </div>
+
+
     </div>
 
     <div class = "panel panel-info">

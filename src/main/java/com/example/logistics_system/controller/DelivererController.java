@@ -1,6 +1,7 @@
 package com.example.logistics_system.controller;
 
 import com.example.logistics_system.bean.Deliverer;
+import com.example.logistics_system.bean.DelivererTemp;
 import com.example.logistics_system.service.DelivererService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,8 +21,8 @@ public class DelivererController
     @RequestMapping(value = "/deliverer", method = RequestMethod.POST)
     public String generateDeliverer(HttpServletRequest request)
     {
-        Deliverer deliverer = delivererService.generateDelivererService();
-        request.getSession().setAttribute("deliverer", deliverer);
+        DelivererTemp delivererTemp = delivererService.generateDelivererService();
+        request.getSession().setAttribute("delivererTemp", delivererTemp);
         return "";
     }
 
@@ -30,10 +31,15 @@ public class DelivererController
     {
         Deliverer deliverer;
         if ((deliverer = delivererService.loginService(username, password)) != null)
+        {
             request.getSession().setAttribute("deliverer", deliverer);
+            return "redirect:delivererOrders";
+        }
         else
+        {
             request.getSession().setAttribute("loginError", 0);
-        return "";
+            return "del_login";
+        }
     }
 
     @RequestMapping(value = "/deliverer", method = RequestMethod.GET)
