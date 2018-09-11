@@ -72,6 +72,29 @@
             </ul>
         </div>
 
+        <div class = "btn-group">
+            <button type = "button" class = "btn btn-info dropdown-toggle " data-toggle = "dropdown">
+                管理申请
+                <span class = "caret"></span>
+            </button>
+
+            <ul class = "dropdown-menu" role = "menu">
+                <li>
+                    <a href = "<%=path %>/admin/apply/list2.jsp" target = "Conframe"
+                       onclick = "changeTitle(this)">所有申请</a>
+                </li>
+                <li>
+                    <a href = "<%=path %>/admin/apply/list.jsp" target = "Conframe"
+                       onclick = "changeTitle(this)">通过订单</a>
+                </li>
+                <li>
+                    <a href = "<%=path %>/admin/apply/list1.jsp" target = "Conframe"
+                       onclick = "changeTitle(this)">拒绝订单</a>
+                </li>
+
+            </ul>
+        </div>
+
 
         <div class = "btn-group">
             <button type = "button" class = "btn btn-warning dropdown-toggle " data-toggle = "dropdown">

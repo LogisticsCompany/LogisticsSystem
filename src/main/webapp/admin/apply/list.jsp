@@ -19,32 +19,21 @@
     <link href = "<%=path %>/css/admin.css" rel = "stylesheet">
     <base href="<%=basePath%>">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>派送员信息列表</title>
+    <title>用户信息列表</title>
 
 
 
 </head>
 <body>
 
-<div class = "panel panel-info" style = "width: 100%;">
-    <div class = "panel-heading">
+<div class = "panel panel-info" style = "width: 50%; margin:auto">
+    <div class = "panel-heading" style="margin:auto">
         <div class = "btn-group">
+
             <table>
 
                 <tr>
-                    <td width="200">
-                        请输入账号：
-                    </td>
-                    <td width="250">
-                        <input type = "text" name = "dh" id = "dh"
-                               class = "form-control form-control-inline"
-                               style = "width:auto;height:auto"/>
-                    </td>
-                    <td>
-                        <input type = "submit" value = "查询" name = "button" id = "button"
-                               class = "btn btn-success" style = "height: auto;width:auto"
-                        />
-                    </td>
+                    通过申请订单列表
                 </tr>
             </table>
         </div>
@@ -52,12 +41,10 @@
     <div class = "panel-body">
         <table class = "table table-striped">
             <thead>
-            <th>账号</th>
-            <th>姓名</th>
-            <th>性别</th>
-            <th>电话</th>
-            <th>邮箱</th>
+            <th>单号</th>
+            <th>申请人</th>
             <th>操作</th>
+
             </thead>
             <tbody>
 

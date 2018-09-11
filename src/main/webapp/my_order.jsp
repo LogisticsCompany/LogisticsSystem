@@ -97,8 +97,7 @@
                         <tr>
                             <td><%=orderForm.getOrderNumber()%>
                             </td>
-                            <td><%=OrderUtil.STATES[orderForm.getState()]%>
-                            </td>
+                            <td><%=OrderUtil.STATES[orderForm.getState()]%></td>
                             <td>
                                 <script>
                                     document.write(get_address(<%=orderForm.getSenderProvince()%>, <%=orderForm.getSenderCity()%>, <%=orderForm.getSenderCountry()%>) + '\n' +
@@ -116,7 +115,7 @@
                                     if (orderForm.getState() == OrderUtil.ORDER_ORDER)
                                     {
                                 %>
-                                <a href="/deleteOrder?id=<%=orderForm.getId()%>&state=<%=state%>">取消订单</a>
+                                <a href = "/deleteOrder?id=<%=orderForm.getId()%>&state=<%=state%>">取消订单</a>
                                 <%
                                 }
                                 else

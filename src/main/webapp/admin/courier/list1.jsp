@@ -25,39 +25,30 @@
 
 </head>
 <body>
-<div class = "panel panel-info" style = "width: 50%; margin:auto" >
-    <div class = "panel-heading">
-        <div class = "btn-group">
-            <table>
+<div style = "width:30%;margin: auto;border-left:0;border-right:0">
 
+    <div class = "panel panel-info" style = "width: 100%">
+        <div align = "center" class = "panel-heading" style = "color:grey;font-size:25px">派送员信息</div>
+        <div class = "panel-body">
+            <table width = "500%" border = "0" cellspacing = "0" cellpadding = "0" align = "center"
+                   class = "table table-striped " style="font-size:16px">
                 <tr>
-                    <td width="200">
-                        添加派送员：
+                    <td class = "left_name">
+                       用户名:
                     </td>
-                    <td>
-                        <input type = "submit" value = "添加" name = "button" id = "button"
-                               class = "btn btn-success" style = "height: auto;width:auto"
-                        />
-                    </td>
+
                 </tr>
+                <tr>
+                    <td class = "left_name">
+                        密码：
+                    </td>
+
+                </tr>
+
             </table>
         </div>
+
     </div>
-    <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
-           class = "table table-striped">
-        <tr>
-            <td class = "left_name_reinformation" style="font-size:16px">
-                用户名
-            </td>
-
-        </tr>
-        <tr>
-            <td class = "left_name_reinformation" style="font-size:16px">
-                密码
-            </td>
-
-        </tr>
-    </table>
 </div>
 
 

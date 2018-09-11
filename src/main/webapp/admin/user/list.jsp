@@ -54,7 +54,6 @@
 		<table class = "table table-striped">
 			<thead>
 			<th>账号</th>
-			<th>密码</th>
 			<th>姓名</th>
 			<th>性别</th>
 			<th>电话</th>
