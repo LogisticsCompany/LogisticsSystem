@@ -33,6 +33,10 @@ public class OrderForm
     @JoinColumn(name = "uid")
     private User user;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "oid")
+    private Set<DelivererOrder> delivererOrders;
+
     public int getId()
     {
         return id;
@@ -201,5 +205,15 @@ public class OrderForm
     public void setReceiverCountry(int receiverCountry)
     {
         this.receiverCountry = receiverCountry;
+    }
+
+    public Set<DelivererOrder> getDelivererOrders()
+    {
+        return delivererOrders;
+    }
+
+    public void setDelivererOrders(Set<DelivererOrder> delivererOrders)
+    {
+        this.delivererOrders = delivererOrders;
     }
 }

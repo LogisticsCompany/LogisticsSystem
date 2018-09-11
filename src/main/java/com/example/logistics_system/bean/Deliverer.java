@@ -20,6 +20,23 @@ public class Deliverer
     private int city;
     private int country;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "did")
+    private Set<DelivererOrder> delivererOrders;
+
+    public Deliverer()
+    {
+    }
+
+    public Deliverer(String username, String password, int province, int city, int country)
+    {
+        this.username = username;
+        this.password = password;
+        this.province = province;
+        this.city = city;
+        this.country = country;
+    }
+
     public String getUsername()
     {
         return username;
@@ -108,5 +125,15 @@ public class Deliverer
     public void setCountry(int country)
     {
         this.country = country;
+    }
+
+    public Set<DelivererOrder> getDelivererOrders()
+    {
+        return delivererOrders;
+    }
+
+    public void setDelivererOrders(Set<DelivererOrder> delivererOrders)
+    {
+        this.delivererOrders = delivererOrders;
     }
 }

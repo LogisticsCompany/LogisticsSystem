@@ -1,8 +1,6 @@
 package com.example.logistics_system.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "delivererOrder")
@@ -10,9 +8,26 @@ public class DelivererOrder
 {
     @Id
     private int id;
-    private int delivererId;
-    private int orderFormId;
     private int state;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "oid")
+    private OrderForm orderForm;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "did")
+    private Deliverer deliverer;
+
+    public DelivererOrder()
+    {
+    }
+
+    public DelivererOrder(int state, OrderForm orderForm, Deliverer deliverer)
+    {
+        this.state = state;
+        this.orderForm = orderForm;
+        this.deliverer = deliverer;
+    }
 
     public int getId()
     {
@@ -24,24 +39,24 @@ public class DelivererOrder
         this.id = id;
     }
 
-    public int getDelivererId()
+    public OrderForm getOrderForm()
     {
-        return delivererId;
+        return orderForm;
     }
 
-    public void setDelivererId(int delivererId)
+    public void setOrderForm(OrderForm orderForm)
     {
-        this.delivererId = delivererId;
+        this.orderForm = orderForm;
     }
 
-    public int getOrderFormId()
+    public Deliverer getDeliverer()
     {
-        return orderFormId;
+        return deliverer;
     }
 
-    public void setOrderFormId(int orderFormId)
+    public void setDeliverer(Deliverer deliverer)
     {
-        this.orderFormId = orderFormId;
+        this.deliverer = deliverer;
     }
 
     public int getState()

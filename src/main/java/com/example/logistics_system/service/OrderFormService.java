@@ -3,6 +3,7 @@ package com.example.logistics_system.service;
 import com.example.logistics_system.bean.Deliverer;
 import com.example.logistics_system.bean.OrderForm;
 import com.example.logistics_system.bean.User;
+import com.example.logistics_system.dao.DelivererOrderDAO;
 import com.example.logistics_system.dao.OrderFormDAO;
 import com.example.logistics_system.utils.OrderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.Set;
 
 @Service
 public class OrderFormService
@@ -36,7 +35,7 @@ public class OrderFormService
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.ASC, "id");
         Pageable pageable = PageRequest.of(start, size, sort);
-        return orderFormDAO.findAllBySenderProvinceAndSenderCityAndSenderCountry(deliverer.getProvince(), deliverer.getCity(), deliverer.getCountry(), pageable);
+        return orderFormDAO.findAllBySenderProvinceAndSenderCityAndSenderCountryAndState(deliverer.getProvince(), deliverer.getCity(), deliverer.getCountry(), OrderUtil.ORDER_ORDER, pageable);
     }
 
     public OrderForm getOrderService(String orderNumber)
@@ -56,40 +55,6 @@ public class OrderFormService
             default:
                 return orderFormDAO.findAllByUserAndState(user, state, pageable);
         }
-    }
-
-    public int modifyOrderStateService(int id, int state)
-    {
-        OrderForm orderForm = orderFormDAO.getOne(id);
-        if (orderForm == null)
-            return OrderUtil.ORDER_NOT_EXIST;
-        switch (state)
-        {
-            case OrderUtil.ORDER_ORDER:
-                return OrderUtil.ILLEGAL_OPERATION;
-            case OrderUtil.ORDER_DELIVERY:
-                if (orderForm.getState() != OrderUtil.ORDER_ADMIN_ACCEPT)
-                    return OrderUtil.ILLEGAL_OPERATION;
-                break;
-            case OrderUtil.ORDER_SIGN:
-                if (orderForm.getState() != OrderUtil.ORDER_ARRIVED)
-                    return OrderUtil.ILLEGAL_OPERATION;
-                break;
-            case OrderUtil.ORDER_ARRIVED:
-                if (orderForm.getState() != OrderUtil.ORDER_DELIVERY)
-                    return OrderUtil.ILLEGAL_OPERATION;
-                break;
-            case OrderUtil.ORDER_DELIVERER_REQUEST:
-                if (orderForm.getState() != OrderUtil.ORDER_ORDER && orderForm.getState() != OrderUtil.ORDER_DELIVERER_REQUEST)
-                    return OrderUtil.ILLEGAL_OPERATION;
-                break;
-            case OrderUtil.ORDER_ADMIN_ACCEPT:
-            case OrderUtil.ORDER_ADMIN_REFUSE:
-                if (orderForm.getState() != OrderUtil.ORDER_ORDER && orderForm.getState() != OrderUtil.ORDER_DELIVERER_REQUEST)
-                    return OrderUtil.ILLEGAL_OPERATION;
-                break;
-        }
-        return OrderUtil.NORMAL_STATE;
     }
 
     public void deleteOrderService(int id)
