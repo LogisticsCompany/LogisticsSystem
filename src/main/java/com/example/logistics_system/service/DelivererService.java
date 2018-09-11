@@ -1,6 +1,7 @@
 package com.example.logistics_system.service;
 
 import com.example.logistics_system.bean.Deliverer;
+import com.example.logistics_system.bean.DelivererTemp;
 import com.example.logistics_system.dao.DelivererDAO;
 import com.example.logistics_system.utils.DelivererUtil;
 import com.example.logistics_system.utils.MD5Util;
@@ -20,19 +21,16 @@ public class DelivererService
     @Autowired
     private DelivererDAO delivererDAO;
 
-    public Deliverer generateDelivererService()
+    public DelivererTemp generateDelivererService()
     {
         String username;
         while (delivererDAO.findByUsername((username = DelivererUtil.generateUsername())) != null)
             Util.sleep(new Random().nextInt(10));
-        Deliverer deliverer = new Deliverer();
-        deliverer.setUsername(username);
-        deliverer.setPassword(DelivererUtil.generatePassword());
-        deliverer.setProvince(-1);
-        deliverer.setCity(-1);
-        deliverer.setCountry(-1);
+        String password = DelivererUtil.generatePassword();
+        DelivererTemp delivererTemp = new DelivererTemp(username, password);
+        Deliverer deliverer = new Deliverer(username, MD5Util.encode(password), -1, -1, -1);
         delivererDAO.save(deliverer);
-        return deliverer;
+        return delivererTemp;
     }
 
     public Deliverer loginService(String username, String password)

@@ -6,28 +6,25 @@ import java.util.Date;
 public class OrderUtil
 {
     public final static int
-            ORDER_ORDER = 0,
             ORDER_DELIVERY = 1,
             ORDER_SIGN = 2,
             ORDER_ARRIVED = 3,
-            ORDER_DELIVERER_REQUEST = 4,
-            ORDER_ADMIN_REFUSE = 5,
-            ORDER_ADMIN_ACCEPT = 6,
-            ORDER_USER_ORDER = 7,
-            ORDER_ALL = 8;
+            ORDER_ORDER = 4,
+            ORDER_ALL = 5;
 
     public final static String[] STATES = new String[]
             {
-                    "已下单",
+                    "",
                     "正在派送",
                     "已签收",
-                    "已到达"
+                    "已到达",
+                    "已下单"
             };
 
-    public final static int
-            NORMAL_STATE = 0,
-            ORDER_NOT_EXIST = -1,
-            ILLEGAL_OPERATION = -2;
+    public final static String
+            NORMAL_STATE = "操作成功",
+            ORDER_NOT_EXIST = "订单不存在",
+            ILLEGAL_OPERATION = "非法操作";
 
     public static String generateOrderNumber()
     {
