@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@ page language = "java" import = "java.util.*" pageEncoding = "UTF-8" %>
 <%@ page import = "com.example.logistics_system.bean.User" %>
+<%@ page import = "com.example.logistics_system.utils.OrderUtil" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
@@ -11,33 +12,69 @@
 
 
 
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns = "http://www.w3.org/1999/xhtml">
 <head>
     <base href = "<%=basePath%>"/>
     <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8"/>
-    <title>修改信息</title>
+    <title>派送员信息修改</title>
     <link href = "css/style.css" rel = "stylesheet" type = "text/css"/>
-</head>
 
+    <link href = "bootstrap/css/bootstrap/3.3.6/bootstrap.min.css" rel = "stylesheet">
+    <link href = "bootstrap-select/dist/css/bootstrap-select.min.css" rel = "stylesheet">
+
+    <script src = "bootstrap/js/jquery/2.0.0/jquery.min.js"></script>
+    <script src = "bootstrap/js/bootstrap/3.3.6/bootstrap.min.js"></script>
+    <script src = "bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src = "bootstrap-select/dist/js/i18n/defaults-zh_CN.min.js"></script>
+
+    <link href = "css/bootstrap_extend.css" rel = "stylesheet">
+
+    <style>
+        .form-group-extend {
+            display: inline;
+        }
+    </style>
+</head>
 <body>
 
 <div class = "page">
     <div class = "page_con">
-        <jsp:include flush = "true" page = "/inc/top.jsp"></jsp:include>
-        <!----------------内容区开始-------------------->
-
         <div>
             <div class = "panel panel-info" style = "width: 100%">
-                <div class = "panel-heading">信息修改</div>
+                <div class = "panel-heading">派送员信息修改</div>
                 <div class = "panel-body">
                     <form action = "/userInformation" method = "post">
-                        <input type = "hidden" name = "id" value = "<%=user.getId()%>"/>
-                        <input type = "hidden" name = "username" value = "<%=user.getUsername()%>"/>
-                        <input type = "hidden" name = "password" value = "<%=user.getPassword()%>"/>
+                        <input type = "hidden" name = "id" />
+                        <input type = "hidden" name = "username" />
+                        <input type = "hidden" name = "password" />
+
 
                         <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
                                class = "table table-striped">
+                            <tr>
+                                <td class = "left_name_reinformation">
+                                    用户名：
+                                </td>
+                                <td>
+                                    <input type = "text" name = "name" id = "username"
+                                           class = "form-control form-control-inline"
+                                           style = "width: 200px"/>
+                                    <span class = "red">*</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class = "left_name_reinformation">
+                                    密码：
+                                </td>
+                                <td>
+                                    <input type = "text" name = "name" id = "password"
+                                           class = "form-control form-control-inline"
+                                           style = "width: 200px"/>
+                                    <span class = "red">*</span>
+                                </td>
+                            </tr>
                             <tr>
                                 <td class = "left_name_reinformation">
                                     姓名：
@@ -45,7 +82,7 @@
                                 <td>
                                     <input type = "text" name = "name" id = "name"
                                            class = "form-control form-control-inline"
-                                           style = "width: 200px" value = "<%=user.getName()%>"/>
+                                           style = "width: 200px"/>
                                     <span class = "red">*</span>
                                 </td>
                             </tr>
@@ -77,7 +114,7 @@
                                 <td>
                                     <input type = "text" name = "phoneNumber" id = "phoneNumber"
                                            class = "form-control form-control-inline"
-                                           style = "width: 200px" value = "<%=user.getPhoneNumber()%>"/>
+                                           style = "width: 200px" />
                                     <span class = "red">*</span>
                                 </td>
                             </tr>
@@ -88,7 +125,7 @@
                                 <td>
                                     <input type = "text" name = "email" id = "email"
                                            class = "form-control form-control-inline"
-                                           style = "width: 200px" value = "<%=user.getEmail()%>"/>
+                                           style = "width: 200px" />
                                     <span class = "red">*</span>
                                 </td>
                             </tr>
@@ -118,6 +155,7 @@
                                     <span class = "red">*</span>
                                 </td>
                             </tr>
+
                             <tr>
                                 <td class = "left_name_reinformation">
                                     详细地址：
@@ -125,7 +163,7 @@
                                 <td>
                                     <input type = "text" name = "address" id = "address"
                                            class = "form-control form-control-inline"
-                                           style = "width: 600px" value = "<%=user.getAddress()%>"/>
+                                           style = "width: 600px"/>
                                     <span class = "red">*</span>
                                 </td>
                             </tr>
@@ -146,10 +184,7 @@
         </div>
 
 
-        <!----------------内容区结束-------------------->
-        <!---------------页脚开始---------------->
-        <jsp:include flush = "true" page = "/inc/foot.jsp"></jsp:include>
-        <!---------------页脚结束---------------->
+
     </div>
 </div>
 <script type = "text/javascript" src = "js/city.js"></script>
@@ -162,5 +197,6 @@
 
     $("input[name='sex'][value='" + '<%=user.getSex()%>' + "']").attr("checked", true);
 </script>
+
 </body>
 </html>
