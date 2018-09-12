@@ -79,4 +79,12 @@ public class OrderFormController
         orderFormService.deleteOrderService(id);
         return "redirect:userOrders?state=" + state;
     }
+
+    @RequestMapping(value = "/signOrder", method = RequestMethod.GET)
+    public String signOrder(int id, int state, HttpServletRequest request)
+    {
+        orderFormService.signOrderService(id);
+        request.getSession().setAttribute("message", "操作成功");
+        return "redirect:userOrders?state=" + state;
+    }
 }

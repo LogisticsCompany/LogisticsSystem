@@ -68,28 +68,27 @@ public class DelivererOrderService
         return "撤销成功";
     }
 
-    public boolean refuseOrderService(Deliverer deliverer, int orderFormId)
+    public void refuseOrderService(int delivererId, int orderFormId)
     {
         OrderForm orderForm = orderFormDAO.getOne(orderFormId);
+        Deliverer deliverer = delivererDAO.getOne(delivererId);
         DelivererOrder delivererOrder = delivererOrderDAO.findByDelivererAndOrderForm(deliverer, orderForm);
-        if (delivererOrder == null)
-            return false;
         delivererOrder.setState(DelivererOrderUtil.ORDER_ADMIN_REFUSE);
         delivererOrderDAO.save(delivererOrder);
-        return true;
     }
 
-    @Transactional
-    public void acceptOrderService(Deliverer deliverer, int orderFormId)
+    public void acceptOrderService(int delivererId, int orderFormId)
     {
         OrderForm orderForm = orderFormDAO.getOne(orderFormId);
         Set<DelivererOrder> delivererOrders = orderForm.getDelivererOrders();
         for (DelivererOrder delivererOrder : delivererOrders)
-            delivererOrder.setState(DelivererOrderUtil.ORDER_ADMIN_REFUSE);
-        orderFormDAO.save(orderForm);
-        DelivererOrder delivererOrder = delivererOrderDAO.findByDelivererAndOrderForm(deliverer, orderForm);
-        delivererOrder.setState(DelivererOrderUtil.ORDER_ADMIN_ACCEPT);
-        delivererOrderDAO.save(delivererOrder);
+        {
+            if (delivererOrder.getDeliverer().getId() == delivererId)
+                delivererOrder.setState(DelivererOrderUtil.ORDER_ADMIN_ACCEPT);
+            else
+                delivererOrder.setState(DelivererOrderUtil.ORDER_ADMIN_REFUSE);
+        }
+        delivererOrderDAO.saveAll(delivererOrders);
     }
 
     public Page<DelivererOrder> getDelivererOrdersService(Deliverer deliverer, int state, int start, int size)
@@ -126,7 +125,7 @@ public class DelivererOrderService
         delivererOrderDAO.save(delivererOrder);
         orderForm.setState(orderState);
         orderFormDAO.save(orderForm);
-        return "成功";
+        return "操作成功";
     }
 
     public Map<Integer, String> getOptionDeliverers(Integer orderFormId)

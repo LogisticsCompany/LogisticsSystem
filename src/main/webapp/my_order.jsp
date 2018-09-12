@@ -12,6 +12,16 @@
     request.getSession().removeAttribute("orderForms");
     int state = (int) request.getSession().getAttribute("state");
     request.getSession().removeAttribute("state");
+    Object message = request.getSession().getAttribute("message");
+    request.getSession().removeAttribute("message");
+    if (message != null)
+    {
+%>
+<script>
+    alert('<%=(String)message%>');
+</script>
+<%
+    }
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -95,8 +105,10 @@
                             {
                         %>
                         <tr>
-                            <td><%=orderForm.getOrderNumber()%></td>
-                            <td><%=OrderUtil.STATES[orderForm.getState()]%></td>
+                            <td><%=orderForm.getOrderNumber()%>
+                            </td>
+                            <td><%=OrderUtil.STATES[orderForm.getState()]%>
+                            </td>
                             <td>
                                 <script>
                                     document.write(get_address(<%=orderForm.getSenderProvince()%>, <%=orderForm.getSenderCity()%>, <%=orderForm.getSenderCountry()%>) + '\n' +
@@ -115,6 +127,12 @@
                                     {
                                 %>
                                 <a href = "/deleteOrder?id=<%=orderForm.getId()%>&state=<%=state%>">取消订单</a>
+                                <%
+                                }
+                                else if (orderForm.getState() == OrderUtil.ORDER_ARRIVED)
+                                {
+                                %>
+                                <a href="/signOrder?id=<%=orderForm.getId()%>&state=<%=state%>">签收</a>
                                 <%
                                 }
                                 else

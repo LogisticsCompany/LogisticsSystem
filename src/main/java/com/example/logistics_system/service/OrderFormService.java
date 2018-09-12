@@ -82,4 +82,11 @@ public class OrderFormService
         delivererOrderDAO.deleteAllByOrderForm(orderForm);
         orderFormDAO.deleteById(id);
     }
+
+    public void signOrderService(int id)
+    {
+        OrderForm orderForm = orderFormDAO.getOne(id);
+        orderForm.setState(OrderUtil.ORDER_SIGN);
+        orderFormDAO.save(orderForm);
+    }
 }

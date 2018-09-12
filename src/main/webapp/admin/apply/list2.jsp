@@ -1,9 +1,7 @@
 <!DOCTYPE HTML>
 <%@ page language = "java" import = "java.util.*" pageEncoding = "UTF-8" %>
-<%@ page import = "org.springframework.data.domain.Page" %>
 <%@ page import = "com.example.logistics_system.bean.DelivererOrder" %>
 <%@ page import = "com.example.logistics_system.bean.OrderForm" %>
-<%@ page import = "com.example.logistics_system.bean.Deliverer" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
@@ -13,6 +11,17 @@
     Map<Integer, OrderForm> map = new HashMap<>();
     for (DelivererOrder delivererOrder : delivererOrders)
         map.put(delivererOrder.getOrderForm().getId(), delivererOrder.getOrderForm());
+
+    Object messageObject = request.getSession().getAttribute("message");
+    request.getSession().removeAttribute("message");;
+    if (messageObject != null)
+    {
+%>
+<script>
+    alert('<%=(String)messageObject%>');
+</script>
+<%
+    }
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -42,40 +51,36 @@
 </head>
 <body>
 <div>
-
-    <form action = "/order" method = "post">
-
+    <form method = "post" id = "form1">
         <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
                class = "table table-striped">
             <tr align = "center">
-
                 <td>
-
                     <div class = "form-group form-group-extend">
                         <select class = "selectpicker show-tick" title = "= 请选择单号 ="
                                 data-live-search = "true" data-size = "10"
-                                id = "orderForm" name = "orderForm">
+                                id = "orderForm" name = "orderFormId">
                         </select>
                     </div>
                     <div class = "form-group form-group-extend">
                         <select class = "selectpicker show-tick" title = "= 请选择申请者 ="
                                 data-live-search = "true" data-size = "10"
-                                id = "deliverer" name = "deliverer">
+                                id = "deliverer" name = "delivererId">
                         </select>
                     </div>
                     <div class = "form-group form-group-extend">
                         <select class = "selectpicker show-tick" title = "= 请选择操作 ="
                                 data-live-search = "true" data-size = "5"
                                 id = "operation" name = "operation">
+                            <option value = "/acceptOrder">接受</option>
+                            <option value = "/refuseOrder">拒绝</option>
                         </select>
                     </div>
-
-
                     <input type = "submit" value = "确定" name = "button" id = "button"
                            class = "btn btn-success" style = "height: auto;width:auto"
+                           onclick = "submit1()"
                     />
                 </td>
-
             </tr>
         </table>
     </form>
@@ -133,6 +138,11 @@
     }
 
     init_operation();
+
+    function submit1() {
+        let operation = $1('operation');
+        document.all("form1").setAttribute("action", operation.options[operation.selectedIndex].value);
+    }
 </script>
 
 </body>

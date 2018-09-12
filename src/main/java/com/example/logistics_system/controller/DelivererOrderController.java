@@ -92,4 +92,24 @@ public class DelivererOrderController
         request.getSession().setAttribute("delivererOrders", delivererOrders);
         return "admin/apply/list2";
     }
+
+    @RequestMapping(value = "/acceptOrder", method = RequestMethod.POST)
+    public String acceptDelivererOrder(@RequestParam(value = "delivererId") int delivererId,
+                                       @RequestParam(value = "orderFormId") int orderFormId,
+                                       HttpServletRequest request)
+    {
+        delivererOrderService.acceptOrderService(delivererId, orderFormId);
+        request.getSession().setAttribute("message", "操作成功");
+        return "redirect:allRequestOrders";
+    }
+
+    @RequestMapping(value = "/refuseOrder", method = RequestMethod.POST)
+    public String refuseDelivererOrder(@RequestParam(value = "delivererId") int delivererId,
+                                       @RequestParam(value = "orderFormId") int orderFormId,
+                                       HttpServletRequest request)
+    {
+        delivererOrderService.refuseOrderService(delivererId, orderFormId);
+        request.getSession().setAttribute("message", "操作成功");
+        return "redirect:allRequestOrders";
+    }
 }
