@@ -50,7 +50,7 @@
                             <form id = "form1" name = "form1" method = "get"
                                   action = "/order" onsubmit = "return check()">
                                 <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
-                                       class = "table table-striped ">
+                                                class = "table table-striped ">
                                     <tr>
                                         <td class = "left_name1">
                                             单号：

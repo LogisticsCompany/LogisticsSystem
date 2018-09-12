@@ -1,9 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.example.logistics_system.bean.Deliverer" %>
+<%@ page import = "org.springframework.data.domain.Page" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://"
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
+    Page<Deliverer> deliverers = (Page<Deliverer>) request.getSession().getAttribute("deliverers");
+    request.getSession().removeAttribute("deliverers");
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -54,13 +58,21 @@
             <thead>
             <th>账号</th>
             <th>姓名</th>
-            <th>性别</th>
             <th>电话</th>
             <th>邮箱</th>
             <th>操作</th>
             </thead>
             <tbody>
-
+            <%
+                for (Deliverer deliverer : deliverers)
+                {
+            %>
+            <tr>
+                <td><%=deliverer.getUsername()%></td>
+                <td><%=deliverer.getName()%></td>
+                <td><%=deliverer.getPhoneNumber()%></td>
+                <td><%=deliverer.getEmail()%></td>
+            </tr>
             </tbody>
         </table>
 

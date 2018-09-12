@@ -1,9 +1,16 @@
+<!DOCTYPE html>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import = "org.springframework.data.domain.Page" %>
+<%@ page import = "com.example.logistics_system.bean.User" %>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	Page<User> users = (Page<User>) request.getSession().getAttribute("users");
+	request.getSession().removeAttribute("users");
+
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -60,9 +67,24 @@
 			<th>邮箱</th>
 			</thead>
 			<tbody>
-
+			<%
+				for (User user : users)
+				{
+			%>
+			<tr>
+				<td><%=user.getUsername()%></td>
+				<td><%=user.getName()%></td>
+				<td><%=user.getSex()%></td>
+				<td><%=user.getPhoneNumber()%></td>
+				<td><%=user.getEmail()%></td>
+			</tr>
+			<%
+				}
+			%>
 			</tbody>
 		</table>
+
+
 
 	</div>
 </div>

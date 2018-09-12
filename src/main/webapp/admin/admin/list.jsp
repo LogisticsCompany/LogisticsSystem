@@ -1,9 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.example.logistics_system.bean.Admin" %>
+<%@ page import = "org.springframework.data.domain.Page" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	Page<Admin> admins = (Page<Admin>) request.getSession().getAttribute("admins");
+	request.getSession().removeAttribute("admins");
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -53,12 +57,15 @@
 			<table class = "table table-striped">
 				<thead>
 				<th>账号</th>
-				<th>姓名</th>
-				<th>性别</th>
-				<th>电话</th>
-				<th>邮箱</th>
 				</thead>
 				<tbody>
+				<%
+					for (Admin admin : admins)
+					{
+				%>
+				<tr>
+					<td><%=admin.getUsername()%></td>
+				</tr>
 
 				</tbody>
 			</table>
