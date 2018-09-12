@@ -1,4 +1,6 @@
 
+<!DOCTYPE HTML >
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
     String path = request.getContextPath();
@@ -34,21 +36,18 @@
 </head>
 <body>
 <div>
-    <div class = "panel panel-info" style = "width: 100%">
-        <div class = "panel-heading">申请列表</div>
 
-        <div class = "panel-body">
             <form action = "/order" method = "post">
-                <table width = "50%" border = "0" cellspacing = "0" cellpadding = "0"
-                       class = "table table-striped">
-                    <tr>
-                        <td class = "left_name_reinformation">
 
-                        </td>
+                <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
+                       class = "table table-striped" >
+                    <tr align="center">
+
                         <td>
-                            <div class = "form-group form-group-extend" >
-                                <select class = "selectpicker show-tick"  title = "= 请选择单号 ="
-                                        data-live-search = "true" data-size = "5" data-height = "50px"
+
+                            <div class = "form-group form-group-extend">
+                                <select class = "selectpicker show-tick" title = "= 请选择单号 ="
+                                        data-live-search = "true" data-size = "5"
                                         id = "senderProvince" name = "senderProvince"
                                         onchange = "changeButtonState(false)">
                                 </select>
@@ -67,13 +66,18 @@
                                         onchange = "changeButtonState()">
                                 </select>
                             </div>
-                            <span class = "red">*</span>
+
+
+
+                            <input type = "submit" value = "确定" name = "button" id = "button"
+                                   class = "btn btn-success" style = "height: auto;width:auto"
+                            />
                         </td>
+
                     </tr>
                 </table>
             </form>
-        </div>
-    </div>
+
 </div>
 
 
