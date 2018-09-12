@@ -1,3 +1,4 @@
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
     String path = request.getContextPath();
@@ -38,15 +39,15 @@
 
         <div class = "panel-body">
             <form action = "/order" method = "post">
-                <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
+                <table width = "50%" border = "0" cellspacing = "0" cellpadding = "0"
                        class = "table table-striped">
                     <tr>
                         <td class = "left_name_reinformation">
 
                         </td>
                         <td>
-                            <div class = "form-group form-group-extend">
-                                <select class = "selectpicker show-tick" title = "= 请选择单号 ="
+                            <div class = "form-group form-group-extend" >
+                                <select class = "selectpicker show-tick"  title = "= 请选择单号 ="
                                         data-live-search = "true" data-size = "5" data-height = "50px"
                                         id = "senderProvince" name = "senderProvince"
                                         onchange = "changeButtonState(false)">
@@ -74,6 +75,8 @@
         </div>
     </div>
 </div>
+
+
 
 </body>
 </html>
