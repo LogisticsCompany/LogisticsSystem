@@ -10,8 +10,8 @@ html, body {
 
 
 .top_c {
-    background: url(../img/logo.png) no-repeat #586683;
-    height: 97px;
+    background: url(../images/bg2.jpg) no-repeat ;
+    height: 200px;
     position: relative;
 }
 
@@ -19,9 +19,10 @@ html, body {
     position: absolute;
     width: 348px;
     text-align: right;
-    bottom: 20px;
+    bottom: 30px;
     right: 10px;
     color: #afbbd5;
+
 }
 
     .top-nav a:link {
@@ -290,8 +291,8 @@ table thead {
 
 .bottom_c {
     position: absolute;
-    bottom: 0;
-    background: #586683;
+    /*bottom: 0;*/
+    background: #BDB49E;
     width: 100%;
     text-align: center;
     color: #CCD8E8;

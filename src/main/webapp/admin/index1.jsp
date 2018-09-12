@@ -33,21 +33,20 @@
     </script>
 </head>
 <body>
+
 <div class = "warp">
     <!--头部开始-->
     <div class = "top_c">
-        <div class = "top-menu">
-        </div>
         <div class = "top-nav">欢迎您:<%=admin.getUsername()%>&nbsp;&nbsp;
             <a href = "admin_login.jsp">安全退出</a>
         </div>
     </div>
     <!--头部结束-->
 
-    <div>
+    <div align="right">
 
-        <div class = "btn-group">
-            <button type = "button" class = "btn btn-success dropdown-toggle " data-toggle = "dropdown">
+        <div class = "btn-group" >
+            <button type = "button" class = "btn btn-default dropdown-toggle " data-toggle = "dropdown">
                 员工维护
                 <span class = "caret"></span>
             </button>
@@ -72,8 +71,8 @@
             </ul>
         </div>
 
-        <div class = "btn-group">
-            <button type = "button" class = "btn btn-info dropdown-toggle " data-toggle = "dropdown">
+        <div class = "btn-group" style="align:right">
+            <button type = "button" class = "btn btn-default dropdown-toggle " data-toggle = "dropdown">
                 管理申请
                 <span class = "caret"></span>
             </button>
@@ -96,8 +95,8 @@
         </div>
 
 
-        <div class = "btn-group">
-            <button type = "button" class = "btn btn-warning dropdown-toggle " data-toggle = "dropdown">
+        <div class = "btn-group" >
+            <button type = "button" class = "btn btn-default dropdown-toggle " data-toggle = "dropdown">
                 订单管理
                 <span class = "caret"></span>
             </button>
@@ -137,11 +136,13 @@
         </div>
     </div>
 
-    <!--底部开始-->
-    <div class = "bottom_c">联系我们：
-        <a href = "https://github.com/LogisticsCompany/LogisticsManagementSystem" target = "_blank"
-           style = "color: white">LogisticsCompany</a></div>
-    <!--底部结束-->
 </div>
+<br> <br> <br> <br> <br>
+<!--底部开始-->
+<div class = "bottom_c">联系我们：
+    <a href = "https://github.com/LogisticsCompany/LogisticsManagementSystem" target = "_blank"
+       style = "color: white">LogisticsCompany</a></div>
+<!--底部结束-->
+
 </body>
 </html>
