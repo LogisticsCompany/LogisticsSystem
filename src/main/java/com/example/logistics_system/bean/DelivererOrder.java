@@ -1,5 +1,7 @@
 package com.example.logistics_system.bean;
 
+import org.springframework.context.annotation.Lazy;
+
 import javax.persistence.*;
 
 @Entity

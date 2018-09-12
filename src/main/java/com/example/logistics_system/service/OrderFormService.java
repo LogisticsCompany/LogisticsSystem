@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,6 +23,9 @@ public class OrderFormService
 {
     @Autowired
     private OrderFormDAO orderFormDAO;
+
+    @Autowired
+    private DelivererOrderDAO delivererOrderDAO;
 
     public int addOrderService(User user, OrderForm orderForm)
     {
@@ -71,8 +75,11 @@ public class OrderFormService
         }
     }
 
+    @Transactional
     public void deleteOrderService(int id)
     {
+        OrderForm orderForm = orderFormDAO.getOne(id);
+        delivererOrderDAO.deleteAllByOrderForm(orderForm);
         orderFormDAO.deleteById(id);
     }
 }

@@ -72,6 +72,9 @@
             <li role = "presentation">
                 <a href = "message.jsp"><span>留言板</span> </a>
             </li>
+            <li role = "presentation">
+                <a href = "test.jsp"><span>test</span> </a>
+            </li>
             <%
                 if (user != null)
                 {

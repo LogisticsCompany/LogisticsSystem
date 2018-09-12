@@ -79,8 +79,7 @@
 
             <ul class = "dropdown-menu" role = "menu">
                 <li>
-                    <a href = "<%=path %>/admin/apply/list2.jsp" target = "Conframe"
-                       onclick = "changeTitle(this)">所有申请</a>
+                    <a href = "/allRequestOrders" target = "Conframe">所有申请</a>
                 </li>
                 <li>
                     <a href = "<%=path %>/admin/apply/list.jsp" target = "Conframe"

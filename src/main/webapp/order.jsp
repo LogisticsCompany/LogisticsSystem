@@ -154,41 +154,46 @@
                             {
                                 OrderForm orderForm = delivererOrder.getOrderForm();
                         %>
-                        <td><%=orderForm.getOrderNumber()%>
-                        </td>
-                        <td><%=DelivererOrderUtil.STATES[delivererOrder.getState()]%>
-                        </td>
-                        <td>
-                            <script>
-                                document.write(get_address(<%=orderForm.getReceiverProvince()%>, <%=orderForm.getReceiverCity()%>, <%=orderForm.getReceiverCountry()%>) + '\n' +
-                                    '<%=orderForm.getReceiverAddress()%>' + ' ' + '<%=orderForm.getReceiver()%>' + ' ' + '<%=orderForm.getReceiverPhoneNumber()%>')
-                            </script>
-                        </td>
-                        <%
-                            if (delivererOrder.getState() == DelivererOrderUtil.ORDER_DELIVERER_REQUEST)
+                        <tr>
+                            <td><%=orderForm.getOrderNumber()%>
+                            </td>
+                            <td><%=DelivererOrderUtil.STATES[delivererOrder.getState()]%>
+                            </td>
+                            <td>
+                                <script>
+                                    document.write(get_address(<%=orderForm.getReceiverProvince()%>, <%=orderForm.getReceiverCity()%>, <%=orderForm.getReceiverCountry()%>) + '\n' +
+                                        '<%=orderForm.getReceiverAddress()%>' + ' ' + '<%=orderForm.getReceiver()%>' + ' ' + '<%=orderForm.getReceiverPhoneNumber()%>')
+                                </script>
+                            </td>
+                            <%
+                                if (delivererOrder.getState() == DelivererOrderUtil.ORDER_DELIVERER_REQUEST)
+                                {
+                            %>
+                            <td>
+                                <a href = "/cancelRequest?orderFormId=<%=orderForm.getId()%>">撤销请求</a>
+                            </td>
+                            <%
+                            }
+                            else if (delivererOrder.getState() == DelivererOrderUtil.ORDER_ADMIN_ACCEPT)
                             {
-                        %>
-                        <td>
-                            <a href = "/cancelRequest?orderFormId=<%=orderForm.getId()%>">撤销请求</a>
-                        </td>
+                            %>
+                            <td>
+                                <a href = "/deliveryOrder?orderFormId=<%=orderForm.getId()%>">派送</a>
+                            </td>
+                            <%
+                            }
+                            else if (delivererOrder.getState() == DelivererOrderUtil.ORDER_DELIVERY)
+                            {
+                            %>
+                            <td>
+                                <a href = "/accomplishOrder?orderFormId=<%=orderForm.getId()%>">送达</a>
+                            </td>
+                            <%
+                                }
+                            %>
+                        </tr>
                         <%
-                        }
-                        else if (delivererOrder.getState() == DelivererOrderUtil.ORDER_ADMIN_ACCEPT)
-                        {
-                        %>
-                        <td>
-                            <a href = "/deliveryOrder?orderFormId=<%=orderForm.getId()%>">派送</a>
-                        </td>
-                        <%
-                        }
-                        else if (delivererOrder.getState() == DelivererOrderUtil.ORDER_DELIVERY)
-                        {
-                        %>
-                        <td>
-                            <a href="/accomplishOrder?orderFormId=<%=orderForm.getId()%>">送达</a>
-                        </td>
-                        <%
-                                    }
+
                                 }
                             }
                         %>
