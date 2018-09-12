@@ -57,10 +57,6 @@
                        onclick = "changeTitle(this)">用户</a>
                 </li>
                 <li>
-                    <a href = "<%=path %>/admin/admin/list.jsp" target = "Conframe"
-                       onclick = "changeTitle(this)">管理员</a>
-                </li>
-                <li>
                     <a href = "<%=path %>/admin/courier/list.jsp" target = "Conframe"
                        onclick = "changeTitle(this)">派送员</a>
                 </li>

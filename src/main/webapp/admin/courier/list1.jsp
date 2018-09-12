@@ -26,11 +26,26 @@
 </head>
 <body>
 <div style = "width:30%;margin: auto;border-left:0;border-right:0">
+    <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0"
+           class = "table table-striped ">
+        <tr>
+            <span style="font-size:16px">每次只能添加一个派送员</span>
+        </tr>
+        <tr>
+            <td>
+                <input type = "submit" value = "添加" name = "button" id = "button"
+                       class = "btn btn-success" style = "height: auto;width:auto"
+                />
+
+            </td>
+        </tr>
+    </table>
+
 
     <div class = "panel panel-info" style = "width: 100%">
         <div align = "center" class = "panel-heading" style = "color:grey;font-size:25px">派送员信息</div>
         <div class = "panel-body">
-            <table width = "500%" border = "0" cellspacing = "0" cellpadding = "0" align = "center"
+            <table width = "100%" border = "0" cellspacing = "0" cellpadding = "0" align = "center"
                    class = "table table-striped " style="font-size:16px">
                 <tr>
                     <td class = "left_name">
