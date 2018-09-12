@@ -22,9 +22,6 @@ public class OrderFormController
     @Autowired
     private OrderFormService orderFormService;
 
-    @Autowired
-    private DelivererOrderService delivererOrderService;
-
     @RequestMapping(value = "/order", method = RequestMethod.POST)
     public String addOrder(OrderForm orderForm, HttpServletRequest request)
     {

@@ -58,4 +58,12 @@ public class DelivererController
         delivererService.deleteDelivererService(id);
         return "";
     }
+
+    @RequestMapping(value = "/delivererInformation", method = RequestMethod.POST)
+    public String modifyPersonalInfo(Deliverer deliverer, HttpServletRequest request)
+    {
+        delivererService.saveDelivererService(deliverer);
+        request.getSession().setAttribute("deliverer", deliverer);
+        return "courier_inf";
+    }
 }

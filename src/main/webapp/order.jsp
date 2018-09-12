@@ -63,7 +63,7 @@
 
 <div class = "page">
     <div class = "page_con">
-        <jsp:include flush = "true" page = "/inc/top.jsp"></jsp:include>
+        <jsp:include flush = "true" page = "/inc/top1.jsp"></jsp:include>
         <!----------------内容区开始-------------------->
 
         <div>

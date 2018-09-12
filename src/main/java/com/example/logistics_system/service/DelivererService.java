@@ -54,4 +54,9 @@ public class DelivererService
     {
         delivererDAO.deleteById(id);
     }
+
+    public void saveDelivererService(Deliverer deliverer)
+    {
+        delivererDAO.save(deliverer);
+    }
 }

@@ -95,8 +95,7 @@
                             {
                         %>
                         <tr>
-                            <td><%=orderForm.getOrderNumber()%>
-                            </td>
+                            <td><%=orderForm.getOrderNumber()%></td>
                             <td><%=OrderUtil.STATES[orderForm.getState()]%></td>
                             <td>
                                 <script>

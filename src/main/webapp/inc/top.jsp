@@ -3,10 +3,6 @@
 <%@ page import = "com.example.logistics_system.bean.User" %>
 <%@ page import = "com.example.logistics_system.utils.OrderUtil" %>
 
-<%--<script src = "bootstrap/js/jquery/2.0.0/jquery.min.js"></script>--%>
-<%--<link href = "bootstrap/css/bootstrap/3.3.6/bootstrap.min.css" rel = "stylesheet">--%>
-<%--<script src = "bootstrap/js/bootstrap/3.3.6/bootstrap.min.js"></script>--%>
-
 <link href = "bootstrap/css/bootstrap/3.3.6/bootstrap.min.css" rel = "stylesheet">
 <link href = "bootstrap-select/dist/css/bootstrap-select.min.css" rel = "stylesheet">
 

@@ -1,6 +1,7 @@
 package com.example.logistics_system.service;
 
 import com.example.logistics_system.bean.Deliverer;
+import com.example.logistics_system.bean.DelivererOrder;
 import com.example.logistics_system.bean.OrderForm;
 import com.example.logistics_system.bean.User;
 import com.example.logistics_system.dao.DelivererOrderDAO;
@@ -12,6 +13,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class OrderFormService
@@ -35,7 +39,17 @@ public class OrderFormService
         start = start < 0 ? 0 : start;
         Sort sort = new Sort(Sort.Direction.ASC, "id");
         Pageable pageable = PageRequest.of(start, size, sort);
-        return orderFormDAO.findAllBySenderProvinceAndSenderCityAndSenderCountryAndState(deliverer.getProvince(), deliverer.getCity(), deliverer.getCountry(), OrderUtil.ORDER_ORDER, pageable);
+        Set<DelivererOrder> delivererOrders = deliverer.getDelivererOrders();
+        Set<Integer> ids = new HashSet<>();
+        if (delivererOrders != null)
+        {
+            for (DelivererOrder delivererOrder : delivererOrders)
+                ids.add(delivererOrder.getOrderForm().getId());
+        }
+        if (ids.isEmpty())
+            ids.add(Integer.MAX_VALUE);
+        System.out.println(ids);
+        return orderFormDAO.findAllBySenderProvinceAndSenderCityAndSenderCountryAndStateAndIdNotIn(deliverer.getProvince(), deliverer.getCity(), deliverer.getCountry(), OrderUtil.ORDER_ORDER, ids, pageable);
     }
 
     public OrderForm getOrderService(String orderNumber)

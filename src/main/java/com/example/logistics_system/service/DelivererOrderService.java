@@ -37,7 +37,8 @@ public class DelivererOrderService
         DelivererOrder delivererOrder = new DelivererOrder(DelivererOrderUtil.ORDER_DELIVERER_REQUEST, orderForm, deliverer);
         orderForm.getDelivererOrders().add(delivererOrder);
         deliverer.getDelivererOrders().add(delivererOrder);
-        delivererOrderDAO.save(delivererOrder);
+        orderFormDAO.save(orderForm);
+        delivererDAO.save(deliverer);
         return true;
     }
 
