@@ -13,7 +13,7 @@
         map.put(delivererOrder.getOrderForm().getId(), delivererOrder.getOrderForm());
 
     Object messageObject = request.getSession().getAttribute("message");
-    request.getSession().removeAttribute("message");;
+    request.getSession().removeAttribute("message");
     if (messageObject != null)
     {
 %>

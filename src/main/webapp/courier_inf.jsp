@@ -44,7 +44,8 @@
                                 <td>
                                     <input type = "text" name = "name" id = "name"
                                            class = "form-control form-control-inline"
-                                           style = "width: 200px" value = "<%=deliverer.getName()%>"/>
+                                           style = "width: 200px"
+                                           value = "<%=deliverer.getName() == null ? "" : deliverer.getName()%>"/>
                                     <span class = "red">*</span>
                                 </td>
                             </tr>
@@ -55,7 +56,8 @@
                                 <td>
                                     <input type = "text" name = "phoneNumber" id = "phoneNumber"
                                            class = "form-control form-control-inline"
-                                           style = "width: 200px" value = "<%=deliverer.getPhoneNumber()%>"/>
+                                           style = "width: 200px"
+                                           value = "<%=deliverer.getPhoneNumber() == null ? "" : deliverer.getPhoneNumber()%>"/>
                                     <span class = "red">*</span>
                                 </td>
                             </tr>
@@ -66,7 +68,8 @@
                                 <td>
                                     <input type = "text" name = "email" id = "email"
                                            class = "form-control form-control-inline"
-                                           style = "width: 200px" value = "<%=deliverer.getEmail()%>"/>
+                                           style = "width: 200px"
+                                           value = "<%=deliverer.getEmail() == null ? "" : deliverer.getEmail()%>"/>
                                     <span class = "red">*</span>
                                 </td>
                             </tr>

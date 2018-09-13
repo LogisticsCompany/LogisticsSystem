@@ -200,12 +200,30 @@
                         </tbody>
                     </table>
                     <br>
-                    <%--<div align = "center">--%>
-                    <%--<a href = "/userOrders?start=0&state=<%=state%>">[首页]</a>--%>
-                    <%--<a href = "/userOrders?start=<%=orderForms.getNumber()-1%>&state=<%=state%>">[上一页]</a>--%>
-                    <%--<a href = "/userOrders?start=<%=orderForms.getNumber()+1%>&state=<%=state%>">[下一页]</a>--%>
-                    <%--<a href = "/userOrders?start=<%=orderForms.getTotalPages()-1%>&state=<%=state%>">[末页]</a>--%>
-                    <%--</div>--%>
+                    <div align = "center">
+                        <%
+                            if (state == OrderUtil.ORDER_ORDER)
+                            {
+                                Page<OrderForm> orderForms = (Page<OrderForm>) orderFormsObject;
+                        %>
+                        <a href = "/delivererOrders?start=0">[首页]</a>
+                        <a href = "/delivererOrders?start=<%=orderForms.getNumber()-1%>">[上一页]</a>
+                        <a href = "/delivererOrders?start=<%=orderForms.getNumber()+1%>">[下一页]</a>
+                        <a href = "/delivererOrders?start=<%=orderForms.getTotalPages()-1%>">[末页]</a>
+                        <%
+                        }
+                        else
+                        {
+                            Page<DelivererOrder> delivererOrders = (Page<DelivererOrder>) delivererOrdersObject;
+                        %>
+                        <a href = "/delivererStateOrders?start=0&state=<%=state%>">[首页]</a>
+                        <a href = "/delivererStateOrders?start=<%=delivererOrders.getNumber()-1%>&state=<%=state%>">[上一页]</a>
+                        <a href = "/delivererStateOrders?start=<%=delivererOrders.getNumber()+1%>&state=<%=state%>">[下一页]</a>
+                        <a href = "/delivererStateOrders?start=<%=delivererOrders.getTotalPages()-1%>&state=<%=state%>">[末页]</a>
+                        <%
+                            }
+                        %>
+                    </div>
                 </div>
             </div>
         </div>
