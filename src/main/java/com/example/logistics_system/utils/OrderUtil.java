@@ -10,7 +10,8 @@ public class OrderUtil
             ORDER_SIGN = 2,
             ORDER_ARRIVED = 3,
             ORDER_ORDER = 4,
-            ORDER_ALL = 5;
+            ORDER_REFUSE_SIGN = 5,
+            ORDER_ALL = 6;
 
     public final static String[] STATES = new String[]
             {
@@ -18,7 +19,8 @@ public class OrderUtil
                     "正在派送",
                     "已签收",
                     "已到达",
-                    "已下单"
+                    "已下单",
+                    "已拒收"
             };
 
     public final static String

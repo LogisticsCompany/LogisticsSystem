@@ -20,4 +20,6 @@ public interface OrderFormDAO extends JpaRepository<OrderForm, Integer>
     Page<OrderForm> findAllByUserAndState(User user, int state, Pageable pageable);
 
     List<OrderForm> findAllByState(int state);
+
+    Page<OrderForm> findAllByState(int state, Pageable pageable);
 }

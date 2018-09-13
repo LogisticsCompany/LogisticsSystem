@@ -87,4 +87,24 @@ public class OrderFormController
         request.getSession().setAttribute("message", "操作成功");
         return "redirect:userOrders?state=" + state;
     }
+
+    @RequestMapping(value = "/refuseSignOrder", method = RequestMethod.GET)
+    public String refuseSignOrder(int id, int state, HttpServletRequest request)
+    {
+        orderFormService.refuseSignOrderService(id);
+        request.getSession().setAttribute("message", "操作成功");
+        return "redirect:userOrders?state=" + state;
+    }
+
+    @RequestMapping(value = "/orders", method = RequestMethod.GET)
+    public String getOrders(@RequestParam(value = "start", defaultValue = "0") int start,
+                            @RequestParam(value = "size", defaultValue = "10") int size,
+                            @RequestParam(value = "state") int state,
+                            HttpServletRequest request)
+    {
+        Page<OrderForm> orderForms = orderFormService.getOrdersService(state, start, size);
+        request.getSession().setAttribute("orderForms", orderForms);
+        request.getSession().setAttribute("state", state);
+        return "admin/order_form/list";
+    }
 }

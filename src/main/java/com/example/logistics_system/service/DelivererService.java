@@ -76,4 +76,9 @@ public class DelivererService
     {
         return delivererDAO.findAll();
     }
+
+    public Deliverer getDelivererService(int id)
+    {
+        return delivererDAO.getOne(id);
+    }
 }

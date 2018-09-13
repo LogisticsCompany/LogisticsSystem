@@ -44,22 +44,22 @@ public class DelivererController
         }
     }
 
-    @RequestMapping(value = "/deliverer", method = RequestMethod.GET)
+    @RequestMapping(value = "/deliverers", method = RequestMethod.GET)
     public String getDeliverers(HttpServletRequest request,
                                 @RequestParam(value = "start", defaultValue = "0") int start,
                                 @RequestParam(value = "size", defaultValue = "10") int size)
     {
         Page<Deliverer> deliverers = delivererService.getDeliverersService(start, size);
         request.getSession().setAttribute("deliverers", deliverers);
-        return "";
+        return "admin/courier/list";
     }
 
-    @RequestMapping(value = "/deliverer", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deliverer", method = RequestMethod.GET)
     public String deleteDeliverer(int id, HttpServletRequest request)
     {
         String message = delivererService.deleteDelivererService(id);
         request.getSession().setAttribute("message", message);
-        return "";
+        return "redirect:deliverers";
     }
 
     @RequestMapping(value = "/delivererInformation", method = RequestMethod.POST)
@@ -70,6 +70,15 @@ public class DelivererController
         return "courier_inf";
     }
 
+    @RequestMapping(value = "/delivererInformation1", method = RequestMethod.POST)
+    public String modifyPersonalInfo1(Deliverer deliverer, HttpServletRequest request)
+    {
+        delivererService.saveDelivererService(deliverer);
+        request.getSession().setAttribute("delivererT", deliverer);
+        request.getSession().setAttribute("message", "修改成功");
+        return "admin/courier/new_courier";
+    }
+
     @RequestMapping(value = "/generateDeliverer", method = RequestMethod.POST)
     @ResponseBody
     public String generateDeliverer()
@@ -77,5 +86,13 @@ public class DelivererController
         DelivererTemp delivererTemp = delivererService.generateDelivererService();
         Gson gson = new Gson();
         return gson.toJson(delivererTemp);
+    }
+
+    @RequestMapping(value = "/editDeliverer", method = RequestMethod.GET)
+    public String editDeliverer(int id, HttpServletRequest request)
+    {
+        Deliverer deliverer = delivererService.getDelivererService(id);
+        request.getSession().setAttribute("delivererT", deliverer);
+        return "admin/courier/new_courier";
     }
 }

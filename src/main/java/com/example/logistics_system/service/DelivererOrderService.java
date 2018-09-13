@@ -16,6 +16,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -85,6 +86,26 @@ public class DelivererOrderService
         delivererOrderDAO.saveAll(delivererOrders);
     }
 
+    @Transactional
+    public void assignOrderService(int delivererId, int orderFormId)
+    {
+        Deliverer deliverer = delivererDAO.getOne(delivererId);
+        OrderForm orderForm = orderFormDAO.getOne(orderFormId);
+        DelivererOrder delivererOrder = delivererOrderDAO.findByDelivererAndOrderForm(deliverer, orderForm);
+        if (delivererOrder == null)
+        {
+            delivererOrder = new DelivererOrder(DelivererOrderUtil.ORDER_ADMIN_ACCEPT, orderForm, deliverer);
+            if (orderForm.getDelivererOrders() == null)
+                orderForm.setDelivererOrders(new HashSet<>());
+            orderForm.getDelivererOrders().add(delivererOrder);
+            if (deliverer.getDelivererOrders() == null)
+                deliverer.setDelivererOrders(new HashSet<>());
+            deliverer.getDelivererOrders().add(delivererOrder);
+            delivererOrderDAO.save(delivererOrder);
+        }
+        acceptOrderService(delivererId, orderFormId);
+    }
+
     public Page<DelivererOrder> getDelivererOrdersService(Deliverer deliverer, int state, int start, int size)
     {
         start = start < 0 ? 0 : start;
@@ -145,5 +166,13 @@ public class DelivererOrderService
     public Set<DelivererOrder> getAllRequestOrdersService()
     {
         return delivererOrderDAO.findAllByState(DelivererOrderUtil.ORDER_DELIVERER_REQUEST);
+    }
+
+    public Page<DelivererOrder> courierOrdersService(int state, int start, int size)
+    {
+        start = start < 0 ? 0 : start;
+        Sort sort = new Sort(Sort.Direction.ASC, "id");
+        Pageable pageable = PageRequest.of(start, size, sort);
+        return delivererOrderDAO.findAllByState(state, pageable);
     }
 }

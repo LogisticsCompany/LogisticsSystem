@@ -120,6 +120,28 @@ public class DelivererOrderController
         List<OrderForm> orderForms = orderFormService.getAllOrderedOrderService();
         request.getSession().setAttribute("deliverers", deliverers);
         request.getSession().setAttribute("orderForms", orderForms);
-        return "";
+        return "admin/apply/list3";
+    }
+
+    @RequestMapping(value = "/assignOrder", method = RequestMethod.POST)
+    public String assignOrder(@RequestParam(value = "delivererId") int delivererId,
+                              @RequestParam(value = "orderFormId") int orderFormId,
+                              HttpServletRequest request)
+    {
+        delivererOrderService.assignOrderService(delivererId, orderFormId);
+        request.getSession().setAttribute("message", "操作成功");
+        return "redirect:delivererAndOrder";
+    }
+
+    @RequestMapping(value = "/courierOrders", method = RequestMethod.GET)
+    public String courierOrders(HttpServletRequest request,
+                                @RequestParam(value = "start", defaultValue = "0") int start,
+                                @RequestParam(value = "size", defaultValue = "10") int size,
+                                @RequestParam(value = "state") int state)
+    {
+        Page<DelivererOrder> delivererOrders = delivererOrderService.courierOrdersService(state, start, size);
+        request.getSession().setAttribute("delivererOrders", delivererOrders);
+        request.getSession().setAttribute("state", state);
+        return "admin/apply/list";
     }
 }

@@ -67,6 +67,9 @@
                                     case <%=OrderUtil.ORDER_SIGN%>:
                                         document.write('已签收订单');
                                         break;
+                                    case <%=OrderUtil.ORDER_REFUSE_SIGN%>:
+                                        document.write('已拒收订单');
+                                        break;
                                 }
                             </script>
                             <span class = "caret"></span>
@@ -86,6 +89,9 @@
                             </li>
                             <li role = "presentation">
                                 <a href = "/userOrders?state=<%=OrderUtil.ORDER_SIGN%>">已签收订单</a>
+                            </li>
+                            <li role = "presentation">
+                                <a href = "/userOrders?state=<%=OrderUtil.ORDER_REFUSE_SIGN%>">已拒收订单</a>
                             </li>
                         </ul>
                     </div>
@@ -122,25 +128,29 @@
                                 </script>
                             </td>
                             <td>
+                                <%--<%--%>
+                                <%--if (orderForm.getState() == OrderUtil.ORDER_ORDER)--%>
+                                <%--{--%>
+                                <%--%>--%>
+                                <%--<a href = "/deleteOrder?id=<%=orderForm.getId()%>&state=<%=state%>">取消订单</a>--%>
+                                <%--<%--%>
+                                <%--}--%>
+                                <%--else--%>
                                 <%
-                                    if (orderForm.getState() == OrderUtil.ORDER_ORDER)
+                                    if (orderForm.getState() == OrderUtil.ORDER_ARRIVED)
                                     {
                                 %>
-                                <a href = "/deleteOrder?id=<%=orderForm.getId()%>&state=<%=state%>">取消订单</a>
-                                <%
-                                }
-                                else if (orderForm.getState() == OrderUtil.ORDER_ARRIVED)
-                                {
-                                %>
-                                <a href="/signOrder?id=<%=orderForm.getId()%>&state=<%=state%>">签收</a>
-                                <%
-                                }
-                                else
-                                {
-                                %>
-                                取消订单
+                                <a href = "/signOrder?id=<%=orderForm.getId()%>&state=<%=state%>">签收</a>
+                                &nbsp;|&nbsp;
+                                <a href = "/refuseSignOrder?id=<%=orderForm.getId()%>&state=<%=state%>">拒签</a>
                                 <%
                                     }
+                                <%--else--%>
+                                <%--{--%>
+                                <%--%>--%>
+                                <%--取消订单--%>
+                                <%--<%--%>
+                                <%--}--%>
                                 %>
                             </td>
                         </tr>

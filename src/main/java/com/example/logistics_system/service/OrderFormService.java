@@ -91,8 +91,23 @@ public class OrderFormService
         orderFormDAO.save(orderForm);
     }
 
+    public void refuseSignOrderService(int id)
+    {
+        OrderForm orderForm = orderFormDAO.getOne(id);
+        orderForm.setState(OrderUtil.ORDER_REFUSE_SIGN);
+        orderFormDAO.save(orderForm);
+    }
+
     public List<OrderForm> getAllOrderedOrderService()
     {
         return orderFormDAO.findAllByState(OrderUtil.ORDER_ORDER);
+    }
+
+    public Page<OrderForm> getOrdersService(int state, int start, int size)
+    {
+        start = start < 0 ? 0 : start;
+        Sort sort = new Sort(Sort.Direction.ASC, "id");
+        Pageable pageable = PageRequest.of(start, size, sort);
+        return orderFormDAO.findAllByState(state, pageable);
     }
 }

@@ -8,6 +8,7 @@
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
     Set<DelivererOrder> delivererOrders = (Set<DelivererOrder>) request.getSession().getAttribute("delivererOrders");
+    request.getSession().removeAttribute("delivererOrders");
     Map<Integer, OrderForm> map = new HashMap<>();
     for (DelivererOrder delivererOrder : delivererOrders)
         map.put(delivererOrder.getOrderForm().getId(), delivererOrder.getOrderForm());

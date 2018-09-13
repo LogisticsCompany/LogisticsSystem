@@ -159,27 +159,28 @@
                                         '<%=orderForm.getReceiverAddress()%>' + ' ' + '<%=orderForm.getReceiver()%>' + ' ' + '<%=orderForm.getReceiverPhoneNumber()%>')
                                 </script>
                             </td>
+                            <%--<%--%>
+                            <%--if (delivererOrder.getState() == DelivererOrderUtil.ORDER_DELIVERER_REQUEST)--%>
+                            <%--{--%>
+                            <%--%>--%>
+                            <%--<td>--%>
+                            <%--<a href = "/cancelRequest?orderFormId=<%=orderForm.getId()%>">撤销请求</a>--%>
+                            <%--</td>--%>
+                            <%--<%--%>
+                            <%--}--%>
+                            <%--else--%>
                             <%
-                                if (delivererOrder.getState() == DelivererOrderUtil.ORDER_DELIVERER_REQUEST)
+                                if (delivererOrder.getState() == DelivererOrderUtil.ORDER_ADMIN_ACCEPT)
                                 {
-                            %>
-                            <td>
-                                <a href = "/cancelRequest?orderFormId=<%=orderForm.getId()%>">撤销请求</a>
-                            </td>
-                            <%
-                            }
-                            else if (delivererOrder.getState() == DelivererOrderUtil.ORDER_ADMIN_ACCEPT)
-                            {
                             %>
                             <td>
                                 <a href = "/accomplishOrder?orderFormId=<%=orderForm.getId()%>">送达</a>
                             </td>
                             <%
-                            }
+                                }
                             %>
                         </tr>
                         <%
-
                                 }
                             }
                         %>

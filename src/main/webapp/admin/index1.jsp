@@ -1,4 +1,6 @@
-<%@ page import = "com.example.logistics_system.bean.Admin" %><%--
+<%@ page import = "com.example.logistics_system.bean.Admin" %>
+<%@ page import = "com.example.logistics_system.utils.OrderUtil" %>
+<%@ page import = "com.example.logistics_system.utils.DelivererOrderUtil" %><%--
   Created by IntelliJ IDEA.
   User: dell-pc
   Date: 2018/9/4
@@ -43,9 +45,9 @@
     </div>
     <!--头部结束-->
 
-    <div align="right">
+    <div align = "right">
 
-        <div class = "btn-group" >
+        <div class = "btn-group">
             <button type = "button" class = "btn btn-default dropdown-toggle " data-toggle = "dropdown">
                 员工维护
                 <span class = "caret"></span>
@@ -53,11 +55,7 @@
 
             <ul class = "dropdown-menu" role = "menu">
                 <li>
-                    <a href = "<%=path %>/admin/user/list.jsp" target = "Conframe"
-                       onclick = "changeTitle(this)">用户</a>
-                </li>
-                <li>
-                    <a href = "<%=path %>/admin/courier/list.jsp" target = "Conframe"
+                    <a href = "/deliverers" target = "Conframe"
                        onclick = "changeTitle(this)">派送员</a>
                 </li>
                 <li>
@@ -67,7 +65,7 @@
             </ul>
         </div>
 
-        <div class = "btn-group" style="align:right">
+        <div class = "btn-group" style = "align:right">
             <button type = "button" class = "btn btn-default dropdown-toggle " data-toggle = "dropdown">
                 指派订单
                 <span class = "caret"></span>
@@ -75,12 +73,13 @@
 
             <ul class = "dropdown-menu" role = "menu">
                 <li>
-                    <a href = "<%=path %>/admin/apply/list3.jsp" target = "Conframe" >指派订单</a>
+                    <a href = "/delivererAndOrder" target = "Conframe"
+                       onclick = "changeTitle(this)">指派订单</a>
                 </li>
             </ul>
         </div>
 
-        <div class = "btn-group" style="align:right">
+        <div class = "btn-group" style = "align:right">
             <button type = "button" class = "btn btn-default dropdown-toggle " data-toggle = "dropdown">
                 管理申请
                 <span class = "caret"></span>
@@ -88,14 +87,14 @@
 
             <ul class = "dropdown-menu" role = "menu">
                 <li>
-                    <a href = "/allRequestOrders" target = "Conframe" >所有申请</a>
+                    <a href = "/allRequestOrders" target = "Conframe" onclick = "changeTitle(this)">所有申请</a>
                 </li>
                 <li>
-                    <a href = "<%=path %>/admin/apply/list.jsp" target = "Conframe"
+                    <a href = "/courierOrders?state=<%=DelivererOrderUtil.ORDER_ADMIN_ACCEPT%>" target = "Conframe"
                        onclick = "changeTitle(this)">通过订单</a>
                 </li>
                 <li>
-                    <a href = "<%=path %>/admin/apply/list1.jsp" target = "Conframe"
+                    <a href = "/courierOrders?state=<%=DelivererOrderUtil.ORDER_ADMIN_REFUSE%>" target = "Conframe"
                        onclick = "changeTitle(this)">拒绝订单</a>
                 </li>
 
@@ -103,7 +102,7 @@
         </div>
 
 
-        <div class = "btn-group" >
+        <div class = "btn-group">
             <button type = "button" class = "btn btn-default dropdown-toggle " data-toggle = "dropdown">
                 订单管理
                 <span class = "caret"></span>
@@ -111,23 +110,23 @@
 
             <ul class = "dropdown-menu" role = "menu">
                 <li>
-                    <a href = "<%=path %>/admin/yundan/list1.jsp" target = "Conframe"
+                    <a href = "/orders?state=<%=OrderUtil.ORDER_ORDER%>" target = "Conframe"
                        onclick = "changeTitle(this)">已下单</a>
                 </li>
                 <li>
-                    <a href = "<%=path %>/admin/yundan/list2.jsp" target = "Conframe"
+                    <a href = "/orders?state=<%=OrderUtil.ORDER_REFUSE_SIGN%>" target = "Conframe"
                        onclick = "changeTitle(this)">拒收</a>
                 </li>
                 <li>
-                    <a href = "<%=path %>/admin/yundan/list3.jsp" target = "Conframe"
-                       onclick = "changeTitle(this)">未派送</a>
-                </li>
-                <li>
-                    <a href = "<%=path %>/admin/yundan/list4.jsp" target = "Conframe"
+                    <a href = "/orders?state=<%=OrderUtil.ORDER_DELIVERY%>" target = "Conframe"
                        onclick = "changeTitle(this)">已派送</a>
                 </li>
                 <li>
-                    <a href = "<%=path %>/admin/yundan/list5.jsp" target = "Conframe"
+                    <a href = "/orders?state=<%=OrderUtil.ORDER_ARRIVED%>" target = "Conframe"
+                       onclick = "changeTitle(this)">已到达</a>
+                </li>
+                <li>
+                    <a href = "/orders?state=<%=OrderUtil.ORDER_SIGN%>" target = "Conframe"
                        onclick = "changeTitle(this)">已确认收货</a>
                 </li>
             </ul>
