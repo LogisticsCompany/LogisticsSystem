@@ -36,7 +36,6 @@
                 <input type = "submit" value = "添加" name = "button" id = "button"
                        class = "btn btn-success" style = "height: auto;width:auto"
                 />
-
             </td>
         </tr>
     </table>
@@ -62,11 +61,7 @@
 
             </table>
         </div>
-
     </div>
 </div>
-
-
-
 </body>
 </html>
