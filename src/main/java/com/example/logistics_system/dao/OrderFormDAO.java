@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Set;
 
 public interface OrderFormDAO extends JpaRepository<OrderForm, Integer>
@@ -17,4 +18,6 @@ public interface OrderFormDAO extends JpaRepository<OrderForm, Integer>
     Page<OrderForm> findAllByUser(User user, Pageable pageable);
 
     Page<OrderForm> findAllByUserAndState(User user, int state, Pageable pageable);
+
+    List<OrderForm> findAllByState(int state);
 }

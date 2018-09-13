@@ -1,8 +1,10 @@
 package com.example.logistics_system.service;
 
 import com.example.logistics_system.bean.Deliverer;
+import com.example.logistics_system.bean.DelivererOrder;
 import com.example.logistics_system.bean.DelivererTemp;
 import com.example.logistics_system.dao.DelivererDAO;
+import com.example.logistics_system.utils.DelivererOrderUtil;
 import com.example.logistics_system.utils.DelivererUtil;
 import com.example.logistics_system.utils.MD5Util;
 import com.example.logistics_system.utils.Util;
@@ -13,7 +15,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 @Service
 public class DelivererService
@@ -50,13 +54,26 @@ public class DelivererService
         return delivererDAO.findAll(pageable);
     }
 
-    public void deleteDelivererService(int id)
+    public String deleteDelivererService(int id)
     {
+        Deliverer deliverer = delivererDAO.getOne(id);
+        Set<DelivererOrder> delivererOrders = deliverer.getDelivererOrders();
+        for (DelivererOrder delivererOrder : delivererOrders)
+        {
+            if (delivererOrder.getState() == DelivererOrderUtil.ORDER_ADMIN_ACCEPT)
+                return "该派送员正在派送中，无法删除！";
+        }
         delivererDAO.deleteById(id);
+        return "删除成功";
     }
 
     public void saveDelivererService(Deliverer deliverer)
     {
         delivererDAO.save(deliverer);
+    }
+
+    public List<Deliverer> getAllDeliverers()
+    {
+        return delivererDAO.findAll();
     }
 }

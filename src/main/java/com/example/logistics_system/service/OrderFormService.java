@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -88,5 +89,10 @@ public class OrderFormService
         OrderForm orderForm = orderFormDAO.getOne(id);
         orderForm.setState(OrderUtil.ORDER_SIGN);
         orderFormDAO.save(orderForm);
+    }
+
+    public List<OrderForm> getAllOrderedOrderService()
+    {
+        return orderFormDAO.findAllByState(OrderUtil.ORDER_ORDER);
     }
 }

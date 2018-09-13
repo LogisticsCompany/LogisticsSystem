@@ -87,9 +87,6 @@
                                     case <%=DelivererOrderUtil.ORDER_ADMIN_REFUSE%>:
                                         document.write('已拒绝订单');
                                         break;
-                                    case <%=DelivererOrderUtil.ORDER_DELIVERY%>:
-                                        document.write('已派送订单');
-                                        break;
                                 }
                             </script>
                             <span class = "caret"></span>
@@ -106,9 +103,6 @@
                             </li>
                             <li role = "presentation">
                                 <a href = "/delivererStateOrders?state=<%=DelivererOrderUtil.ORDER_ADMIN_REFUSE%>">已拒绝订单</a>
-                            </li>
-                            <li role = "presentation">
-                                <a href = "/delivererStateOrders?state=<%=DelivererOrderUtil.ORDER_DELIVERY%>">已派送订单</a>
                             </li>
                         </ul>
                     </div>
@@ -178,18 +172,10 @@
                             {
                             %>
                             <td>
-                                <a href = "/deliveryOrder?orderFormId=<%=orderForm.getId()%>">派送</a>
-                            </td>
-                            <%
-                            }
-                            else if (delivererOrder.getState() == DelivererOrderUtil.ORDER_DELIVERY)
-                            {
-                            %>
-                            <td>
                                 <a href = "/accomplishOrder?orderFormId=<%=orderForm.getId()%>">送达</a>
                             </td>
                             <%
-                                }
+                            }
                             %>
                         </tr>
                         <%

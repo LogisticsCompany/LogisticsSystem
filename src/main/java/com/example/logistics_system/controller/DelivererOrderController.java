@@ -2,7 +2,10 @@ package com.example.logistics_system.controller;
 
 import com.example.logistics_system.bean.Deliverer;
 import com.example.logistics_system.bean.DelivererOrder;
+import com.example.logistics_system.bean.OrderForm;
 import com.example.logistics_system.service.DelivererOrderService;
+import com.example.logistics_system.service.DelivererService;
+import com.example.logistics_system.service.OrderFormService;
 import com.example.logistics_system.utils.DelivererOrderUtil;
 import com.example.logistics_system.utils.OrderUtil;
 import com.google.gson.GsonBuilder;
@@ -15,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,6 +27,12 @@ public class DelivererOrderController
 {
     @Autowired
     private DelivererOrderService delivererOrderService;
+
+    @Autowired
+    private DelivererService delivererService;
+
+    @Autowired
+    private OrderFormService orderFormService;
 
     @RequestMapping(value = "/delivererStateOrders", method = RequestMethod.GET)
     public String getDelivererOrders(HttpServletRequest request,
@@ -58,22 +67,13 @@ public class DelivererOrderController
         return "redirect:delivererStateOrders?state=" + DelivererOrderUtil.ORDER_DELIVERER_REQUEST;
     }
 
-    @RequestMapping(value = "/deliveryOrder", method = RequestMethod.GET)
-    public String deliveryOrder(int orderFormId, HttpServletRequest request)
-    {
-        Deliverer deliverer = (Deliverer) request.getSession().getAttribute("deliverer");
-        String deliveryMessage = delivererOrderService.orderStateService(deliverer, orderFormId, DelivererOrderUtil.ORDER_DELIVERY, OrderUtil.ORDER_DELIVERY);
-        request.getSession().setAttribute("deliveryMessage", deliveryMessage);
-        return "redirect:delivererStateOrders?state=" + DelivererOrderUtil.ORDER_ADMIN_ACCEPT;
-    }
-
     @RequestMapping(value = "/accomplishOrder", method = RequestMethod.GET)
     public String accomplishOrder(int orderFormId, HttpServletRequest request)
     {
         Deliverer deliverer = (Deliverer) request.getSession().getAttribute("deliverer");
         String deliveryMessage = delivererOrderService.orderStateService(deliverer, orderFormId, DelivererOrderUtil.ORDER_DONE, OrderUtil.ORDER_ARRIVED);
         request.getSession().setAttribute("deliveryMessage", deliveryMessage);
-        return "redirect:delivererStateOrders?state=" + DelivererOrderUtil.ORDER_DELIVERY;
+        return "redirect:delivererStateOrders?state=" + DelivererOrderUtil.ORDER_ADMIN_ACCEPT;
     }
 
     @RequestMapping(value = "/optionDeliverers", method = {RequestMethod.POST, RequestMethod.GET})
@@ -111,5 +111,15 @@ public class DelivererOrderController
         delivererOrderService.refuseOrderService(delivererId, orderFormId);
         request.getSession().setAttribute("message", "操作成功");
         return "redirect:allRequestOrders";
+    }
+
+    @RequestMapping(value = "/delivererAndOrder", method = RequestMethod.GET)
+    public String getDelivererAndOrder(HttpServletRequest request)
+    {
+        List<Deliverer> deliverers = delivererService.getAllDeliverers();
+        List<OrderForm> orderForms = orderFormService.getAllOrderedOrderService();
+        request.getSession().setAttribute("deliverers", deliverers);
+        request.getSession().setAttribute("orderForms", orderForms);
+        return "";
     }
 }
