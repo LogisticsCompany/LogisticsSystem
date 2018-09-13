@@ -3,12 +3,14 @@ package com.example.logistics_system.controller;
 import com.example.logistics_system.bean.Deliverer;
 import com.example.logistics_system.bean.DelivererTemp;
 import com.example.logistics_system.service.DelivererService;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -65,5 +67,14 @@ public class DelivererController
         delivererService.saveDelivererService(deliverer);
         request.getSession().setAttribute("deliverer", deliverer);
         return "courier_inf";
+    }
+
+    @RequestMapping(value = "/generateDeliverer", method = RequestMethod.POST)
+    @ResponseBody
+    public String generateDeliverer()
+    {
+        DelivererTemp delivererTemp = delivererService.generateDelivererService();
+        Gson gson = new Gson();
+        return gson.toJson(delivererTemp);
     }
 }
