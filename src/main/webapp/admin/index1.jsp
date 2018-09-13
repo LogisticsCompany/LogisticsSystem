@@ -69,13 +69,26 @@
 
         <div class = "btn-group" style="align:right">
             <button type = "button" class = "btn btn-default dropdown-toggle " data-toggle = "dropdown">
+                指派订单
+                <span class = "caret"></span>
+            </button>
+
+            <ul class = "dropdown-menu" role = "menu">
+                <li>
+                    <a href = "<%=path %>/admin/apply/list3.jsp" target = "Conframe" >指派订单</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class = "btn-group" style="align:right">
+            <button type = "button" class = "btn btn-default dropdown-toggle " data-toggle = "dropdown">
                 管理申请
                 <span class = "caret"></span>
             </button>
 
             <ul class = "dropdown-menu" role = "menu">
                 <li>
-                    <a href = "/allRequestOrders" target = "Conframe">所有申请</a>
+                    <a href = "/allRequestOrders" target = "Conframe" >所有申请</a>
                 </li>
                 <li>
                     <a href = "<%=path %>/admin/apply/list.jsp" target = "Conframe"
