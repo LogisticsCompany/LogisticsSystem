@@ -52,8 +52,23 @@
                 <a href = "courier_inf.jsp"><span>我的信息</span> </a>
             </li>
         </ul>
-        <div class = "banner">
-            <img src = "images/top.jpg"/>
+        <div class="banner">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="images/top.jpg" >
+                    </div>
+                    <div class="item">
+                        <img src="img/top4.jpg" >
+                    </div>
+                    <div class="item">
+                        <img src="img/top5.jpg" >
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
     <!----------------主导航菜单结束-------------------->
