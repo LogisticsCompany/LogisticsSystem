@@ -72,3 +72,15 @@
     <!----------------主导航菜单结束-------------------->
 </div>
 <!----------------内容区开始-------------------->
+<div align = "right" style = "padding-right: 58px">
+    <%
+        if (deliverer != null)
+        {
+    %>
+    <span>欢迎你：<%=((Deliverer) deliverer).getUsername() %></span>
+
+    <span><a href = "del_logout.jsp" class = "zc">注销</a> </span>
+    <%
+        }
+    %>
+</div>

@@ -35,25 +35,7 @@
 
 <div class = "panel panel-info" style = "width: 100%;">
     <div class = "panel-heading">
-        <div class = "btn-group">
-            <table>
-                <tr>
-                    <td width = "200">
-                        请输入账号：
-                    </td>
-                    <td width = "250">
-                        <input type = "text" name = "dh" id = "dh"
-                               class = "form-control form-control-inline"
-                               style = "width:auto;height:auto"/>
-                    </td>
-                    <td>
-                        <input type = "submit" value = "查询" name = "button" id = "button"
-                               class = "btn btn-success" style = "height: auto;width:auto"
-                        />
-                    </td>
-                </tr>
-            </table>
-        </div>
+        派送员管理
     </div>
     <div class = "panel-body">
         <table class = "table table-striped">
@@ -88,7 +70,13 @@
             %>
             </tbody>
         </table>
-
+        <br>
+        <div align = "center">
+            <a href = "/deliverers?start=0">[首页]</a>
+            <a href = "/deliverers?start=<%=deliverers.getNumber()-1%>">[上一页]</a>
+            <a href = "/deliverers?start=<%=deliverers.getNumber()+1%>">[下一页]</a>
+            <a href = "/deliverers?start=<%=deliverers.getTotalPages()-1%>">[末页]</a>
+        </div>
     </div>
 </div>
 

@@ -63,17 +63,6 @@
                             </tr>
                             <tr>
                                 <td class = "left_name_reinformation">
-                                    密码：
-                                </td>
-                                <td>
-                                    <input type = "text" name = "password" id = "password"
-                                           class = "form-control form-control-inline"
-                                           style = "width: 200px"/>
-                                    <span class = "red">*</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class = "left_name_reinformation">
                                     邮箱：
                                 </td>
                                 <td>

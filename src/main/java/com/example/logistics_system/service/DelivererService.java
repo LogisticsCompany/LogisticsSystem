@@ -4,6 +4,7 @@ import com.example.logistics_system.bean.Deliverer;
 import com.example.logistics_system.bean.DelivererOrder;
 import com.example.logistics_system.bean.DelivererTemp;
 import com.example.logistics_system.dao.DelivererDAO;
+import com.example.logistics_system.dao.DelivererOrderDAO;
 import com.example.logistics_system.utils.DelivererOrderUtil;
 import com.example.logistics_system.utils.DelivererUtil;
 import com.example.logistics_system.utils.MD5Util;
@@ -14,7 +15,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -24,6 +27,9 @@ public class DelivererService
 {
     @Autowired
     private DelivererDAO delivererDAO;
+
+    @Autowired
+    private DelivererOrderDAO delivererOrderDAO;
 
     public DelivererTemp generateDelivererService()
     {
@@ -54,6 +60,7 @@ public class DelivererService
         return delivererDAO.findAll(pageable);
     }
 
+    @Transactional
     public String deleteDelivererService(int id)
     {
         Deliverer deliverer = delivererDAO.getOne(id);
@@ -63,6 +70,7 @@ public class DelivererService
             if (delivererOrder.getState() == DelivererOrderUtil.ORDER_ADMIN_ACCEPT)
                 return "该派送员正在派送中，无法删除！";
         }
+        delivererOrderDAO.deleteAll(delivererOrders);
         delivererDAO.deleteById(id);
         return "删除成功";
     }
