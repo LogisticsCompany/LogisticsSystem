@@ -22,4 +22,8 @@ public interface DelivererOrderDAO extends JpaRepository<DelivererOrder, Integer
     Page<DelivererOrder> findAllByOrderFormAndState(OrderForm orderForm, int state, Pageable pageable);
 
     Page<DelivererOrder> findAllByState(int state, Pageable pageable);
+
+    Set<DelivererOrder> findAllByState(int state);
+
+    void deleteAllByOrderForm(OrderForm orderForm);
 }

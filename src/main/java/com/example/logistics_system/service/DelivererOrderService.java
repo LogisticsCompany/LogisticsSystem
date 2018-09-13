@@ -1,5 +1,6 @@
 package com.example.logistics_system.service;
 
+import com.example.logistics_system.bean.Deliv;
 import com.example.logistics_system.bean.Deliverer;
 import com.example.logistics_system.bean.DelivererOrder;
 import com.example.logistics_system.bean.OrderForm;
@@ -7,14 +8,19 @@ import com.example.logistics_system.dao.DelivererDAO;
 import com.example.logistics_system.dao.DelivererOrderDAO;
 import com.example.logistics_system.dao.OrderFormDAO;
 import com.example.logistics_system.utils.DelivererOrderUtil;
-import com.example.logistics_system.utils.OrderUtil;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -36,9 +42,19 @@ public class DelivererOrderService
             return false;
         DelivererOrder delivererOrder = new DelivererOrder(DelivererOrderUtil.ORDER_DELIVERER_REQUEST, orderForm, deliverer);
         orderForm.getDelivererOrders().add(delivererOrder);
+
+        if (deliverer != null)
+        {
+            if (deliverer.getDelivererOrders() == null)
+                System.out.println("deliverer.getDelivererOrders() is null");
+        }
+        else
+            System.out.println("deliverer is null");
+
+        if (deliverer.getDelivererOrders() == null)
+            deliverer.setDelivererOrders(new HashSet<>());
         deliverer.getDelivererOrders().add(delivererOrder);
-        orderFormDAO.save(orderForm);
-        delivererDAO.save(deliverer);
+        delivererOrderDAO.save(delivererOrder);
         return true;
     }
 
@@ -52,27 +68,27 @@ public class DelivererOrderService
         return "撤销成功";
     }
 
-    public boolean refuseOrderService(Deliverer deliverer, int orderFormId)
+    public void refuseOrderService(int delivererId, int orderFormId)
     {
         OrderForm orderForm = orderFormDAO.getOne(orderFormId);
+        Deliverer deliverer = delivererDAO.getOne(delivererId);
         DelivererOrder delivererOrder = delivererOrderDAO.findByDelivererAndOrderForm(deliverer, orderForm);
-        if (delivererOrder == null)
-            return false;
         delivererOrder.setState(DelivererOrderUtil.ORDER_ADMIN_REFUSE);
         delivererOrderDAO.save(delivererOrder);
-        return true;
     }
 
-    public void acceptOrderService(Deliverer deliverer, int orderFormId)
+    public void acceptOrderService(int delivererId, int orderFormId)
     {
         OrderForm orderForm = orderFormDAO.getOne(orderFormId);
         Set<DelivererOrder> delivererOrders = orderForm.getDelivererOrders();
         for (DelivererOrder delivererOrder : delivererOrders)
-            delivererOrder.setState(DelivererOrderUtil.ORDER_ADMIN_REFUSE);
-        orderFormDAO.save(orderForm);
-        DelivererOrder delivererOrder = delivererOrderDAO.findByDelivererAndOrderForm(deliverer, orderForm);
-        delivererOrder.setState(DelivererOrderUtil.ORDER_ADMIN_ACCEPT);
-        delivererOrderDAO.save(delivererOrder);
+        {
+            if (delivererOrder.getDeliverer().getId() == delivererId)
+                delivererOrder.setState(DelivererOrderUtil.ORDER_ADMIN_ACCEPT);
+            else
+                delivererOrder.setState(DelivererOrderUtil.ORDER_ADMIN_REFUSE);
+        }
+        delivererOrderDAO.saveAll(delivererOrders);
     }
 
     public Page<DelivererOrder> getDelivererOrdersService(Deliverer deliverer, int state, int start, int size)
@@ -109,6 +125,31 @@ public class DelivererOrderService
         delivererOrderDAO.save(delivererOrder);
         orderForm.setState(orderState);
         orderFormDAO.save(orderForm);
-        return "成功";
+        return "操作成功";
+    }
+
+    public Map<Integer, String> getOptionDeliverers(Integer orderFormId)
+    {
+        Gson gson = new Gson();
+        OrderForm orderForm = orderFormDAO.getOne(orderFormId);
+        Set<DelivererOrder> delivererOrders = orderForm.getDelivererOrders();
+        Map<Integer, String> map = new HashMap<>();
+        for (DelivererOrder delivererOrder : delivererOrders)
+        {
+            if (delivererOrder.getState() == DelivererOrderUtil.ORDER_DELIVERER_REQUEST)
+            {
+                Deliverer deliverer = delivererOrder.getDeliverer();
+                int id = deliverer.getId();
+                String name = deliverer.getName();
+                Deliv deliv = new Deliv(id, name);
+                map.put(id, gson.toJson(deliv));
+            }
+        }
+        return map;
+    }
+
+    public Set<DelivererOrder> getAllRequestOrdersService()
+    {
+        return delivererOrderDAO.findAllByState(DelivererOrderUtil.ORDER_DELIVERER_REQUEST);
     }
 }

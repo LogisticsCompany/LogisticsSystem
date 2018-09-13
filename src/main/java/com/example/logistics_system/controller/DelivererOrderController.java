@@ -5,14 +5,19 @@ import com.example.logistics_system.bean.DelivererOrder;
 import com.example.logistics_system.service.DelivererOrderService;
 import com.example.logistics_system.utils.DelivererOrderUtil;
 import com.example.logistics_system.utils.OrderUtil;
+import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class DelivererOrderController
@@ -69,5 +74,42 @@ public class DelivererOrderController
         String deliveryMessage = delivererOrderService.orderStateService(deliverer, orderFormId, DelivererOrderUtil.ORDER_DONE, OrderUtil.ORDER_ARRIVED);
         request.getSession().setAttribute("deliveryMessage", deliveryMessage);
         return "redirect:delivererStateOrders?state=" + DelivererOrderUtil.ORDER_DELIVERY;
+    }
+
+    @RequestMapping(value = "/optionDeliverers", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public String getOptionDeliverers(@RequestParam(value = "orderFormId") String orderFormId)
+    {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Map<Integer, String> map = delivererOrderService.getOptionDeliverers(Integer.valueOf(orderFormId));
+        return gsonBuilder.create().toJson(map);
+    }
+
+    @RequestMapping(value = "/allRequestOrders", method = RequestMethod.GET)
+    public String getAllRequestOrders(HttpServletRequest request)
+    {
+        Set<DelivererOrder> delivererOrders = delivererOrderService.getAllRequestOrdersService();
+        request.getSession().setAttribute("delivererOrders", delivererOrders);
+        return "admin/apply/list2";
+    }
+
+    @RequestMapping(value = "/acceptOrder", method = RequestMethod.POST)
+    public String acceptDelivererOrder(@RequestParam(value = "delivererId") int delivererId,
+                                       @RequestParam(value = "orderFormId") int orderFormId,
+                                       HttpServletRequest request)
+    {
+        delivererOrderService.acceptOrderService(delivererId, orderFormId);
+        request.getSession().setAttribute("message", "操作成功");
+        return "redirect:allRequestOrders";
+    }
+
+    @RequestMapping(value = "/refuseOrder", method = RequestMethod.POST)
+    public String refuseDelivererOrder(@RequestParam(value = "delivererId") int delivererId,
+                                       @RequestParam(value = "orderFormId") int orderFormId,
+                                       HttpServletRequest request)
+    {
+        delivererOrderService.refuseOrderService(delivererId, orderFormId);
+        request.getSession().setAttribute("message", "操作成功");
+        return "redirect:allRequestOrders";
     }
 }

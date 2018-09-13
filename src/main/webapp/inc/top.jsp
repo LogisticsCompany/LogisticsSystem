@@ -57,21 +57,12 @@
             <li role = "presentation">
                 <a href = "index.jsp"><span>首页</span> </a>
             </li>
-            <li role = "presentation">
-                <a href = "news.jsp"><span>新闻资讯</span> </a>
-            </li>
-            <li role = "presentation">
-                <a href = "wd.jsp"><span>网点信息</span> </a>
-            </li>
+
             <li role = "presentation">
                 <a href = "order_query.jsp"><span>运单查询</span> </a>
             </li>
-            <li role = "presentation">
-                <a href = "yunfei.jsp"><span>运费查询</span> </a>
-            </li>
-            <li role = "presentation">
-                <a href = "message.jsp"><span>留言板</span> </a>
-            </li>
+
+
             <%
                 if (user != null)
                 {
