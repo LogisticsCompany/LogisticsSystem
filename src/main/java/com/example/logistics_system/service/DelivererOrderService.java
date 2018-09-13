@@ -8,15 +8,14 @@ import com.example.logistics_system.dao.DelivererDAO;
 import com.example.logistics_system.dao.DelivererOrderDAO;
 import com.example.logistics_system.dao.OrderFormDAO;
 import com.example.logistics_system.utils.DelivererOrderUtil;
+import com.example.logistics_system.utils.OrderUtil;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -42,15 +41,6 @@ public class DelivererOrderService
             return false;
         DelivererOrder delivererOrder = new DelivererOrder(DelivererOrderUtil.ORDER_DELIVERER_REQUEST, orderForm, deliverer);
         orderForm.getDelivererOrders().add(delivererOrder);
-
-        if (deliverer != null)
-        {
-            if (deliverer.getDelivererOrders() == null)
-                System.out.println("deliverer.getDelivererOrders() is null");
-        }
-        else
-            System.out.println("deliverer is null");
-
         if (deliverer.getDelivererOrders() == null)
             deliverer.setDelivererOrders(new HashSet<>());
         deliverer.getDelivererOrders().add(delivererOrder);
@@ -84,7 +74,11 @@ public class DelivererOrderService
         for (DelivererOrder delivererOrder : delivererOrders)
         {
             if (delivererOrder.getDeliverer().getId() == delivererId)
+            {
                 delivererOrder.setState(DelivererOrderUtil.ORDER_ADMIN_ACCEPT);
+                orderForm.setState(OrderUtil.ORDER_DELIVERY);
+                orderFormDAO.save(orderForm);
+            }
             else
                 delivererOrder.setState(DelivererOrderUtil.ORDER_ADMIN_REFUSE);
         }

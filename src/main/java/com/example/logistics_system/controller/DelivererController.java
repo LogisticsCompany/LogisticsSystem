@@ -55,9 +55,10 @@ public class DelivererController
     }
 
     @RequestMapping(value = "/deliverer", method = RequestMethod.DELETE)
-    public String deleteDeliverer(int id)
+    public String deleteDeliverer(int id, HttpServletRequest request)
     {
-        delivererService.deleteDelivererService(id);
+        String message = delivererService.deleteDelivererService(id);
+        request.getSession().setAttribute("message", message);
         return "";
     }
 
