@@ -39,7 +39,7 @@
             <th>状态</th>
             <th>发送方信息</th>
             <th>接收方信息</th>
-            <th>操作</th>
+
             </thead>
             <tbody>
 

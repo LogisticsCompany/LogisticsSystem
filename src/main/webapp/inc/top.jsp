@@ -84,7 +84,7 @@
         </ul>
         <div class="banner">
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-            
+
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">

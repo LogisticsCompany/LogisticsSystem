@@ -41,7 +41,7 @@
             <thead>
             <th>单号</th>
             <th>申请人</th>
-            <th>操作</th>
+
             </thead>
             <tbody>
 
