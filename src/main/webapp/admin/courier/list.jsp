@@ -23,13 +23,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+    <meta http-equiv = "Content-Type" content = "text/html; charset=UTF-8">
+    <title>派送员信息列表</title>
     <script src = "<%=path %>/bootstrap/js/jquery/2.0.0/jquery.min.js"></script>
     <link href = "<%=path %>/bootstrap/css/bootstrap/3.3.6/bootstrap.min.css" rel = "stylesheet">
     <script src = "<%=path %>/bootstrap/js/bootstrap/3.3.6/bootstrap.min.js"></script>
     <link href = "<%=path %>/css/admin.css" rel = "stylesheet">
     <base href = "<%=basePath%>">
-    <meta http-equiv = "Content-Type" content = "text/html; charset=UTF-8">
-    <title>派送员信息列表</title>
 </head>
 <body>
 

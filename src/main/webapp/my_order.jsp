@@ -145,13 +145,13 @@
                                 <a href = "/refuseSignOrder?id=<%=orderForm.getId()%>&state=<%=state%>">拒签</a>
                                 <%
                                     }
+                                %>
                                 <%--else--%>
                                 <%--{--%>
                                 <%--%>--%>
                                 <%--取消订单--%>
                                 <%--<%--%>
                                 <%--}--%>
-                                %>
                             </td>
                         </tr>
                         <%
