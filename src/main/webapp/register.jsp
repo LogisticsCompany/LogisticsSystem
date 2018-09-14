@@ -33,6 +33,11 @@
                 return false;
             }
 
+            if ($1('pwds').value != $1('pwds1').value) {
+                alert('两次输入的密码不一致！');
+                return false;
+            }
+
             let tels = $1('tel').value;
 
             if (isNaN(tels) || tels.length != 11) {
@@ -91,7 +96,17 @@
                                        style = "width: 150px"/>
                                 <span class = "red">*</span>
                             </td>
-
+                        </tr>
+                        <tr>
+                            <td class = "left_name">
+                                请再次输入密码：
+                            </td>
+                            <td>
+                                <input type = "password" id = "pwds1"
+                                       class = "form-control form-control-inline"
+                                       style = "width: 150px"/>
+                                <span class = "red">*</span>
+                            </td>
                         </tr>
 
                         <tr>
