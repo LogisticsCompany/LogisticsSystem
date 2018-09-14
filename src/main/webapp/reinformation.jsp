@@ -16,6 +16,56 @@
     <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8"/>
     <title>修改信息</title>
     <link href = "css/style.css" rel = "stylesheet" type = "text/css"/>
+
+    <script>
+        function $1(val) {
+            return document.getElementById(val);
+        }
+
+        function check() {
+            if ($1('name').value == '') {
+                alert('请填写姓名！');
+                return false;
+            }
+
+            let tels = $1('phoneNumber').value;
+
+            if (isNaN(tels) || tels.length != 11) {
+                alert("请输入正确手机号码！");
+                return false;
+            }
+
+            let em = $1('email').value;
+
+            let szReg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            let bChk = szReg.test(em);
+            if (!bChk) {
+                alert("邮箱格式不正确！");
+                return false;
+            }
+
+            if ($1('province').value == '') {
+                alert('请选择省份！');
+                return false;
+            }
+
+            if ($1('city').value == '') {
+                alert('请选择城市！');
+                return false;
+            }
+
+            if ($1('country').value == '') {
+                alert('请选择县区！');
+                return false;
+            }
+
+            if ($1('address').value == '') {
+                alert('请输入详细地址！');
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 
 <body>
@@ -29,7 +79,7 @@
             <div class = "panel panel-info" style = "width: 100%">
                 <div class = "panel-heading">信息修改</div>
                 <div class = "panel-body">
-                    <form action = "/userInformation" method = "post">
+                    <form action = "/userInformation" method = "post" onsubmit = "return check()">
                         <input type = "hidden" name = "id" value = "<%=user.getId()%>"/>
                         <input type = "hidden" name = "username" value = "<%=user.getUsername()%>"/>
                         <input type = "hidden" name = "password" value = "<%=user.getPassword()%>"/>
